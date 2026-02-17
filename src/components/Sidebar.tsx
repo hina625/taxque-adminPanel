@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 const SidebarLink = ({ href, icon, label, collapsed }: { href: string; icon: string; label: string; collapsed: boolean }) => (
-    <a href={href} className={`menu-btn w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${collapsed ? 'justify-center' : ''}`}>
+    <Link href={href} className={`menu-btn w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${collapsed ? 'justify-center' : ''}`}>
         <i className={`${icon} mr-2`}></i>
         {!collapsed && <span>{label}</span>}
-    </a>
+    </Link>
 );
 
 interface SidebarProps {
@@ -42,10 +43,10 @@ export default function Sidebar({ isSidebarCollapsed, toggleSidebar }: SidebarPr
                 <div className="space-y-4">
 
                     <div>
-                        <a href="/" className={`menu-btn w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : ''}`}>
+                        <Link href="/" className={`menu-btn w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : ''}`}>
                             <i className="fas fa-tachometer-alt mr-2"></i>
                             {!isSidebarCollapsed && <span>Dashboard</span>}
-                        </a>
+                        </Link>
                     </div>
 
 
@@ -65,14 +66,14 @@ export default function Sidebar({ isSidebarCollapsed, toggleSidebar }: SidebarPr
                             className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'user-role' && !isSidebarCollapsed ? 'max-h-[500px] mt-1' : 'max-h-0'}`}
                         >
                             <div className="ml-4 space-y-1">
-                                <a href="#" className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                <Link href="/pages/user-management" className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
                                     <i className="fas fa-circle text-[8px] mr-2"></i>
                                     User Management
-                                </a>
-                                <a href="#" className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                </Link>
+                                <Link href="/pages/role-permissions" className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
                                     <i className="fas fa-circle text-[8px] mr-2"></i>
                                     Role Permissions
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -93,11 +94,21 @@ export default function Sidebar({ isSidebarCollapsed, toggleSidebar }: SidebarPr
                             className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'ecommerce' && !isSidebarCollapsed ? 'max-h-[500px] mt-1' : 'max-h-0'}`}
                         >
                             <div className="ml-4 space-y-1">
-                                {['Report', 'Order', 'Incomplete order', 'Order Cancellation', 'Service', 'Product categories', 'Service attributes', 'Service collections'].map((item) => (
-                                    <a key={item} href="#" className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                {[
+                                    { name: 'Report', href: '/pages/reports' },
+                                    { name: 'Order', href: '/pages/service-orders' },
+                                    { name: 'Incomplete order', href: '/pages/incomplete-orders' },
+                                    { name: 'Order Cancellation', href: '/pages/cancellations' },
+                                    { name: 'Service', href: '/pages/service-management' },
+                                    { name: 'Product categories', href: '/pages/product-categories' },
+                                    { name: 'Associate Management', href: '/pages/new-partner' },
+                                    { name: 'Service attributes', href: '/pages/service-attributes' },
+                                    { name: 'Service collections', href: '/pages/service-collections' }
+                                ].map((item) => (
+                                    <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
                                         <i className="fas fa-circle text-[8px] mr-2"></i>
-                                        {item}
-                                    </a>
+                                        {item.name}
+                                    </Link>
                                 ))}
                             </div>
                         </div>
@@ -121,17 +132,18 @@ export default function Sidebar({ isSidebarCollapsed, toggleSidebar }: SidebarPr
                         >
                             <div className="ml-4 space-y-1">
                                 {[
-                                    { name: 'Dashboard', href: '/pages/dashboard' },
-                                    { name: 'Partner Management', href: '#' },
+                                    { name: 'Dashboard', href: '/pages/referral-dashboard' },
+                                    { name: 'Partner Management', href: '/pages/partners' },
                                     { name: 'Commission Settings', href: '/pages/commission-settings' },
-                                    { name: 'Referral Tracking', href: '#' },
-                                    { name: 'Payout Management', href: '#' },
+                                    { name: 'Referral Tracking', href: '/pages/referral-tracking' },
+                                    { name: 'Referral Analytics', href: '/pages/referral-analytics' },
+                                    { name: 'Payout Management', href: '/pages/payout-management' },
                                     { name: 'Analytics & Reports', href: '#' }
                                 ].map((item) => (
-                                    <a key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                    <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
                                         <i className="fas fa-circle text-[8px] mr-2"></i>
                                         {item.name}
-                                    </a>
+                                    </Link>
                                 ))}
                             </div>
                         </div>
@@ -150,16 +162,16 @@ export default function Sidebar({ isSidebarCollapsed, toggleSidebar }: SidebarPr
 
                     {/* Other Menu Items */}
                     {[
-                        { name: 'Service Price Plan', icon: 'fa-money-bill-wave' },
-                        { name: 'Discounts', icon: 'fa-tag' },
-                        { name: 'Pages', icon: 'fa-file-alt' },
-                        { name: 'Team', icon: 'fa-users-cog' },
+                        { name: 'Service Price Plan', icon: 'fa-money-bill-wave', href: '/pages/service-price-plan' },
+                        { name: 'Discounts', icon: 'fa-tag', href: '/pages/discounts' },
+                        { name: 'Pages', icon: 'fa-file-alt', href: '/pages/pages' },
+                        { name: 'Team', icon: 'fa-users-cog', href: '/pages/team' },
                     ].map((item) => (
                         <div key={item.name}>
-                            <a href="#" className={`menu-btn w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : ''}`}>
+                            <Link href={item.href} className={`menu-btn w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : ''}`}>
                                 <i className={`fas ${item.icon} mr-2`}></i>
                                 {!isSidebarCollapsed && <span>{item.name}</span>}
-                            </a>
+                            </Link>
                         </div>
                     ))}
 
@@ -185,10 +197,10 @@ export default function Sidebar({ isSidebarCollapsed, toggleSidebar }: SidebarPr
                                     { name: 'Categories', href: '/pages/blog-categories' },
                                     { name: 'Tags', href: '/pages/blog-tags' }
                                 ].map((item) => (
-                                    <a key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                    <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
                                         <i className="fas fa-circle text-[8px] mr-2"></i>
                                         {item.name}
-                                    </a>
+                                    </Link>
                                 ))}
                             </div>
                         </div>
@@ -196,34 +208,34 @@ export default function Sidebar({ isSidebarCollapsed, toggleSidebar }: SidebarPr
 
                     {/* More Items */}
                     {[
-                        { name: 'Payments', icon: 'fa-credit-card', href: '#' },
-                        { name: 'Recruitment Setup', icon: 'fa-briefcase', href: '#' },
-                        { name: 'Support System', icon: 'fa-headset', href: '#' },
-                        { name: 'Messenger', icon: 'fa-comments', href: '#' },
-                        { name: 'Service Timeline', icon: 'fa-stream', href: '#' },
+                        { name: 'Payments', icon: 'fa-credit-card', href: '/pages/payments' },
+                        { name: 'Recruitment', icon: 'fa-briefcase', href: '/pages/recruitment' },
+                        { name: 'Support System', icon: 'fa-headset', href: '/pages/support' },
+                        { name: 'Messenger', icon: 'fa-comments', href: '/pages/messenger' },
+                        { name: 'Service Timeline', icon: 'fa-stream', href: '/pages/service-timeline' },
                         { name: 'CRM System', icon: 'fa-address-book', href: '/pages/crm' },
-                        { name: 'Testimonials', icon: 'fa-star', href: '#' },
+                        { name: 'Testimonials', icon: 'fa-star', href: '/pages/testimonials' },
 
                         { name: 'Document', icon: 'fa-file-contract', href: '/pages/documents' },
                         { name: 'Comments (Blog)', icon: 'fa-comment', href: '/pages/comments' },
-                        { name: 'FAQs', icon: 'fa-question-circle', href: '#' },
-                        { name: 'Newsletters', icon: 'fa-newspaper', href: '#' },
-                        { name: 'Locations', icon: 'fa-map-marker-alt', href: '#' },
+                        { name: 'FAQs', icon: 'fa-question-circle', href: '/pages/faqs' },
+                        { name: 'Newsletters', icon: 'fa-newspaper', href: '/pages/newsletters' },
+                        { name: 'Locations', icon: 'fa-map-marker-alt', href: '/pages/locations' },
                         { name: 'Contact', icon: 'fa-envelope', href: '/pages/contact' },
 
                         { name: 'Company Info', icon: 'fa-building', href: '/pages/company-info' },
-                        { name: 'Tools', icon: 'fa-tools', href: '#' },
-                        { name: 'Settings', icon: 'fa-cog', href: '#' },
+                        { name: 'Tools', icon: 'fa-tools', href: '/pages/tools' },
+                        { name: 'Settings', icon: 'fa-cog', href: '/pages/settings' },
                         { name: 'Custom Code Manager', icon: 'fa-code', href: '/pages/custom' },
                         { name: 'Create Blog Post', icon: 'fa-pen', href: '/pages/create-blog-post' },
-                        { name: 'New partner onboard', icon: 'fa-handshake', href: '#' },
+                        { name: 'New partner onboard', icon: 'fa-handshake', href: '/pages/partners' },
 
                     ].map((item) => (
                         <div key={item.name}>
-                            <a href={item.href} className={`menu-btn w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : ''}`}>
+                            <Link href={item.href} className={`menu-btn w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : ''}`}>
                                 <i className={`fas ${item.icon} mr-2`}></i>
                                 {!isSidebarCollapsed && <span>{item.name}</span>}
-                            </a>
+                            </Link>
                         </div>
                     ))}
 

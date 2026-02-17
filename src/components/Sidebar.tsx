@@ -13,9 +13,11 @@ const SidebarLink = ({ href, icon, label, collapsed }: { href: string; icon: str
 interface SidebarProps {
     isSidebarCollapsed: boolean;
     toggleSidebar: () => void;
+    isMobileMenuOpen?: boolean;
+    closeMobileMenu?: () => void;
 }
 
-export default function Sidebar({ isSidebarCollapsed, toggleSidebar }: SidebarProps) {
+export default function Sidebar({ isSidebarCollapsed, toggleSidebar, isMobileMenuOpen = false, closeMobileMenu }: SidebarProps) {
     const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
 
     // Toggle Submenu
@@ -26,14 +28,25 @@ export default function Sidebar({ isSidebarCollapsed, toggleSidebar }: SidebarPr
 
     return (
         <div
-            className={`bg-sidebar-dark text-white dark:bg-gray-800 flex flex-col transition-all duration-300 ease-in-out ${isSidebarCollapsed ? 'w-[70px]' : 'w-64'}`}
+            className={`fixed inset-y-0 left-0 z-50 bg-sidebar-dark text-white dark:bg-gray-800 flex flex-col transition-transform duration-300 ease-in-out 
+                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} 
+                lg:relative lg:translate-x-0 
+                ${isSidebarCollapsed ? 'lg:w-[70px]' : 'lg:w-64'} 
+                w-64 shadow-xl lg:shadow-none`}
             id="sidebar"
         >
             <div className="p-4 border-b border-gray-700 dark:border-gray-700">
                 <div className={`flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}>
-                    {!isSidebarCollapsed && <h1 className="text-xl font-bold">Admin Dashboard</h1>}
-                    <button onClick={toggleSidebar} className="text-gray-400 hover:text-white">
+                    {(!isSidebarCollapsed || isMobileMenuOpen) && <h1 className="text-xl font-bold">Admin Dashboard</h1>}
+
+                    {/* Desktop Toggle */}
+                    <button onClick={toggleSidebar} className="hidden lg:block text-gray-400 hover:text-white">
                         <i className={`fas ${isSidebarCollapsed ? 'fa-chevron-right' : 'fa-bars'}`}></i>
+                    </button>
+
+                    {/* Mobile Close Button */}
+                    <button onClick={closeMobileMenu} className="lg:hidden text-gray-400 hover:text-white">
+                        <i className="fas fa-times"></i>
                     </button>
                 </div>
             </div>
@@ -136,9 +149,8 @@ export default function Sidebar({ isSidebarCollapsed, toggleSidebar }: SidebarPr
                                     { name: 'Partner Management', href: '/pages/partners' },
                                     { name: 'Commission Settings', href: '/pages/commission-settings' },
                                     { name: 'Referral Tracking', href: '/pages/referral-tracking' },
-                                    { name: 'Referral Analytics', href: '/pages/referral-analytics' },
                                     { name: 'Payout Management', href: '/pages/payout-management' },
-                                    { name: 'Analytics & Reports', href: '#' }
+                                    { name: 'Analytics & Reports', href: '/pages/referral-analytics' }
                                 ].map((item) => (
                                     <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
                                         <i className="fas fa-circle text-[8px] mr-2"></i>

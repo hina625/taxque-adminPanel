@@ -18,8 +18,20 @@ export default function DiscountsPage() {
 
     const toggleModal = () => setIsModalOpen(!isModalOpen);
 
+    // Lock body scroll when modal is open
+    React.useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isModalOpen]);
+
     const checkAll = () => {
-        // Implementation for check-all checkboxes would go here
+
     };
 
     const mockDiscounts: DiscountCode[] = [
@@ -64,9 +76,8 @@ export default function DiscountsPage() {
                 </div>
             </div>
 
-            {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                {/* Revenue */}
+
                 <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 group">
                     <div className="flex justify-between items-start mb-4">
                         <div>
@@ -85,7 +96,7 @@ export default function DiscountsPage() {
                     </div>
                 </div>
 
-                {/* Discounts Given */}
+
                 <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 group">
                     <div className="flex justify-between items-start mb-4">
                         <div>
@@ -317,12 +328,12 @@ export default function DiscountsPage() {
                                     </td>
                                     <td className="p-4">
                                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${discount.status === 'Active' ? 'bg-emerald-100 text-emerald-700' :
-                                                discount.status === 'Expired' ? 'bg-red-100 text-red-700' :
-                                                    'bg-amber-100 text-amber-700'
+                                            discount.status === 'Expired' ? 'bg-red-100 text-red-700' :
+                                                'bg-amber-100 text-amber-700'
                                             }`}>
                                             <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${discount.status === 'Active' ? 'bg-emerald-500' :
-                                                    discount.status === 'Expired' ? 'bg-red-500' :
-                                                        'bg-amber-500'
+                                                discount.status === 'Expired' ? 'bg-red-500' :
+                                                    'bg-amber-500'
                                                 }`}></span>
                                             {discount.status}
                                         </span>
@@ -363,7 +374,7 @@ export default function DiscountsPage() {
             {/* Create/Edit Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm animate-fade-in">
-                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-scale-in">
+                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto scrollbar-hide animate-scale-in">
                         <div className="p-6 border-b border-gray-100 flex justify-between items-center sticky top-0 bg-white z-10">
                             <h3 className="text-2xl font-black text-slate-800">Create New Discount</h3>
                             <button onClick={toggleModal} className="text-slate-400 hover:text-red-500 transition">

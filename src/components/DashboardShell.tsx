@@ -7,6 +7,7 @@ import TopBar from './TopBar';
 export default function DashboardShell({ children }: { children: React.ReactNode }) {
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -38,25 +39,47 @@ export default function DashboardShell({ children }: { children: React.ReactNode
         }
     };
 
-    // Toggle Sidebar
+    // Toggle Sidebar (Desktop)
     const toggleSidebar = () => {
         const newState = !isSidebarCollapsed;
         setIsSidebarCollapsed(newState);
         localStorage.setItem('sidebarCollapsed', String(newState));
     };
 
+    // Toggle Mobile Menu
+    const toggleMobileMenu = () => {
+        setIsMobileMenuOpen(!isMobileMenuOpen);
+    };
+
     return (
-        <div className="flex h-screen overflow-hidden bg-white transition-colors duration-300">
+        <div className="flex h-screen overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300 relative">
+            {/* Mobile Sidebar Overlay */}
+            {isMobileMenuOpen && (
+                <div
+                    className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                ></div>
+            )}
+
             {/* Sidebar */}
-            <Sidebar isSidebarCollapsed={isSidebarCollapsed} toggleSidebar={toggleSidebar} />
+            <Sidebar
+                isSidebarCollapsed={isSidebarCollapsed}
+                toggleSidebar={toggleSidebar}
+                isMobileMenuOpen={isMobileMenuOpen}
+                closeMobileMenu={() => setIsMobileMenuOpen(false)}
+            />
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col overflow-hidden h-full">
+            <div className="flex-1 flex flex-col overflow-hidden h-full relative z-0">
                 {/* Advanced Top Bar */}
-                <TopBar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+                <TopBar
+                    isDarkMode={isDarkMode}
+                    toggleTheme={toggleTheme}
+                    toggleMobileMenu={toggleMobileMenu}
+                />
 
                 {/* Content Area */}
-                <div className="flex-1 overflow-auto bg-white transition-all duration-300">
+                <div className="flex-1 overflow-auto bg-gray-50 dark:bg-gray-900 transition-all duration-300 relative">
                     {children}
                 </div>
             </div>

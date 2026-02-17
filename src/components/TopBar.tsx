@@ -5,9 +5,10 @@ import { useState, useEffect } from 'react';
 interface TopBarProps {
     isDarkMode: boolean;
     toggleTheme: () => void;
+    toggleMobileMenu?: () => void;
 }
 
-export default function TopBar({ isDarkMode, toggleTheme }: TopBarProps) {
+export default function TopBar({ isDarkMode, toggleTheme, toggleMobileMenu }: TopBarProps) {
     const [currentTime, setCurrentTime] = useState('');
     const [currentDate, setCurrentDate] = useState('');
     const [isQuickActionsOpen, setIsQuickActionsOpen] = useState(false);
@@ -43,8 +44,16 @@ export default function TopBar({ isDarkMode, toggleTheme }: TopBarProps) {
                 <div className="flex items-center justify-between">
                     {/* Left Section */}
                     <div className="flex items-center space-x-4">
+                        {/* Mobile Hamburger Menu */}
+                        <button
+                            onClick={toggleMobileMenu}
+                            className="lg:hidden p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                        >
+                            <i className="fas fa-bars text-xl"></i>
+                        </button>
+
                         <div>
-                            <h2 className="text-xl font-bold text-gray-800 dark:text-white">Dashboard</h2>
+                            <h2 className="text-xl font-bold text-gray-800 dark:text-white hidden sm:block">Dashboard</h2>
                             <nav className="flex" aria-label="Breadcrumb">
                                 <ol className="inline-flex items-center space-x-1 md:space-x-3">
                                     <li className="inline-flex items-center">

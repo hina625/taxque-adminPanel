@@ -44,9 +44,9 @@ export default function BannerPage() {
                 setOffers(JSON.parse(stored));
             } else {
                 const initialOffers = [
-                    { id: 1, title: "Special GST Blog Offer", content: "Download our FREE 2025 GST Guide!", target: "blog-gst", display: "sidebar", url: "/guide/gst-guide", active: true, dismissible: false, image: "https://images.unsplash.com/photo-1542831371-29b0f74f9449?q=80&w=200&h=100&fit=crop", date: new Date().toISOString(), specificUrl: null },
-                    { id: 2, title: "Book a Tax Consultation", content: "Get 50% off your first consultation.", target: "service-tax", display: "popup", url: "/consult/book-now", active: true, dismissible: true, image: null, date: new Date().toISOString(), specificUrl: null },
-                    { id: 3, title: "Q3 Price Update", content: "Prices adjusted based on market trends.", target: "all", display: "body-top", url: "/pricing", active: false, dismissible: true, image: "https://images.unsplash.com/photo-1551434674-845a0b73c460?q=80&w=200&h=100&fit=crop", date: new Date().toISOString(), specificUrl: null }
+                    { id: 1, title: "Special GST Blog Offer", content: "Download our FREE 2025 GST Guide!", target: "blog-gst", display: "sidebar", url: "/guide/gst-guide", active: true, dismissible: false, image: "/assets/images/banners/gst-guide.svg", date: new Date().toISOString(), specificUrl: null },
+                    { id: 2, title: "Book a Tax Consultation", content: "Get 50% off your first consultation.", target: "service-tax", display: "popup", url: "/consult/book-now", active: true, dismissible: true, image: "/assets/images/banners/tax-consultation.svg", date: new Date().toISOString(), specificUrl: null },
+                    { id: 3, title: "Q3 Price Update", content: "Prices adjusted based on market trends.", target: "all", display: "body-top", url: "/pricing", active: false, dismissible: true, image: "/assets/images/banners/price-update.svg", date: new Date().toISOString(), specificUrl: null }
                 ];
                 setOffers(initialOffers);
                 localStorage.setItem('adminOffers', JSON.stringify(initialOffers));

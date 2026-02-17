@@ -1,0 +1,5 @@
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#10b981" />
+  <text x="50%" y="45%" font-family="Arial" font-size="24" fill="white" text-anchor="middle" dy=".3em">Tax Consultation</text>
+  <text x="50%" y="65%" font-family="Arial" font-size="14" fill="white" text-anchor="middle" dy=".3em">50% Off First Session</text>
+</svg>

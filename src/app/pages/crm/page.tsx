@@ -1,6 +1,7 @@
+
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Hexagon,
     LayoutDashboard,
@@ -14,21 +15,90 @@ import {
     TrendingUp,
     Plus,
     UserPlus,
-    ArrowUpRight,
     MoreHorizontal,
     Search,
-    Filter,
-    X
+    Filter
 } from 'lucide-react';
+import {
+    DealModal,
+    LeadModal,
+    ContactModal,
+    TaskModal,
+    TicketModal,
+    Deal,
+    Lead,
+    Contact as ContactType,
+    Task,
+    Ticket
+} from './components/Modals';
 
 type ViewType = 'dashboard' | 'pipeline' | 'leads' | 'contacts' | 'tasks' | 'tickets';
 
 export default function CRMPage() {
     const [activeView, setActiveView] = useState<ViewType>('dashboard');
 
+    // --- State ---
+    const [deals, setDeals] = useState<Deal[]>([]);
+    const [leads, setLeads] = useState<Lead[]>([]);
+    const [contacts, setContacts] = useState<ContactType[]>([]);
+    const [tasks, setTasks] = useState<Task[]>([]);
+    const [tickets, setTickets] = useState<Ticket[]>([]);
+
+    // --- Modal State ---
+    const [isDealModalOpen, setIsDealModalOpen] = useState(false);
+    const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+    const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+    const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
+
+    // --- Init Data ---
+    useEffect(() => {
+        // Load initial dummy data if empty (mocking simplified loadData)
+        if (deals.length === 0 && leads.length === 0) {
+            setDeals([
+                { id: 1, name: 'Innovate Digital', company: 'Innovate Digital Inc', value: 24500, stage: 'lead', description: 'Digital transformation project', contact: 'John Smith', created: new Date().toISOString() }
+            ]);
+            setLeads([
+                { id: 1, firstName: 'John', lastName: 'Smith', email: 'john@innovate.com', company: 'Innovate Digital', phone: '+1234567890', status: 'New', value: 24500, source: 'Website', notes: 'Interested in our services', created: new Date().toISOString() }
+            ]);
+            setTasks([
+                { id: 1, title: 'Prepare Q2 Sales Report', description: 'Compile revenue and conversion data', dueDate: '2025-12-25', priority: 'high', status: 'pending', assignedTo: 'Alex Davis', relatedTo: '', created: new Date().toISOString() }
+            ]);
+            setTickets([
+                { id: 1001, subject: 'Login Issue', description: 'Cannot access customer portal', customer: 'TechCorp Solutions', email: 'support@techcorp.com', priority: 'high', category: 'technical', status: 'open', assignedTo: 'Support Team', created: new Date().toISOString() }
+            ]);
+        }
+    }, []);
+
+    // --- Handlers ---
+    const handleAddDeal = (deal: Omit<Deal, 'id' | 'created'>) => {
+        const newDeal: Deal = { ...deal, id: Date.now(), created: new Date().toISOString() };
+        setDeals([...deals, newDeal]);
+    };
+
+    const handleAddLead = (lead: Omit<Lead, 'id' | 'created'>) => {
+        const newLead: Lead = { ...lead, id: Date.now(), created: new Date().toISOString() };
+        setLeads([...leads, newLead]);
+    };
+
+    const handleAddContact = (contact: Omit<ContactType, 'id'>) => {
+        const newContact: ContactType = { ...contact, id: Date.now() };
+        setContacts([...contacts, newContact]);
+    };
+
+    const handleAddTask = (task: Omit<Task, 'id' | 'created'>) => {
+        const newTask: Task = { ...task, id: Date.now(), created: new Date().toISOString() };
+        setTasks([...tasks, newTask]);
+    };
+
+    const handleAddTicket = (ticket: Omit<Ticket, 'id' | 'created'>) => {
+        const newTicket: Ticket = { ...ticket, id: Date.now(), created: new Date().toISOString() };
+        setTickets([...tickets, newTicket]);
+    };
+
+
     return (
         <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
-
             {/* Header */}
             <header className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
                 <div className="max-w-[1600px] mx-auto px-6 h-[70px] flex justify-between items-center">
@@ -58,14 +128,31 @@ export default function CRMPage() {
 
             {/* Main Content */}
             <main className="max-w-[1600px] mx-auto p-6 lg:p-8">
-                {activeView === 'dashboard' && <DashboardView setActiveView={setActiveView} />}
-                {activeView === 'pipeline' && <PipelineView />}
-                {activeView === 'leads' && <LeadsView />}
-                {activeView === 'contacts' && <ContactsView />}
-                {activeView === 'tasks' && <TasksView />}
-                {activeView === 'tickets' && <TicketsView />}
+                {activeView === 'dashboard' && (
+                    <DashboardView
+                        setActiveView={setActiveView}
+                        stats={{
+                            revenue: deals.reduce((sum, d) => sum + d.value, 0),
+                            deals: deals.length,
+                            leads: leads.length,
+                            tasks: tasks.filter(t => t.status !== 'completed').length,
+                            tickets: tickets.filter(t => t.status !== 'resolved' && t.status !== 'closed').length
+                        }}
+                    />
+                )}
+                {activeView === 'pipeline' && <PipelineView deals={deals} onAddClick={() => setIsDealModalOpen(true)} />}
+                {activeView === 'leads' && <LeadsView leads={leads} onAddClick={() => setIsLeadModalOpen(true)} />}
+                {activeView === 'contacts' && <ContactsView contacts={contacts} onAddClick={() => setIsContactModalOpen(true)} />}
+                {activeView === 'tasks' && <TasksView tasks={tasks} onAddClick={() => setIsTaskModalOpen(true)} />}
+                {activeView === 'tickets' && <TicketsView tickets={tickets} onAddClick={() => setIsTicketModalOpen(true)} />}
             </main>
 
+            {/* Modals */}
+            <DealModal isOpen={isDealModalOpen} onClose={() => setIsDealModalOpen(false)} onSave={handleAddDeal} />
+            <LeadModal isOpen={isLeadModalOpen} onClose={() => setIsLeadModalOpen(false)} onSave={handleAddLead} />
+            <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} onSave={handleAddContact} />
+            <TaskModal isOpen={isTaskModalOpen} onClose={() => setIsTaskModalOpen(false)} onSave={handleAddTask} />
+            <TicketModal isOpen={isTicketModalOpen} onClose={() => setIsTicketModalOpen(false)} onSave={handleAddTicket} />
         </div>
     );
 }
@@ -76,8 +163,8 @@ function NavButton({ view, current, onClick, icon, label }: { view: ViewType, cu
         <button
             onClick={() => onClick(view)}
             className={`flex items-center gap-2 px-4 h-full text-sm font-medium border-b-2 transition-colors ${isActive
-                    ? 'border-indigo-600 text-indigo-600 bg-indigo-50/50'
-                    : 'border-transparent text-slate-500 hover:text-indigo-600 hover:bg-slate-50'
+                ? 'border-indigo-600 text-indigo-600 bg-indigo-50/50'
+                : 'border-transparent text-slate-500 hover:text-indigo-600 hover:bg-slate-50'
                 }`}
         >
             {icon} {label}
@@ -87,7 +174,7 @@ function NavButton({ view, current, onClick, icon, label }: { view: ViewType, cu
 
 // --- Views ---
 
-function DashboardView({ setActiveView }: { setActiveView: (v: ViewType) => void }) {
+function DashboardView({ setActiveView, stats }: { setActiveView: (v: ViewType) => void, stats: any }) {
     return (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="flex justify-between items-start mb-8">
@@ -101,11 +188,11 @@ function DashboardView({ setActiveView }: { setActiveView: (v: ViewType) => void
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-                <StatCard label="Total Revenue" value="$124,500" trend="+18.2%" trendUp={true} onClick={() => setActiveView('pipeline')} />
-                <StatCard label="Active Deals" value="45" onClick={() => setActiveView('pipeline')} />
-                <StatCard label="Total Leads" value="1,203" onClick={() => setActiveView('leads')} />
-                <StatCard label="Pending Tasks" value="12" onClick={() => setActiveView('tasks')} />
-                <StatCard label="Open Tickets" value="5" onClick={() => setActiveView('tickets')} />
+                <StatCard label="Total Revenue" value={`$${stats.revenue.toLocaleString()}`} trend="+18.2%" trendUp={true} onClick={() => setActiveView('pipeline')} />
+                <StatCard label="Active Deals" value={stats.deals.toString()} onClick={() => setActiveView('pipeline')} />
+                <StatCard label="Total Leads" value={stats.leads.toString()} onClick={() => setActiveView('leads')} />
+                <StatCard label="Pending Tasks" value={stats.tasks.toString()} onClick={() => setActiveView('tasks')} />
+                <StatCard label="Open Tickets" value={stats.tickets.toString()} onClick={() => setActiveView('tickets')} />
             </div>
 
             <h3 className="text-xl font-bold text-slate-900 mb-4">Recent Activity</h3>
@@ -117,19 +204,9 @@ function DashboardView({ setActiveView }: { setActiveView: (v: ViewType) => void
                 </div>
                 <div className="divide-y divide-slate-100">
                     <div className="grid grid-cols-[2fr_1fr_1fr] px-6 py-4 items-center hover:bg-slate-50 transition-colors">
-                        <div className="font-medium text-slate-900">New deal "Enterprise License" created</div>
-                        <div><span className="px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 text-xs font-semibold">Deal</span></div>
-                        <div className="text-slate-500 text-sm">2 hours ago</div>
-                    </div>
-                    <div className="grid grid-cols-[2fr_1fr_1fr] px-6 py-4 items-center hover:bg-slate-50 transition-colors">
-                        <div className="font-medium text-slate-900">Call logged with Acme Corp</div>
-                        <div><span className="px-2 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold">Call</span></div>
-                        <div className="text-slate-500 text-sm">4 hours ago</div>
-                    </div>
-                    <div className="grid grid-cols-[2fr_1fr_1fr] px-6 py-4 items-center hover:bg-slate-50 transition-colors">
-                        <div className="font-medium text-slate-900">Ticket #1023 resolved</div>
-                        <div><span className="px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs font-semibold">Support</span></div>
-                        <div className="text-slate-500 text-sm">5 hours ago</div>
+                        <div className="font-medium text-slate-900">System initialized</div>
+                        <div><span className="px-2 py-1 rounded-full bg-indigo-100 text-indigo-700 text-xs font-semibold">System</span></div>
+                        <div className="text-slate-500 text-sm">Just now</div>
                     </div>
                 </div>
             </div>
@@ -137,7 +214,15 @@ function DashboardView({ setActiveView }: { setActiveView: (v: ViewType) => void
     );
 }
 
-function PipelineView() {
+function PipelineView({ deals, onAddClick }: { deals: Deal[], onAddClick: () => void }) {
+    const stages = [
+        { id: 'lead', name: 'Lead Generation' },
+        { id: 'qualification', name: 'Qualification' },
+        { id: 'proposal', name: 'Proposal' },
+        { id: 'negotiation', name: 'Negotiation' },
+        { id: 'closed', name: 'Closed Won' }
+    ];
+
     return (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="flex justify-between items-start mb-8">
@@ -145,34 +230,29 @@ function PipelineView() {
                     <h1 className="text-3xl font-bold text-slate-900 mb-2">Sales Pipeline</h1>
                     <p className="text-slate-500">Drag and drop deals between stages</p>
                 </div>
-                <button className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-sm transition-colors">
+                <button onClick={onAddClick} className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-sm transition-colors">
                     <Plus className="w-5 h-5" /> New Deal
                 </button>
             </div>
 
             <div className="flex gap-6 overflow-x-auto pb-4 min-h-[600px]">
-                <PipelineColumn title="Lead Generation" count={5} total="$25,000">
-                    <PipelineCard title="Acme Corp SaaS" company="Acme Corp" value="$12,000" days="2 days" tag="Hot Lead" />
-                    <PipelineCard title="Stark Ind Contract" company="Stark Industries" value="$8,000" days="5 days" />
-                </PipelineColumn>
-                <PipelineColumn title="Qualification" count={2} total="$15,000">
-                    <PipelineCard title="Wayne Ent Renewal" company="Wayne Ent" value="$15,000" days="1 day" tag="Renewal" />
-                </PipelineColumn>
-                <PipelineColumn title="Proposal" count={1} total="$45,000">
-                    <PipelineCard title="Global Tech Audit" company="Global Tech" value="$45,000" days="3 days" tag="Priority" />
-                </PipelineColumn>
-                <PipelineColumn title="Negotiation" count={1} total="$120,000">
-                    <PipelineCard title="Gov Contract" company="Dept of Defense" value="$120,000" days="1 week" />
-                </PipelineColumn>
-                <PipelineColumn title="Closed Won" count={3} total="$55,000">
-                    <PipelineCard title="Small Biz Pack" company="Mom & Pop" value="$5,000" days="2 weeks" />
-                </PipelineColumn>
+                {stages.map(stage => {
+                    const stageDeals = deals.filter(d => d.stage === stage.id);
+                    const totalValue = stageDeals.reduce((sum, d) => sum + d.value, 0);
+                    return (
+                        <PipelineColumn key={stage.id} title={stage.name} count={stageDeals.length} total={`$${totalValue.toLocaleString()}`}>
+                            {stageDeals.map(deal => (
+                                <PipelineCard key={deal.id} title={deal.name} company={deal.company} value={`$${deal.value.toLocaleString()}`} days="Today" />
+                            ))}
+                        </PipelineColumn>
+                    );
+                })}
             </div>
         </div>
     );
 }
 
-function LeadsView() {
+function LeadsView({ leads, onAddClick }: { leads: Lead[], onAddClick: () => void }) {
     return (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="flex justify-between items-start mb-8">
@@ -180,44 +260,56 @@ function LeadsView() {
                     <h1 className="text-3xl font-bold text-slate-900 mb-2">Leads Management</h1>
                     <p className="text-slate-500">Track and convert potential customers</p>
                 </div>
-                <button className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-sm transition-colors">
+                <button onClick={onAddClick} className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-sm transition-colors">
                     <UserPlus className="w-5 h-5" /> Add Lead
                 </button>
             </div>
 
             <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                {/* Filters could go here */}
-                <div className="grid grid-cols-[2fr_2fr_1fr_1fr_100px] px-6 py-4 bg-slate-50 border-b border-slate-200 font-semibold text-slate-500 text-sm uppercase">
-                    <div>Name</div>
-                    <div>Company</div>
-                    <div>Status</div>
-                    <div>Value</div>
-                    <div>Actions</div>
-                </div>
-                <div className="divide-y divide-slate-100">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                        <div key={i} className="grid grid-cols-[2fr_2fr_1fr_1fr_100px] px-6 py-4 items-center hover:bg-slate-50 transition-colors cursor-pointer text-sm">
-                            <div className="font-medium text-slate-900">Lead Representative {i}</div>
-                            <div className="text-slate-600">Company {String.fromCharCode(64 + i)}</div>
-                            <div>
-                                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${i % 2 === 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'
-                                    }`}>
-                                    {i % 2 === 0 ? 'Qualified' : 'New Contact'}
-                                </span>
-                            </div>
-                            <div className="font-semibold text-slate-700">${(i * 1500).toLocaleString()}</div>
-                            <div>
-                                <button className="text-slate-400 hover:text-indigo-600 p-1"><MoreHorizontal className="w-5 h-5" /></button>
-                            </div>
+                <div className="overflow-x-auto">
+                    <div className="min-w-[800px]">
+                        <div className="grid grid-cols-[2fr_2fr_1fr_1fr_100px] px-6 py-4 bg-slate-50 border-b border-slate-200 font-semibold text-slate-500 text-sm uppercase">
+                            <div>Name</div>
+                            <div>Company</div>
+                            <div>Status</div>
+                            <div>Value</div>
+                            <div>Actions</div>
                         </div>
-                    ))}
+                        <div className="divide-y divide-slate-100">
+                            {leads.length === 0 ? (
+                                <div className="p-8 text-center text-slate-500">No leads yet. Click "Add Lead" to create one.</div>
+                            ) : (
+                                leads.map((lead) => (
+                                    <div key={lead.id} className="grid grid-cols-[2fr_2fr_1fr_1fr_100px] px-6 py-4 items-center hover:bg-slate-50 transition-colors cursor-pointer text-sm">
+                                        <div>
+                                            <div className="font-medium text-slate-900">{lead.firstName} {lead.lastName}</div>
+                                            <div className="text-slate-600 text-xs">{lead.email}</div>
+                                        </div>
+                                        <div className="text-slate-600">{lead.company}</div>
+                                        <div>
+                                            <span className={`px-2 py-1 rounded-full text-xs font-semibold ${lead.status === 'New' ? 'bg-emerald-100 text-emerald-700' :
+                                                lead.status === 'Contacted' ? 'bg-amber-100 text-amber-700' :
+                                                    'bg-blue-100 text-blue-700'
+                                                }`}>
+                                                {lead.status}
+                                            </span>
+                                        </div>
+                                        <div className="font-semibold text-slate-700">${lead.value.toLocaleString()}</div>
+                                        <div>
+                                            <button className="text-slate-400 hover:text-indigo-600 p-1"><MoreHorizontal className="w-5 h-5" /></button>
+                                        </div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     );
 }
 
-function ContactsView() {
+function ContactsView({ contacts, onAddClick }: { contacts: ContactType[], onAddClick: () => void }) {
     return (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="flex justify-between items-start mb-8">
@@ -225,43 +317,51 @@ function ContactsView() {
                     <h1 className="text-3xl font-bold text-slate-900 mb-2">Contacts</h1>
                     <p className="text-slate-500">Manage customer relationships</p>
                 </div>
-                <button className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-sm transition-colors">
+                <button onClick={onAddClick} className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-sm transition-colors">
                     <UserPlus className="w-5 h-5" /> Add Contact
                 </button>
             </div>
             <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                <div className="grid grid-cols-[2fr_2fr_1fr_100px] px-6 py-4 bg-slate-50 border-b border-slate-200 font-semibold text-slate-500 text-sm uppercase">
-                    <div>Name</div>
-                    <div>Email</div>
-                    <div>Phone</div>
-                    <div>Actions</div>
-                </div>
-                <div className="divide-y divide-slate-100">
-                    {[1, 2, 3, 4].map((i) => (
-                        <div key={i} className="grid grid-cols-[2fr_2fr_1fr_100px] px-6 py-4 items-center hover:bg-slate-50 transition-colors cursor-pointer text-sm">
-                            <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-full bg-slate-100 text-indigo-600 flex items-center justify-center font-bold text-xs border border-indigo-100">
-                                    {String.fromCharCode(64 + i)}
-                                </div>
-                                <div>
-                                    <div className="font-medium text-slate-900">Contact Person {i}</div>
-                                    <div className="text-xs text-slate-500">VP of Sales</div>
-                                </div>
-                            </div>
-                            <div className="text-slate-600">contact{i}@example.com</div>
-                            <div className="text-slate-600 text-xs">+1 (555) 123-456{i}</div>
-                            <div>
-                                <button className="text-slate-400 hover:text-indigo-600 p-1"><MoreHorizontal className="w-5 h-5" /></button>
-                            </div>
+                <div className="overflow-x-auto">
+                    <div className="min-w-[800px]">
+                        <div className="grid grid-cols-[2fr_2fr_1fr_100px] px-6 py-4 bg-slate-50 border-b border-slate-200 font-semibold text-slate-500 text-sm uppercase">
+                            <div>Name</div>
+                            <div>Email</div>
+                            <div>Phone</div>
+                            <div>Actions</div>
                         </div>
-                    ))}
+                        <div className="divide-y divide-slate-100">
+                            {contacts.length === 0 ? (
+                                <div className="p-8 text-center text-slate-500">No contacts yet. Click "Add Contact" to create one.</div>
+                            ) : (
+                                contacts.map((contact) => (
+                                    <div key={contact.id} className="grid grid-cols-[2fr_2fr_1fr_100px] px-6 py-4 items-center hover:bg-slate-50 transition-colors cursor-pointer text-sm">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-8 h-8 rounded-full bg-slate-100 text-indigo-600 flex items-center justify-center font-bold text-xs border border-indigo-100">
+                                                {contact.firstName[0]}{contact.lastName[0]}
+                                            </div>
+                                            <div>
+                                                <div className="font-medium text-slate-900">{contact.firstName} {contact.lastName}</div>
+                                                <div className="text-xs text-slate-500">{contact.title}</div>
+                                            </div>
+                                        </div>
+                                        <div className="text-slate-600">{contact.email}</div>
+                                        <div className="text-slate-600 text-xs">{contact.phone || '-'}</div>
+                                        <div>
+                                            <button className="text-slate-400 hover:text-indigo-600 p-1"><MoreHorizontal className="w-5 h-5" /></button>
+                                        </div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     );
 }
 
-function TasksView() {
+function TasksView({ tasks, onAddClick }: { tasks: Task[], onAddClick: () => void }) {
     return (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="flex justify-between items-start mb-8">
@@ -269,7 +369,7 @@ function TasksView() {
                     <h1 className="text-3xl font-bold text-slate-900 mb-2">Task Management</h1>
                     <p className="text-slate-500">Track and manage your tasks</p>
                 </div>
-                <button className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-sm transition-colors">
+                <button onClick={onAddClick} className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-sm transition-colors">
                     <Plus className="w-5 h-5" /> New Task
                 </button>
             </div>
@@ -282,24 +382,32 @@ function TasksView() {
             </div>
 
             <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                <div className="grid grid-cols-[2fr_1fr_1fr_1fr_100px] px-6 py-4 bg-slate-50 border-b border-slate-200 font-semibold text-slate-500 text-sm uppercase">
-                    <div>Task</div>
-                    <div>Due Date</div>
-                    <div>Priority</div>
-                    <div>Status</div>
-                    <div>Actions</div>
-                </div>
-                <div className="divide-y divide-slate-100">
-                    <TaskRow task="Prepare Monthly Report" date="Tomorrow" priority="High" status="Pending" />
-                    <TaskRow task="Call Client X" date="Today" priority="Medium" status="In Progress" />
-                    <TaskRow task="Email Marketing Campaign" date="Oct 24" priority="Low" status="Completed" />
+                <div className="overflow-x-auto">
+                    <div className="min-w-[800px]">
+                        <div className="grid grid-cols-[2fr_1fr_1fr_1fr_100px] px-6 py-4 bg-slate-50 border-b border-slate-200 font-semibold text-slate-500 text-sm uppercase">
+                            <div>Task</div>
+                            <div>Due Date</div>
+                            <div>Priority</div>
+                            <div>Status</div>
+                            <div>Actions</div>
+                        </div>
+                        <div className="divide-y divide-slate-100">
+                            {tasks.length === 0 ? (
+                                <div className="p-8 text-center text-slate-500">No tasks found.</div>
+                            ) : (
+                                tasks.map((task) => (
+                                    <TaskRow key={task.id} task={task.title} date={task.dueDate} priority={task.priority} status={task.status} />
+                                ))
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     );
 }
 
-function TicketsView() {
+function TicketsView({ tickets, onAddClick }: { tickets: Ticket[], onAddClick: () => void }) {
     return (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="flex justify-between items-start mb-8">
@@ -307,30 +415,39 @@ function TicketsView() {
                     <h1 className="text-3xl font-bold text-slate-900 mb-2">Support Tickets</h1>
                     <p className="text-slate-500">Manage customer support requests</p>
                 </div>
-                <button className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-sm transition-colors">
+                <button onClick={onAddClick} className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 shadow-sm transition-colors">
                     <Plus className="w-5 h-5" /> New Ticket
                 </button>
             </div>
 
             <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                <div className="grid grid-cols-[100px_2fr_1fr_1fr_1fr_100px] px-6 py-4 bg-slate-50 border-b border-slate-200 font-semibold text-slate-500 text-sm uppercase">
-                    <div>Ticket ID</div>
-                    <div>Subject</div>
-                    <div>Customer</div>
-                    <div>Priority</div>
-                    <div>Status</div>
-                    <div>Actions</div>
-                </div>
-                <div className="divide-y divide-slate-100">
-                    <TicketRow id="#1024" subject="Login issue on mobile" customer="Jane Doe" priority="High" status="Open" />
-                    <TicketRow id="#1023" subject="Billing question" customer="John Smith" priority="Low" status="Resolved" />
+                <div className="overflow-x-auto">
+                    <div className="min-w-[800px]">
+                        <div className="grid grid-cols-[100px_2fr_1fr_1fr_1fr_100px] px-6 py-4 bg-slate-50 border-b border-slate-200 font-semibold text-slate-500 text-sm uppercase">
+                            <div>Ticket ID</div>
+                            <div>Subject</div>
+                            <div>Customer</div>
+                            <div>Priority</div>
+                            <div>Status</div>
+                            <div>Actions</div>
+                        </div>
+                        <div className="divide-y divide-slate-100">
+                            {tickets.length === 0 ? (
+                                <div className="p-8 text-center text-slate-500">No tickets found.</div>
+                            ) : (
+                                tickets.map((ticket) => (
+                                    <TicketRow key={ticket.id} id={`#${ticket.id}`} subject={ticket.subject} customer={ticket.customer} priority={ticket.priority} status={ticket.status} />
+                                ))
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     );
 }
 
-// --- Components ---
+// --- Reusable Content Components ---
 
 function StatCard({ label, value, trend, trendUp, onClick }: { label: string, value: string, trend?: string, trendUp?: boolean, onClick?: () => void }) {
     return (
@@ -380,8 +497,8 @@ function PipelineCard({ title, company, value, days, tag }: { title: string, com
 function FilterButton({ label, active }: { label: string, active?: boolean }) {
     return (
         <button className={`px-4 py-1.5 rounded-lg text-sm font-medium border transition-colors ${active
-                ? 'bg-slate-800 text-white border-slate-800'
-                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+            ? 'bg-slate-800 text-white border-slate-800'
+            : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
             }`}>
             {label}
         </button>
@@ -394,15 +511,15 @@ function TaskRow({ task, date, priority, status }: { task: string, date: string,
             <div className="font-medium text-slate-900">{task}</div>
             <div className="text-slate-500">{date}</div>
             <div>
-                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${priority === 'High' ? 'bg-red-100 text-red-700' :
-                        priority === 'Medium' ? 'bg-amber-100 text-amber-700' :
-                            'bg-blue-100 text-blue-700'
+                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${priority.toLowerCase() === 'high' ? 'bg-red-100 text-red-700' :
+                    priority.toLowerCase() === 'medium' ? 'bg-amber-100 text-amber-700' :
+                        'bg-blue-100 text-blue-700'
                     }`}>
-                    {priority}
+                    {priority.toUpperCase()}
                 </span>
             </div>
             <div>
-                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${status === 'Completed' ? 'bg-slate-100 text-slate-600 line-through' : 'bg-emerald-100 text-emerald-700'
+                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${status === 'completed' ? 'bg-slate-100 text-slate-600 line-through' : 'bg-emerald-100 text-emerald-700'
                     }`}>
                     {status}
                 </span>
@@ -419,14 +536,14 @@ function TicketRow({ id, subject, customer, priority, status }: { id: string, su
             <div className="font-medium text-slate-900">{subject}</div>
             <div className="text-slate-600">{customer}</div>
             <div>
-                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${priority === 'High' ? 'bg-red-100 text-red-700' :
-                        'bg-blue-100 text-blue-700'
+                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${priority.toLowerCase() === 'high' ? 'bg-red-100 text-red-700' :
+                    'bg-blue-100 text-blue-700'
                     }`}>
-                    {priority}
+                    {priority.toUpperCase()}
                 </span>
             </div>
             <div>
-                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${status === 'Resolved' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'
+                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${status === 'resolved' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'
                     }`}>
                     {status}
                 </span>

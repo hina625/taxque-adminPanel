@@ -253,7 +253,7 @@ export default function ServiceCollectionsPage() {
                             </button>
                         </div>
 
-                        <div className="p-6 overflow-y-auto flex-1">
+                        <div className="p-6 overflow-y-auto scrollbar-hide flex-1">
                             {services.filter(s => s.collections.includes(viewingCollection.id)).length === 0 ? (
                                 <div className="text-center py-12 text-slate-400">
                                     <FolderOpen weight="fill" size={64} className="mx-auto mb-4 opacity-50" />

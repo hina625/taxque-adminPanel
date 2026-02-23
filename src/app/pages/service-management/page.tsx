@@ -372,42 +372,42 @@ export default function ServiceManagementPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#f1f5f9] text-slate-900 font-sans p-4 md:p-8">
-            <div className="max-w-[1400px] mx-auto">
+        <div className="min-h-screen bg-slate-50 dark:bg-gray-950 p-6 md:p-10 font-sans transition-colors duration-300">
+            <div className="max-w-7xl mx-auto">
 
-                {/* Breadcrumb */}
-                <div className="bg-white px-5 py-3 rounded-xl shadow-sm mb-6 flex items-center gap-2 text-sm text-slate-500">
+                {/* Breadcrumbs */}
+                <div className="flex items-center gap-2 text-xs font-bold text-slate-400 dark:text-gray-500 uppercase tracking-widest mb-8 transition-colors">
                     <House size={16} weight="bold" />
                     <span>Dashboard</span>
                     <CaretRight size={12} />
-                    <span className="font-semibold text-slate-900">{viewMode === 'list' ? 'Services' : (formData.id ? 'Edit Service' : 'Create Service')}</span>
+                    <span className="font-semibold text-slate-900 dark:text-gray-100">{viewMode === 'list' ? 'Services' : (formData.id ? 'Edit Service' : 'Create Service')}</span>
                 </div>
 
                 {/* Header */}
-                <div className="bg-white rounded-2xl p-8 shadow-sm mb-8">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm mb-8 transition-colors">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
                         <div className="flex items-center gap-4">
                             <div className="w-12 h-12 bg-gradient-to-br from-[#667eea] to-[#764ba2] rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
                                 <Briefcase size={24} weight="bold" />
                             </div>
                             <div>
-                                <h1 className="text-2xl font-bold text-slate-900 leading-none mb-1">
+                                <h1 className="text-2xl font-bold text-slate-900 dark:text-white leading-none mb-1">
                                     {viewMode === 'list' ? 'Services Management' : (formData.id ? 'Edit Service' : 'Create New Service')}
                                 </h1>
-                                <p className="text-slate-500 text-sm">Manage all your service offerings</p>
+                                <p className="text-slate-500 dark:text-gray-400 text-sm">Manage all your service offerings</p>
                             </div>
                         </div>
                         <div className="flex gap-3">
                             {viewMode === 'form' && (
                                 <button
                                     onClick={() => setViewMode('list')}
-                                    className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl font-semibold transition-all flex items-center gap-2"
+                                    className="px-5 py-2.5 bg-slate-100 dark:bg-gray-700 hover:bg-slate-200 dark:hover:bg-gray-600 text-slate-600 dark:text-gray-200 rounded-xl font-semibold transition-all flex items-center gap-2"
                                 >
                                     <ArrowLeft size={18} weight="bold" />
                                     Back to List
                                 </button>
                             )}
-                            <button className="px-5 py-2.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 rounded-xl font-semibold transition-all flex items-center gap-2">
+                            <button className="px-5 py-2.5 bg-white dark:bg-gray-700 border border-slate-200 dark:border-gray-600 hover:bg-slate-50 dark:hover:bg-gray-600 text-slate-600 dark:text-gray-200 rounded-xl font-semibold transition-all flex items-center gap-2">
                                 <DownloadSimple size={18} weight="bold" />
                                 Export
                             </button>
@@ -425,20 +425,20 @@ export default function ServiceManagementPage() {
 
                     {/* Stats Grid */}
                     {viewMode === 'list' && (
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-slate-100">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-slate-100 dark:border-gray-700">
                             {[
-                                { label: 'Total Services', value: stats.total, icon: '📦', color: 'bg-[#ede9fe]' },
-                                { label: 'Published', value: stats.published, icon: '✅', color: 'bg-[#d1fae5]' },
-                                { label: 'Drafts', value: stats.draft, icon: '📝', color: 'bg-[#fef3c7]' },
-                                { label: 'Featured', value: stats.featured, icon: '⭐', color: 'bg-[#dbeafe]' },
+                                { label: 'Total Services', value: stats.total, icon: '📦', color: 'bg-[#ede9fe] dark:bg-indigo-950/30' },
+                                { label: 'Published', value: stats.published, icon: '✅', color: 'bg-[#d1fae5] dark:bg-emerald-950/30' },
+                                { label: 'Drafts', value: stats.draft, icon: '📝', color: 'bg-[#fef3c7] dark:bg-amber-950/30' },
+                                { label: 'Featured', value: stats.featured, icon: '⭐', color: 'bg-[#dbeafe] dark:bg-blue-950/30' },
                             ].map((stat, idx) => (
                                 <div key={idx} className="flex items-center gap-4">
                                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl ${stat.color}`}>
                                         {stat.icon}
                                     </div>
                                     <div>
-                                        <h3 className="text-2xl font-bold text-slate-900 leading-none">{stat.value}</h3>
-                                        <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mt-1">{stat.label}</p>
+                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white leading-none">{stat.value}</h3>
+                                        <p className="text-xs font-semibold text-slate-400 dark:text-gray-500 uppercase tracking-wide mt-1">{stat.label}</p>
                                     </div>
                                 </div>
                             ))}
@@ -450,24 +450,24 @@ export default function ServiceManagementPage() {
                 {viewMode === 'list' && (
                     <div className="space-y-6">
                         {/* Toolbar */}
-                        <div className="bg-white p-6 rounded-xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
-                            <h2 className="text-lg font-bold text-slate-800">All Services</h2>
+                        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 transition-colors">
+                            <h2 className="text-lg font-bold text-slate-800 dark:text-gray-100">All Services</h2>
 
                             <div className="flex flex-wrap gap-3 w-full md:w-auto">
                                 <div className="relative flex-grow md:flex-grow-0">
-                                    <MagnifyingGlass size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                                    <MagnifyingGlass size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500" />
                                     <input
                                         type="text"
                                         placeholder="Search services..."
                                         value={filters.search}
                                         onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-                                        className="w-full md:w-64 pl-10 pr-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-indigo-500"
+                                        className="w-full md:w-64 pl-10 pr-4 py-2.5 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg text-sm focus:outline-none focus:border-indigo-500 dark:text-gray-100"
                                     />
                                 </div>
                                 <select
                                     value={filters.status}
                                     onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
-                                    className="px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-indigo-500 bg-white"
+                                    className="px-4 py-2.5 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg text-sm focus:outline-none focus:border-indigo-500 bg-white dark:text-gray-100 transition-colors"
                                 >
                                     <option value="all">All Status</option>
                                     <option value="published">Published</option>
@@ -476,7 +476,7 @@ export default function ServiceManagementPage() {
                                 <select
                                     value={filters.category}
                                     onChange={(e) => setFilters(prev => ({ ...prev, category: e.target.value }))}
-                                    className="px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-indigo-500 bg-white"
+                                    className="px-4 py-2.5 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg text-sm focus:outline-none focus:border-indigo-500 bg-white dark:text-gray-100 transition-colors"
                                 >
                                     <option value="all">All Categories</option>
                                     {CATEGORIES.map(c => (
@@ -489,11 +489,11 @@ export default function ServiceManagementPage() {
                         {/* Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {filteredServices.map(service => (
-                                <div key={service.id} className="bg-white rounded-xl p-6 shadow-sm border border-transparent hover:border-slate-200 hover:shadow-md transition-all group">
+                                <div key={service.id} className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-transparent hover:border-slate-200 dark:hover:border-gray-700 hover:shadow-md transition-all group">
                                     <div className="flex justify-between items-start mb-4">
                                         <div>
-                                            <h3 className="text-lg font-bold text-slate-900 mb-1">{service.name}</h3>
-                                            <div className="flex items-center gap-1 text-xs text-slate-500">
+                                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{service.name}</h3>
+                                            <div className="flex items-center gap-1 text-xs text-slate-500 dark:text-gray-400">
                                                 <Folder size={14} weight="bold" />
                                                 <span>{service.category}</span>
                                                 <CaretRight size={10} />
@@ -501,43 +501,43 @@ export default function ServiceManagementPage() {
                                             </div>
                                         </div>
                                         <div className="flex flex-col items-end gap-1.5">
-                                            <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide ${service.status === 'published' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'
+                                            <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide ${service.status === 'published' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400' : 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400'
                                                 }`}>
                                                 {service.status}
                                             </span>
                                             {service.featured && (
-                                                <span className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide bg-blue-100 text-blue-700">
+                                                <span className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
                                                     Featured
                                                 </span>
                                             )}
                                         </div>
                                     </div>
 
-                                    <p className="text-sm text-slate-600 mb-4 line-clamp-2 h-10">{service.shortDescription}</p>
+                                    <p className="text-sm text-slate-600 dark:text-gray-400 mb-4 line-clamp-2 h-10">{service.shortDescription}</p>
 
-                                    <div className="flex items-center justify-between py-4 border-t border-b border-slate-50 mb-4">
-                                        <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                                            <Clock size={16} className="text-indigo-500" />
+                                    <div className="flex items-center justify-between py-4 border-t border-b border-slate-50 dark:border-gray-700 mb-4">
+                                        <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-gray-400">
+                                            <Clock size={16} className="text-indigo-500 dark:text-indigo-400" />
                                             {service.processingTime}
                                         </div>
-                                        <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                                            <Code size={16} className="text-indigo-500" />
+                                        <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-gray-400">
+                                            <Code size={16} className="text-indigo-500 dark:text-indigo-400" />
                                             {service.serviceCode}
                                         </div>
-                                        <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                                            <ListChecks size={16} className="text-indigo-500" />
+                                        <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-gray-400">
+                                            <ListChecks size={16} className="text-indigo-500 dark:text-indigo-400" />
                                             {service.attributes.length} Attrs
                                         </div>
                                     </div>
 
                                     <div className="flex gap-2">
-                                        <button onClick={() => alert(`Preview ${service.name}`)} className="flex-1 py-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 text-sm font-semibold transition-colors flex items-center justify-center gap-1.5">
+                                        <button onClick={() => alert(`Preview ${service.name}`)} className="flex-1 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 text-sm font-semibold transition-colors flex items-center justify-center gap-1.5">
                                             <Eye size={16} weight="bold" /> View
                                         </button>
-                                        <button onClick={() => handleEdit(service)} className="flex-1 py-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 text-sm font-semibold transition-colors flex items-center justify-center gap-1.5">
+                                        <button onClick={() => handleEdit(service)} className="flex-1 py-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/40 text-sm font-semibold transition-colors flex items-center justify-center gap-1.5">
                                             <Pencil size={16} weight="bold" /> Edit
                                         </button>
-                                        <button onClick={() => handleDelete(service.id)} className="flex-1 py-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold transition-colors flex items-center justify-center gap-1.5">
+                                        <button onClick={() => handleDelete(service.id)} className="flex-1 py-2 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 text-sm font-semibold transition-colors flex items-center justify-center gap-1.5">
                                             <Trash size={16} weight="bold" /> Delete
                                         </button>
                                     </div>
@@ -546,10 +546,10 @@ export default function ServiceManagementPage() {
                         </div>
 
                         {filteredServices.length === 0 && (
-                            <div className="text-center py-20 bg-white rounded-xl border border-dashed border-slate-300">
-                                <Briefcase size={64} className="text-slate-300 mx-auto mb-4" />
-                                <h3 className="text-xl font-bold text-slate-900 mb-2">No services found</h3>
-                                <p className="text-slate-500 mb-6">Start by adding your first service to the platform.</p>
+                            <div className="text-center py-20 bg-white dark:bg-gray-800 rounded-xl border border-dashed border-slate-300 dark:border-gray-700">
+                                <Briefcase size={64} className="text-slate-300 dark:text-gray-600 mx-auto mb-4" />
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">No services found</h3>
+                                <p className="text-slate-500 dark:text-gray-400 mb-6">Start by adding your first service to the platform.</p>
                                 <button onClick={handleCreate} className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-semibold shadow-lg shadow-indigo-200">
                                     Add New Service
                                 </button>
@@ -564,49 +564,49 @@ export default function ServiceManagementPage() {
                         <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-8">
 
                             {/* Main Column */}
-                            <div className="bg-white rounded-2xl p-8 shadow-sm space-y-10">
+                            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm space-y-10 transition-colors">
 
                                 {/* Basic Info */}
                                 <div className="space-y-6">
                                     <div className="flex items-center gap-3 mb-2">
-                                        <Info size={24} weight="bold" className="text-indigo-600" />
-                                        <h2 className="text-xl font-bold text-slate-900">Basic Information</h2>
+                                        <Info size={24} weight="bold" className="text-indigo-600 dark:text-indigo-400" />
+                                        <h2 className="text-xl font-bold text-slate-900 dark:text-white">Basic Information</h2>
                                     </div>
 
                                     <div className="space-y-4">
                                         <div>
-                                            <label className="block text-sm font-semibold text-slate-700 mb-1">Service Name <span className="text-red-500">*</span></label>
+                                            <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-1">Service Name <span className="text-red-500">*</span></label>
                                             <input
                                                 type="text"
                                                 required
                                                 value={formData.name}
                                                 onChange={(e) => handleInputChange('name', e.target.value)}
-                                                className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500"
+                                                className="w-full px-4 py-2.5 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:outline-none focus:border-indigo-500 dark:text-gray-100 transition-colors"
                                                 placeholder="e.g., GST Registration Service"
                                             />
                                         </div>
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div>
-                                                <label className="block text-sm font-semibold text-slate-700 mb-1">Main Category <span className="text-red-500">*</span></label>
+                                                <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-1">Main Category <span className="text-red-500">*</span></label>
                                                 <select
                                                     required
                                                     value={formData.categoryId}
                                                     onChange={(e) => handleCategoryChange(e.target.value)}
-                                                    className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 bg-white"
+                                                    className="w-full px-4 py-2.5 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:outline-none focus:border-indigo-500 bg-white dark:text-gray-100 transition-colors"
                                                 >
                                                     <option value="">-- Select Category --</option>
                                                     {CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                                                 </select>
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-semibold text-slate-700 mb-1">Sub-Category <span className="text-red-500">*</span></label>
+                                                <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-1">Sub-Category <span className="text-red-500">*</span></label>
                                                 <select
                                                     required
                                                     value={formData.subCategoryId}
                                                     onChange={(e) => handleInputChange('subCategoryId', e.target.value)}
                                                     disabled={!formData.categoryId}
-                                                    className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 bg-white disabled:bg-slate-50 disabled:text-slate-400"
+                                                    className="w-full px-4 py-2.5 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:outline-none focus:border-indigo-500 bg-white dark:text-gray-100 disabled:bg-slate-50 dark:disabled:bg-gray-800 disabled:text-slate-400 dark:disabled:text-gray-600 transition-colors"
                                                 >
                                                     <option value="">-- Select Sub-Category --</option>
                                                     {formData.categoryId && SUB_CATEGORIES[formData.categoryId]?.map(s => (
@@ -617,130 +617,127 @@ export default function ServiceManagementPage() {
                                         </div>
 
                                         <div>
-                                            <label className="block text-sm font-semibold text-slate-700 mb-1">Permalink / URL Slug</label>
+                                            <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-1">Permalink / URL Slug</label>
                                             <div className="flex">
-                                                <span className="bg-slate-50 border border-slate-200 border-r-0 rounded-l-lg px-3 py-2.5 text-sm text-slate-500 font-mono">
+                                                <span className="bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 border-r-0 rounded-l-lg px-3 py-2.5 text-sm text-slate-500 dark:text-gray-400 font-mono">
                                                     taxque.com/services/
                                                 </span>
                                                 <input
                                                     type="text"
                                                     value={formData.slug}
                                                     onChange={(e) => handleInputChange('slug', e.target.value)}
-                                                    className="flex-1 px-4 py-2.5 border border-slate-200 rounded-r-lg focus:outline-none focus:border-indigo-500 font-mono text-sm"
+                                                    className="flex-1 px-4 py-2.5 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-r-lg focus:outline-none focus:border-indigo-500 font-mono text-sm dark:text-gray-100 transition-colors"
                                                     placeholder="service-slug"
                                                 />
                                             </div>
                                         </div>
 
-                                        <div>
-                                            <label className="block text-sm font-semibold text-slate-700 mb-1">Short Description</label>
-                                            <textarea
-                                                value={formData.shortDescription}
-                                                onChange={(e) => handleInputChange('shortDescription', e.target.value)}
-                                                className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 min-h-[100px]"
-                                                placeholder="Brief overview of the service..."
-                                            />
-                                        </div>
+                                    </div>
 
-                                        <div>
-                                            <label className="block text-sm font-semibold text-slate-700 mb-2">Description Points</label>
-                                            <div className="space-y-2 mb-3">
-                                                {formData.descriptionPoints.map((point, idx) => (
-                                                    <div key={idx} className="flex gap-2 items-center bg-slate-50 p-2 rounded-lg border border-slate-200">
-                                                        <CheckCircle size={18} className="text-indigo-500" weight="bold" />
-                                                        <input
-                                                            type="text"
-                                                            value={point}
-                                                            onChange={(e) => handleBulletChange(idx, e.target.value)}
-                                                            className="flex-1 bg-transparent border-none text-sm focus:ring-0"
-                                                            placeholder="Key point..."
-                                                        />
-                                                        <button type="button" onClick={() => handleBulletRemove(idx)} className="text-red-500 hover:text-red-700 p-1">
-                                                            <X size={16} weight="bold" />
-                                                        </button>
-                                                    </div>
-                                                ))}
-                                            </div>
+                                    <div className="space-y-4 pt-6 border-t border-slate-100 dark:border-gray-700">
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <ListChecks size={24} weight="bold" className="text-indigo-600 dark:text-indigo-400" />
+                                            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Service Description Points</h2>
+                                        </div>
+                                        <div className="space-y-3">
+                                            {formData.descriptionPoints.map((point, idx) => (
+                                                <div key={idx} className="flex gap-2">
+                                                    <input
+                                                        type="text"
+                                                        value={point}
+                                                        onChange={(e) => handleBulletChange(idx, e.target.value)}
+                                                        className="flex-grow px-4 py-2.5 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:outline-none focus:border-indigo-500 dark:text-gray-100 transition-colors"
+                                                        placeholder="Add a key feature or detail..."
+                                                    />
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleBulletRemove(idx)}
+                                                        className="p-2.5 text-slate-400 hover:text-red-500 transition-colors bg-slate-50 dark:bg-gray-900 rounded-lg border border-slate-200 dark:border-gray-700"
+                                                    >
+                                                        <Trash size={18} weight="bold" />
+                                                    </button>
+                                                </div>
+                                            ))}
                                             <button
                                                 type="button"
                                                 onClick={handleBulletAdd}
-                                                className="w-full py-2 border-2 border-dashed border-slate-300 rounded-lg text-slate-500 hover:border-indigo-500 hover:text-indigo-600 text-sm font-semibold transition-colors flex items-center justify-center gap-2"
+                                                className="w-full py-2.5 border-2 border-dashed border-slate-200 dark:border-gray-700 text-slate-400 dark:text-gray-500 hover:border-indigo-300 dark:hover:border-indigo-600 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg font-bold flex items-center justify-center gap-2 transition-all"
                                             >
-                                                <PlusCircle size={18} weight="bold" /> Add Point
+                                                <PlusCircle size={20} weight="bold" /> Add Description Point
                                             </button>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div className="border-t border-slate-100 my-8"></div>
+                                    <div className="border-t border-slate-100 dark:border-gray-700 my-8 transition-colors"></div>
 
-                                {/* Attributes */}
-                                <div className="space-y-6">
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <ListChecks size={24} weight="bold" className="text-indigo-600" />
-                                        <h2 className="text-xl font-bold text-slate-900">Service Attributes</h2>
-                                    </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-60 overflow-y-auto p-4 border border-slate-200 rounded-xl bg-slate-50">
-                                        {ATTRIBUTES_LIST.map(attr => (
-                                            <label key={attr.name} className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-all ${formData.attributes.includes(attr.name) ? 'bg-indigo-50 border-indigo-200' : 'bg-white border-slate-200 hover:bg-slate-50'
-                                                }`}>
-                                                <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formData.attributes.includes(attr.name) ? 'bg-indigo-600 border-indigo-600 text-white' : 'border-slate-300 bg-white'
+                                    {/* Attributes */}
+                                    <div className="space-y-6">
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <ListChecks size={24} weight="bold" className="text-indigo-600 dark:text-indigo-400" />
+                                            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Service Attributes</h2>
+                                        </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-60 overflow-y-auto p-4 border border-slate-200 dark:border-gray-700 rounded-xl bg-slate-50 dark:bg-gray-900">
+                                            {ATTRIBUTES_LIST.map(attr => (
+                                                <label key={attr.name} className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-all ${formData.attributes.includes(attr.name) ? 'bg-indigo-50 dark:bg-indigo-900/30 border-indigo-200 dark:border-indigo-900/50' : 'bg-white dark:bg-gray-800 border-slate-200 dark:border-gray-700 hover:bg-slate-50 dark:hover:bg-gray-700'
                                                     }`}>
-                                                    <input
-                                                        type="checkbox"
-                                                        className="hidden"
-                                                        checked={formData.attributes.includes(attr.name)}
-                                                        onChange={(e) => {
-                                                            const newAttrs = e.target.checked
-                                                                ? [...formData.attributes, attr.name]
-                                                                : formData.attributes.filter(a => a !== attr.name);
-                                                            handleInputChange('attributes', newAttrs);
-                                                        }}
-                                                    />
-                                                    {formData.attributes.includes(attr.name) && <CheckCircle size={14} weight="bold" />}
+                                                    <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formData.attributes.includes(attr.name) ? 'bg-indigo-600 dark:bg-indigo-500 border-indigo-600 dark:border-indigo-500 text-white' : 'border-slate-300 dark:border-gray-600 bg-white dark:bg-gray-900'
+                                                        }`}>
+                                                        <input
+                                                            type="checkbox"
+                                                            className="hidden"
+                                                            checked={formData.attributes.includes(attr.name)}
+                                                            onChange={(e) => {
+                                                                const newAttrs = e.target.checked
+                                                                    ? [...formData.attributes, attr.name]
+                                                                    : formData.attributes.filter(a => a !== attr.name);
+                                                                handleInputChange('attributes', newAttrs);
+                                                            }}
+                                                        />
+                                                        {formData.attributes.includes(attr.name) && <CheckCircle size={14} weight="bold" />}
+                                                    </div>
+                                                    <span className="flex-1 text-sm font-medium text-slate-700 dark:text-gray-300">{attr.name}</span>
+                                                    <span className="bg-slate-200 dark:bg-gray-700 text-slate-600 dark:text-gray-400 text-[10px] px-2 py-0.5 rounded-full font-bold">{attr.count}</span>
+                                                </label>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="border-t border-slate-100 dark:border-gray-700 my-8 italic"></div>
+
+                                    {/* SEO */}
+                                    <div className="space-y-6">
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <ChartLineUp size={24} weight="bold" className="text-indigo-600 dark:text-indigo-400" />
+                                            <h2 className="text-xl font-bold text-slate-900 dark:text-white">SEO & Meta</h2>
+                                        </div>
+
+                                        <div className="space-y-4">
+                                            <div>
+                                                <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-1">Meta Title</label>
+                                                <input
+                                                    type="text"
+                                                    value={formData.metaTitle}
+                                                    onChange={(e) => handleInputChange('metaTitle', e.target.value)}
+                                                    className="w-full px-4 py-2.5 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:outline-none focus:border-indigo-500 dark:text-gray-100 transition-colors"
+                                                    placeholder="SEO optimized title (50-60 chars)"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-1">Meta Description</label>
+                                                <textarea
+                                                    value={formData.metaDescription}
+                                                    onChange={(e) => handleInputChange('metaDescription', e.target.value)}
+                                                    className="w-full px-4 py-2.5 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:outline-none focus:border-indigo-500 min-h-[80px] dark:text-gray-100 transition-colors"
+                                                    placeholder="SEO description (150-160 chars)"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-1">Featured Image</label>
+                                                <div className="border-2 border-dashed border-slate-300 dark:border-gray-700 rounded-xl p-8 text-center hover:bg-slate-50 dark:hover:bg-gray-900 transition-colors cursor-pointer">
+                                                    <ImageIcon size={40} className="mx-auto text-slate-300 dark:text-gray-600 mb-2" />
+                                                    <p className="text-sm font-semibold text-slate-600 dark:text-gray-300">Click to upload featured image</p>
+                                                    <p className="text-xs text-slate-400 dark:text-gray-500 mt-1">PNG, JPG - Recommended 1200x630px</p>
                                                 </div>
-                                                <span className="flex-1 text-sm font-medium text-slate-700">{attr.name}</span>
-                                                <span className="bg-slate-200 text-slate-600 text-[10px] px-2 py-0.5 rounded-full font-bold">{attr.count}</span>
-                                            </label>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className="border-t border-slate-100 my-8"></div>
-
-                                {/* SEO */}
-                                <div className="space-y-6">
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <ChartLineUp size={24} weight="bold" className="text-indigo-600" />
-                                        <h2 className="text-xl font-bold text-slate-900">SEO & Meta</h2>
-                                    </div>
-
-                                    <div className="space-y-4">
-                                        <div>
-                                            <label className="block text-sm font-semibold text-slate-700 mb-1">Meta Title</label>
-                                            <input
-                                                type="text"
-                                                value={formData.metaTitle}
-                                                onChange={(e) => handleInputChange('metaTitle', e.target.value)}
-                                                className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500"
-                                                placeholder="SEO optimized title (50-60 chars)"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-semibold text-slate-700 mb-1">Meta Description</label>
-                                            <textarea
-                                                value={formData.metaDescription}
-                                                onChange={(e) => handleInputChange('metaDescription', e.target.value)}
-                                                className="w-full px-4 py-2.5 border border-slate-200 rounded-lg focus:outline-none focus:border-indigo-500 min-h-[80px]"
-                                                placeholder="SEO description (150-160 chars)"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-semibold text-slate-700 mb-1">Featured Image</label>
-                                            <div className="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center hover:bg-slate-50 transition-colors cursor-pointer">
-                                                <ImageIcon size={40} className="mx-auto text-slate-300 mb-2" />
-                                                <p className="text-sm font-semibold text-slate-600">Click to upload featured image</p>
-                                                <p className="text-xs text-slate-400 mt-1">PNG, JPG - Recommended 1200x630px</p>
                                             </div>
                                         </div>
                                     </div>
@@ -751,17 +748,17 @@ export default function ServiceManagementPage() {
                             <div className="space-y-6">
 
                                 {/* Status Card */}
-                                <div className="bg-white rounded-xl p-6 shadow-sm">
-                                    <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                        <Upload size={18} className="text-indigo-600" /> Publish
+                                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm transition-colors">
+                                    <h3 className="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                                        <Upload size={18} className="text-indigo-600 dark:text-indigo-400" /> Publish
                                     </h3>
-                                    <div className="flex p-1 bg-slate-100 rounded-lg mb-6">
+                                    <div className="flex p-1 bg-slate-100 dark:bg-gray-900 rounded-lg mb-6">
                                         {['published', 'draft'].map(status => (
                                             <button
                                                 key={status}
                                                 type="button"
                                                 onClick={() => handleInputChange('status', status)}
-                                                className={`flex-1 py-2 text-sm font-semibold rounded-md capitalize transition-all ${formData.status === status ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+                                                className={`flex-1 py-2 text-sm font-semibold rounded-md capitalize transition-all ${formData.status === status ? 'bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 shadow-sm' : 'text-slate-500 dark:text-gray-500 hover:text-slate-700 dark:hover:text-gray-300'
                                                     }`}
                                             >
                                                 {status}
@@ -772,45 +769,47 @@ export default function ServiceManagementPage() {
                                         <button type="submit" className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold shadow-lg shadow-indigo-200 transition-all">
                                             Save Service
                                         </button>
-                                        <button type="button" onClick={() => setViewMode('list')} className="w-full py-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-xl font-bold transition-all">
+                                        <button type="button" onClick={() => setViewMode('list')} className="w-full py-3 bg-white dark:bg-gray-700 border border-slate-200 dark:border-gray-600 hover:bg-slate-50 dark:hover:bg-gray-900 text-slate-700 dark:text-gray-200 rounded-xl font-bold transition-all">
                                             Cancel
                                         </button>
                                     </div>
                                 </div>
 
                                 {/* Info Card */}
-                                <div className="bg-white rounded-xl p-6 shadow-sm">
-                                    <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                        <Info size={18} className="text-indigo-600" /> Service Info
+                                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm transition-colors">
+                                    <h3 className="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                                        <Info size={18} className="text-indigo-600 dark:text-indigo-400" /> Service Info
                                     </h3>
                                     <div className="space-y-4">
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Processing Time</label>
+                                            <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-1">Processing Time <span className="text-red-500">*</span></label>
                                             <input
                                                 type="text"
+                                                required
                                                 value={formData.processingTime}
                                                 onChange={(e) => handleInputChange('processingTime', e.target.value)}
-                                                className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm"
-                                                placeholder="e.g., 3-5 Days"
+                                                className="w-full px-4 py-2.5 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:outline-none focus:border-indigo-500 dark:text-gray-100 transition-colors"
+                                                placeholder="e.g., 3-5 Working Days"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Service Code</label>
+                                            <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-1">Service Code <span className="text-red-500">*</span></label>
                                             <input
                                                 type="text"
+                                                required
                                                 value={formData.serviceCode}
                                                 onChange={(e) => handleInputChange('serviceCode', e.target.value)}
-                                                className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm"
-                                                placeholder="e.g., GST-001"
+                                                className="w-full px-4 py-2.5 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:outline-none focus:border-indigo-500 dark:text-gray-100 transition-colors"
+                                                placeholder="e.g., TAX-001"
                                             />
                                         </div>
                                     </div>
                                 </div>
 
                                 {/* Visibility Card */}
-                                <div className="bg-white rounded-xl p-6 shadow-sm">
-                                    <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                        <Eye size={18} className="text-indigo-600" /> Visibility
+                                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm transition-colors">
+                                    <h3 className="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                                        <Eye size={18} className="text-indigo-600 dark:text-indigo-400" /> Visibility
                                     </h3>
                                     <div className="space-y-3">
                                         <label className="flex items-center gap-3 cursor-pointer">
@@ -818,35 +817,35 @@ export default function ServiceManagementPage() {
                                                 type="checkbox"
                                                 checked={formData.featured}
                                                 onChange={(e) => handleInputChange('featured', e.target.checked)}
-                                                className="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500"
+                                                className="w-4 h-4 text-indigo-600 dark:text-indigo-500 rounded focus:ring-indigo-500 dark:bg-gray-900 dark:border-gray-700"
                                             />
-                                            <span className="text-sm font-medium text-slate-700">Featured Service</span>
+                                            <span className="text-sm font-medium text-slate-700 dark:text-gray-300">Featured Service</span>
                                         </label>
                                         <label className="flex items-center gap-3 cursor-pointer">
                                             <input
                                                 type="checkbox"
                                                 checked={formData.popular}
                                                 onChange={(e) => handleInputChange('popular', e.target.checked)}
-                                                className="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500"
+                                                className="w-4 h-4 text-indigo-600 dark:text-indigo-500 rounded focus:ring-indigo-500 dark:bg-gray-900 dark:border-gray-700"
                                             />
-                                            <span className="text-sm font-medium text-slate-700">Popular Service</span>
+                                            <span className="text-sm font-medium text-slate-700 dark:text-gray-300">Popular Service</span>
                                         </label>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </form>
                 )}
-            </div>
 
-            {/* Toast Notification */}
-            <div className={`fixed bottom-8 right-8 z-50 transform transition-all duration-500 ${showToast ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0'}`}>
-                <div className="bg-emerald-600 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4">
-                    <CheckCircle size={24} weight="bold" />
-                    <span className="font-semibold">{toastMessage}</span>
+                {/* Toast Notification */}
+                <div className={`fixed bottom-8 right-8 z-50 transform transition-all duration-500 ${showToast ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0'}`}>
+                    <div className="bg-emerald-600 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4">
+                        <CheckCircle size={24} weight="bold" />
+                        <span className="font-semibold">{toastMessage}</span>
+                    </div>
                 </div>
             </div>
         </div>
     );
 }
+

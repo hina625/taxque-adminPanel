@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 interface TopBarProps {
     isDarkMode: boolean;
@@ -123,10 +124,10 @@ export default function TopBar({ isDarkMode, toggleTheme, toggleMobileMenu }: To
                                             <i className="fas fa-plus-circle text-green-600 dark:text-green-400 mr-3"></i>
                                             <span className="dark:text-white">Create Order</span>
                                         </a>
-                                        <a href="#" className="flex items-center p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded transition-colors">
+                                        <Link href="/pages/create-blog-post" className="flex items-center p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded transition-colors">
                                             <i className="fas fa-edit text-purple-600 dark:text-purple-400 mr-3"></i>
                                             <span className="dark:text-white">Write Blog Post</span>
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             )}

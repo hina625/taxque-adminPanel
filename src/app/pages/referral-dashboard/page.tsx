@@ -82,26 +82,26 @@ export default function ReferralDashboardPage() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 p-6">
+        <div className="min-h-screen bg-slate-50 dark:bg-gray-950 p-6 transition-colors duration-300">
             {/* Page Header */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-900">Referral Analytics</h1>
-                    <p className="mt-1 text-sm text-slate-500">Monitor how your referral program is driving new users, revenue and engagement.</p>
+                    <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Referral Analytics</h1>
+                    <p className="mt-1 text-sm text-slate-500 dark:text-gray-400">Monitor how your referral program is driving new users, revenue and engagement.</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
-                    <select className="text-sm border rounded-lg px-3 py-2 bg-white shadow-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                    <select className="text-sm border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 dark:text-gray-200 shadow-sm outline-none focus:ring-2 focus:ring-indigo-500">
                         <option>Last 7 days</option>
                         <option selected>Last 30 days</option>
                         <option>Last 90 days</option>
                         <option>All time</option>
                     </select>
-                    <select className="text-sm border rounded-lg px-3 py-2 bg-white shadow-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                    <select className="text-sm border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 bg-white dark:bg-gray-800 dark:text-gray-200 shadow-sm outline-none focus:ring-2 focus:ring-indigo-500">
                         <option>All Programs</option>
                         <option>Public Campaign</option>
                         <option>VIP Partners</option>
                     </select>
-                    <button className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg border bg-white hover:bg-slate-50 shadow-sm text-slate-700">
+                    <button className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-slate-50 dark:hover:bg-gray-700 shadow-sm text-slate-700 dark:text-gray-200 transition-colors">
                         <DownloadSimple size={16} /> Export report
                     </button>
                     <button className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm">
@@ -113,13 +113,13 @@ export default function ReferralDashboardPage() {
             {/* KPI Cards */}
             <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 mb-6">
                 {/* Total Referrals */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 transition-colors">
                     <div className="flex items-start justify-between">
                         <div>
-                            <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">Total referrals</p>
-                            <p className="mt-2 text-2xl font-bold text-slate-900">3,482</p>
+                            <p className="text-xs font-medium text-slate-500 dark:text-gray-400 uppercase tracking-wide">Total referrals</p>
+                            <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">3,482</p>
                         </div>
-                        <div className="h-10 w-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+                        <div className="h-10 w-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/40 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
                             <LinkIcon size={24} weight="bold" />
                         </div>
                     </div>
@@ -127,18 +127,18 @@ export default function ReferralDashboardPage() {
                         <span className="inline-flex items-center text-green-600 font-medium">
                             <TrendUp size={14} className="mr-1" /> 18.6%
                         </span>
-                        <span className="text-slate-500">vs last 30 days</span>
+                        <span className="text-slate-500 dark:text-gray-400">vs last 30 days</span>
                     </div>
                 </div>
 
                 {/* Referred Customers */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 transition-colors">
                     <div className="flex items-start justify-between">
                         <div>
-                            <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">Referred customers</p>
-                            <p className="mt-2 text-2xl font-bold text-slate-900">1,204</p>
+                            <p className="text-xs font-medium text-slate-500 dark:text-gray-400 uppercase tracking-wide">Referred customers</p>
+                            <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">1,204</p>
                         </div>
-                        <div className="h-10 w-10 rounded-lg bg-emerald-50 flex items-center justify-center text-green-600">
+                        <div className="h-10 w-10 rounded-lg bg-emerald-50 dark:bg-emerald-900/40 flex items-center justify-center text-green-600">
                             <Users size={24} weight="bold" />
                         </div>
                     </div>
@@ -146,18 +146,18 @@ export default function ReferralDashboardPage() {
                         <span className="inline-flex items-center text-green-600 font-medium">
                             <TrendUp size={14} className="mr-1" /> 9.3%
                         </span>
-                        <span className="text-slate-500">First purchase via referral</span>
+                        <span className="text-slate-500 dark:text-gray-400">First purchase via referral</span>
                     </div>
                 </div>
 
                 {/* Conversion Rate */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 transition-colors">
                     <div className="flex items-start justify-between">
                         <div>
-                            <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">Referral conversion rate</p>
-                            <p className="mt-2 text-2xl font-bold text-slate-900">23.7%</p>
+                            <p className="text-xs font-medium text-slate-500 dark:text-gray-400 uppercase tracking-wide">Referral conversion rate</p>
+                            <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">23.7%</p>
                         </div>
-                        <div className="h-10 w-10 rounded-lg bg-sky-50 flex items-center justify-center text-sky-500">
+                        <div className="h-10 w-10 rounded-lg bg-sky-50 dark:bg-sky-900/40 flex items-center justify-center text-sky-500">
                             <TrendUp size={24} weight="bold" />
                         </div>
                     </div>
@@ -165,18 +165,18 @@ export default function ReferralDashboardPage() {
                         <span className="inline-flex items-center text-green-600 font-medium">
                             <TrendUp size={14} className="mr-1" /> 3.1 pts
                         </span>
-                        <span className="text-slate-500">Target: 18–22%</span>
+                        <span className="text-slate-500 dark:text-gray-400">Target: 18–22%</span>
                     </div>
                 </div>
 
                 {/* Referral Revenue */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 transition-colors">
                     <div className="flex items-start justify-between">
                         <div>
-                            <p className="text-xs font-medium text-slate-500 uppercase tracking-wide">Revenue from referrals</p>
-                            <p className="mt-2 text-2xl font-bold text-slate-900">₹ 8,72,940</p>
+                            <p className="text-xs font-medium text-slate-500 dark:text-gray-400 uppercase tracking-wide">Revenue from referrals</p>
+                            <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">₹ 8,72,940</p>
                         </div>
-                        <div className="h-10 w-10 rounded-lg bg-amber-50 flex items-center justify-center text-amber-500">
+                        <div className="h-10 w-10 rounded-lg bg-amber-50 dark:bg-amber-900/40 flex items-center justify-center text-amber-500">
                             <CurrencyDollar size={24} weight="bold" />
                         </div>
                     </div>
@@ -184,7 +184,7 @@ export default function ReferralDashboardPage() {
                         <span className="inline-flex items-center text-green-600 font-medium">
                             <TrendUp size={14} className="mr-1" /> 26.4%
                         </span>
-                        <span className="text-slate-500">ROI improving month‑on‑month</span>
+                        <span className="text-slate-500 dark:text-gray-400">ROI improving month‑on‑month</span>
                     </div>
                 </div>
             </section>
@@ -192,10 +192,10 @@ export default function ReferralDashboardPage() {
             {/* Charts Section */}
             <section className="grid gap-6 lg:grid-cols-3 mb-6">
                 {/* Chart */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 lg:col-span-2">
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 lg:col-span-2 transition-colors">
                     <div className="mb-4">
-                        <h3 className="text-base font-semibold text-slate-900">Referral performance over time</h3>
-                        <p className="text-xs text-slate-500">Daily referrals vs successful conversions.</p>
+                        <h3 className="text-base font-semibold text-slate-900 dark:text-white">Referral performance over time</h3>
+                        <p className="text-xs text-slate-500 dark:text-gray-400">Daily referrals vs successful conversions.</p>
                     </div>
                     <div className="h-64">
                         <Bar data={chartData} options={chartOptions} />
@@ -203,53 +203,53 @@ export default function ReferralDashboardPage() {
                 </div>
 
                 {/* Funnel */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
-                    <h3 className="text-base font-semibold text-slate-900 mb-1">Referral funnel</h3>
-                    <p className="text-xs text-slate-500 mb-6">From link shares to paying customers.</p>
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 transition-colors">
+                    <h3 className="text-base font-semibold text-slate-900 dark:text-white mb-1">Referral funnel</h3>
+                    <p className="text-xs text-slate-500 dark:text-gray-400 mb-6">From link shares to paying customers.</p>
 
                     <div className="space-y-6">
                         <div>
                             <div className="flex justify-between text-sm mb-2">
-                                <span className="font-medium text-slate-700">Referral link clicks</span>
-                                <span className="text-slate-500">12,430</span>
+                                <span className="font-medium text-slate-700 dark:text-gray-300">Referral link clicks</span>
+                                <span className="text-slate-500 dark:text-gray-400">12,430</span>
                             </div>
-                            <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                            <div className="h-2 rounded-full bg-slate-100 dark:bg-gray-700 overflow-hidden">
                                 <div className="h-full bg-indigo-600 w-full" style={{ width: '100%' }}></div>
                             </div>
-                            <p className="mt-1 text-xs text-slate-400">Top sources: WhatsApp, Email, Direct.</p>
+                            <p className="mt-1 text-xs text-slate-400 dark:text-gray-500">Top sources: WhatsApp, Email, Direct.</p>
                         </div>
 
                         <div>
                             <div className="flex justify-between text-sm mb-2">
-                                <span className="font-medium text-slate-700">Sign‑ups from referrals</span>
-                                <span className="text-slate-500">3,482</span>
+                                <span className="font-medium text-slate-700 dark:text-gray-300">Sign‑ups from referrals</span>
+                                <span className="text-slate-500 dark:text-gray-400">3,482</span>
                             </div>
-                            <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                            <div className="h-2 rounded-full bg-slate-100 dark:bg-gray-700 overflow-hidden">
                                 <div className="h-full bg-indigo-400" style={{ width: '62%' }}></div>
                             </div>
-                            <p className="mt-1 text-xs text-slate-400">Participation rate and landing page UX impact this step.</p>
+                            <p className="mt-1 text-xs text-slate-400 dark:text-gray-500">Participation rate and landing page UX impact this step.</p>
                         </div>
 
                         <div>
                             <div className="flex justify-between text-sm mb-2">
-                                <span className="font-medium text-slate-700">First purchase via referral</span>
-                                <span className="text-slate-500">1,204</span>
+                                <span className="font-medium text-slate-700 dark:text-gray-300">First purchase via referral</span>
+                                <span className="text-slate-500 dark:text-gray-400">1,204</span>
                             </div>
-                            <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                            <div className="h-2 rounded-full bg-slate-100 dark:bg-gray-700 overflow-hidden">
                                 <div className="h-full bg-emerald-400" style={{ width: '35%' }}></div>
                             </div>
-                            <p className="mt-1 text-xs text-slate-400">Key KPI: referral conversion rate.</p>
+                            <p className="mt-1 text-xs text-slate-400 dark:text-gray-500">Key KPI: referral conversion rate.</p>
                         </div>
 
                         <div>
                             <div className="flex justify-between text-sm mb-2">
-                                <span className="font-medium text-slate-700">Repeat customers</span>
-                                <span className="text-slate-500">642</span>
+                                <span className="font-medium text-slate-700 dark:text-gray-300">Repeat customers</span>
+                                <span className="text-slate-500 dark:text-gray-400">642</span>
                             </div>
-                            <div className="h-2 rounded-full bg-slate-100 overflow-hidden">
+                            <div className="h-2 rounded-full bg-slate-100 dark:bg-gray-700 overflow-hidden">
                                 <div className="h-full bg-emerald-600" style={{ width: '19%' }}></div>
                             </div>
-                            <p className="mt-1 text-xs text-slate-400">Tracks lifetime value and repeat‑purchase rate.</p>
+                            <p className="mt-1 text-xs text-slate-400 dark:text-gray-500">Tracks lifetime value and repeat‑purchase rate.</p>
                         </div>
                     </div>
                 </div>
@@ -258,17 +258,17 @@ export default function ReferralDashboardPage() {
             {/* Bottom Section */}
             <section className="grid gap-6 lg:grid-cols-3">
                 {/* Top Referrers Table */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 lg:col-span-2">
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 lg:col-span-2 transition-colors">
                     <div className="flex items-center justify-between mb-4">
                         <div>
-                            <h3 className="text-base font-semibold text-slate-900">Top referrers</h3>
-                            <p className="text-xs text-slate-500">Users bringing the most high‑value customers.</p>
+                            <h3 className="text-base font-semibold text-slate-900 dark:text-white">Top referrers</h3>
+                            <p className="text-xs text-slate-500 dark:text-gray-400">Users bringing the most high‑value customers.</p>
                         </div>
                         <button className="text-sm text-indigo-600 hover:text-indigo-700 font-medium">View all</button>
                     </div>
                     <div className="overflow-x-auto">
                         <table className="min-w-full text-sm">
-                            <thead className="bg-slate-50 text-xs uppercase text-slate-500 font-semibold">
+                            <thead className="bg-slate-50 dark:bg-gray-700/50 text-xs uppercase text-slate-500 dark:text-gray-400 font-semibold">
                                 <tr>
                                     <th className="px-4 py-3 text-left rounded-l-lg">User</th>
                                     <th className="px-4 py-3 text-left">Referrals</th>
@@ -278,28 +278,28 @@ export default function ReferralDashboardPage() {
                                     <th className="px-4 py-3 text-right rounded-r-lg">Reward</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-100">
+                            <tbody className="divide-y divide-slate-100 dark:divide-gray-700">
                                 {[
-                                    { name: 'Rahul Verma', handle: '@rahul.taxque', initials: 'RV', bg: 'bg-indigo-50', text: 'text-indigo-600', refs: 142, conv: '28.1%', rev: '₹ 1,85,240', avg: '₹ 1,305', reward: '₹ 7,500' },
-                                    { name: 'Anita Desai', handle: '@anita_d', initials: 'AD', bg: 'bg-slate-100', text: 'text-slate-700', refs: 96, conv: '24.3%', rev: '₹ 1,12,680', avg: '₹ 1,173', reward: '₹ 5,200' },
-                                    { name: 'Imran Khan', handle: '@imran_k', initials: 'IK', bg: 'bg-slate-100', text: 'text-slate-700', refs: 75, conv: '20.8%', rev: '₹ 86,430', avg: '₹ 1,152', reward: '₹ 4,000' },
+                                    { name: 'Rahul Verma', handle: '@rahul.taxque', initials: 'RV', bg: 'bg-indigo-50 dark:bg-indigo-900/40', text: 'text-indigo-600 dark:text-indigo-400', refs: 142, conv: '28.1%', rev: '₹ 1,85,240', avg: '₹ 1,305', reward: '₹ 7,500' },
+                                    { name: 'Anita Desai', handle: '@anita_d', initials: 'AD', bg: 'bg-slate-100 dark:bg-gray-700', text: 'text-slate-700 dark:text-gray-300', refs: 96, conv: '24.3%', rev: '₹ 1,12,680', avg: '₹ 1,173', reward: '₹ 5,200' },
+                                    { name: 'Imran Khan', handle: '@imran_k', initials: 'IK', bg: 'bg-slate-100 dark:bg-gray-700', text: 'text-slate-700 dark:text-gray-300', refs: 75, conv: '20.8%', rev: '₹ 86,430', avg: '₹ 1,152', reward: '₹ 4,000' },
                                 ].map((referrer, i) => (
-                                    <tr key={i} className="hover:bg-slate-50 transition-colors">
+                                    <tr key={i} className="hover:bg-slate-50 dark:hover:bg-gray-700/50 transition-colors">
                                         <td className="px-4 py-3">
                                             <div className="flex items-center gap-3">
                                                 <span className={`h-8 w-8 rounded-full ${referrer.bg} ${referrer.text} flex items-center justify-center text-xs font-bold`}>
                                                     {referrer.initials}
                                                 </span>
                                                 <div>
-                                                    <p className="text-sm font-medium text-slate-900">{referrer.name}</p>
-                                                    <p className="text-xs text-slate-500">{referrer.handle}</p>
+                                                    <p className="text-sm font-medium text-slate-900 dark:text-white">{referrer.name}</p>
+                                                    <p className="text-xs text-slate-500 dark:text-gray-400">{referrer.handle}</p>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-4 py-3 text-slate-600">{referrer.refs}</td>
-                                        <td className="px-4 py-3 text-slate-600">{referrer.conv}</td>
-                                        <td className="px-4 py-3 text-slate-600">{referrer.rev}</td>
-                                        <td className="px-4 py-3 text-slate-600">{referrer.avg}</td>
+                                        <td className="px-4 py-3 text-slate-600 dark:text-gray-300">{referrer.refs}</td>
+                                        <td className="px-4 py-3 text-slate-600 dark:text-gray-300">{referrer.conv}</td>
+                                        <td className="px-4 py-3 text-slate-600 dark:text-gray-300">{referrer.rev}</td>
+                                        <td className="px-4 py-3 text-slate-600 dark:text-gray-300">{referrer.avg}</td>
                                         <td className="px-4 py-3 text-right text-emerald-600 font-semibold">{referrer.reward}</td>
                                     </tr>
                                 ))}
@@ -309,17 +309,17 @@ export default function ReferralDashboardPage() {
                 </div>
 
                 {/* Program Health */}
-                <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 space-y-5">
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 space-y-5 transition-colors">
                     <div>
-                        <h3 className="text-base font-semibold text-slate-900">Program health</h3>
-                        <p className="text-xs text-slate-500">Overall engagement and alerts.</p>
+                        <h3 className="text-base font-semibold text-slate-900 dark:text-white">Program health</h3>
+                        <p className="text-xs text-slate-500 dark:text-gray-400">Overall engagement and alerts.</p>
                     </div>
 
-                    <div className="rounded-lg bg-indigo-50 text-indigo-700 px-4 py-3 text-sm flex items-start gap-3">
+                    <div className="rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 px-4 py-3 text-sm flex items-start gap-3">
                         <Lightning size={20} weight="fill" className="mt-0.5 shrink-0" />
                         <div>
                             <p className="font-semibold">High‑performing program</p>
-                            <p className="text-xs text-indigo-600/80 mt-1 leading-relaxed">
+                            <p className="text-xs text-indigo-600/80 dark:text-indigo-400/80 mt-1 leading-relaxed">
                                 Referral rate and conversion are above industry benchmarks for SaaS and ecommerce.
                             </p>
                         </div>
@@ -329,8 +329,8 @@ export default function ReferralDashboardPage() {
                         <div className="flex items-start gap-3">
                             <div className="mt-1 h-2 w-2 rounded-full bg-emerald-500 shrink-0"></div>
                             <div>
-                                <p className="text-sm font-medium text-slate-900">WhatsApp shares up 31%</p>
-                                <p className="text-xs text-slate-500 mt-0.5">
+                                <p className="text-sm font-medium text-slate-900 dark:text-white">WhatsApp shares up 31%</p>
+                                <p className="text-xs text-slate-500 dark:text-gray-400 mt-0.5">
                                     Most new members discovered the program via mobile share links in the last 7 days.
                                 </p>
                             </div>
@@ -339,8 +339,8 @@ export default function ReferralDashboardPage() {
                         <div className="flex items-start gap-3">
                             <div className="mt-1 h-2 w-2 rounded-full bg-amber-400 shrink-0"></div>
                             <div>
-                                <p className="text-sm font-medium text-slate-900">Landing page drop‑off</p>
-                                <p className="text-xs text-slate-500 mt-0.5">
+                                <p className="text-sm font-medium text-slate-900 dark:text-white">Landing page drop‑off</p>
+                                <p className="text-xs text-slate-500 dark:text-gray-400 mt-0.5">
                                     38% of visitors abandon on the referral landing page. Test shorter copy.
                                 </p>
                             </div>
@@ -349,21 +349,21 @@ export default function ReferralDashboardPage() {
                         <div className="flex items-start gap-3">
                             <div className="mt-1 h-2 w-2 rounded-full bg-red-500 shrink-0"></div>
                             <div>
-                                <p className="text-sm font-medium text-slate-900">Suspicious activity detected</p>
-                                <p className="text-xs text-slate-500 mt-0.5">
+                                <p className="text-sm font-medium text-slate-900 dark:text-white">Suspicious activity detected</p>
+                                <p className="text-xs text-slate-500 dark:text-gray-400 mt-0.5">
                                     12 referrals from same IP range flagged for manual review.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="pt-4 border-t border-slate-100">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-3">Quick actions</p>
+                    <div className="pt-4 border-t border-slate-100 dark:border-gray-700">
+                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-gray-400 mb-3">Quick actions</p>
                         <div className="flex flex-wrap gap-2">
-                            <button className="px-3 py-1.5 text-xs font-medium rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition-colors">
+                            <button className="px-3 py-1.5 text-xs font-medium rounded-full border border-slate-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600 text-slate-700 dark:text-gray-200 transition-colors">
                                 View fraud queue
                             </button>
-                            <button className="px-3 py-1.5 text-xs font-medium rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition-colors">
+                            <button className="px-3 py-1.5 text-xs font-medium rounded-full border border-slate-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600 text-slate-700 dark:text-gray-200 transition-colors">
                                 Edit rewards
                             </button>
                             <button className="px-3 py-1.5 text-xs font-medium rounded-full bg-indigo-600 hover:bg-indigo-700 text-white transition-colors">

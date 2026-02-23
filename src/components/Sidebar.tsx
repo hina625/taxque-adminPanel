@@ -205,9 +205,202 @@ export default function Sidebar({ isSidebarCollapsed, toggleSidebar, isMobileMen
                         >
                             <div className="ml-4 space-y-1">
                                 {[
+                                    { name: 'Dashboard', href: '/pages/blogs' },
+                                    { name: 'New Post', href: '/pages/create-blog-post' },
                                     { name: 'Post', href: '/pages/blog-posts' },
-                                    { name: 'Categories', href: '/pages/blog-categories' },
+                                    { name: 'Categories', href: '/pages/create-blog-category' },
                                     { name: 'Tags', href: '/pages/blog-tags' }
+                                ].map((item) => (
+                                    <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                        <i className="fas fa-circle text-[8px] mr-2"></i>
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Recruitment */}
+                    <div>
+                        <button
+                            onClick={() => toggleSubmenu('recruitment')}
+                            className={`menu-header w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}
+                        >
+                            <span className="flex items-center">
+                                <i className="fas fa-briefcase mr-2"></i>
+                                {!isSidebarCollapsed && <span>Recruitment</span>}
+                            </span>
+                            {!isSidebarCollapsed && <i className={`fas fa-chevron-down text-xs transition-transform duration-300 ${openSubmenu === 'recruitment' ? 'rotate-180' : ''}`}></i>}
+                        </button>
+
+                        <div
+                            className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'recruitment' && !isSidebarCollapsed ? 'max-h-[600px] mt-1' : 'max-h-0'}`}
+                        >
+                            <div className="ml-4 space-y-1">
+                                {[
+                                    { name: 'Dashboard', href: '/pages/recruitment' },
+                                    { name: 'Job Application', href: '/pages/recruitment/job-applications' },
+                                    { name: 'Candidates', href: '/pages/recruitment/candidates' },
+                                    { name: 'Interviews', href: '/pages/recruitment/interviews' },
+                                    { name: 'Onboarding', href: '/pages/recruitment/onboarding' },
+                                    { name: 'Questionnaire', href: '/pages/recruitment/questionnaire' },
+                                    { name: 'Career', href: '/pages/recruitment/career' },
+                                    { name: 'Settings', href: '/pages/recruitment/settings' }
+                                ].map((item) => (
+                                    <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                        <i className="fas fa-circle text-[8px] mr-2"></i>
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Settings Dropdown */}
+                    <div>
+                        <button
+                            onClick={() => toggleSubmenu('settings')}
+                            className={`menu-header w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}
+                        >
+                            <span className="flex items-center">
+                                <i className="fas fa-cog mr-2"></i>
+                                {!isSidebarCollapsed && <span>Settings</span>}
+                            </span>
+                            {!isSidebarCollapsed && <i className={`fas fa-chevron-down text-xs transition-transform duration-300 ${openSubmenu === 'settings' ? 'rotate-180' : ''}`}></i>}
+                        </button>
+
+                        <div
+                            className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'settings' && !isSidebarCollapsed ? 'max-h-[500px] mt-1' : 'max-h-0'}`}
+                        >
+                            <div className="ml-4 space-y-1">
+                                {[
+                                    { name: 'Branding', href: '/pages/settings/branding' },
+                                    { name: 'Typography', href: '/pages/settings/typography' },
+                                    { name: 'Text Colors', href: '/pages/settings/colors' },
+                                    { name: 'Footer Links', href: '/pages/settings/footer' },
+                                    { name: 'Social Post', href: '/pages/settings/autopost' },
+                                    { name: 'OAuth Login', href: '/pages/settings/oauth' },
+                                    { name: 'Security', href: '/pages/settings/captcha' },
+                                    { name: 'SMTP Config', href: '/pages/settings/smtp' }
+                                ].map((item) => (
+                                    <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                        <i className="fas fa-circle text-[8px] mr-2"></i>
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* CRM */}
+                    <div>
+                        <button
+                            onClick={() => toggleSubmenu('crm')}
+                            className={`menu-header w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}
+                        >
+                            <span className="flex items-center">
+                                <i className="fas fa-address-book mr-2"></i>
+                                {!isSidebarCollapsed && <span>CRM System</span>}
+                            </span>
+                            {!isSidebarCollapsed && <i className={`fas fa-chevron-down text-xs transition-transform duration-300 ${openSubmenu === 'crm' ? 'rotate-180' : ''}`}></i>}
+                        </button>
+
+                        <div
+                            className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'crm' && !isSidebarCollapsed ? 'max-h-[500px] mt-1' : 'max-h-0'}`}
+                        >
+                            <div className="ml-4 space-y-1">
+                                {[
+                                    { name: 'Dashboard', href: '/pages/crm' },
+                                    { name: 'Pipeline', href: '/pages/crm/pipeline' },
+                                    { name: 'Leads', href: '/pages/crm/leads' },
+                                    { name: 'Contacts', href: '/pages/crm/contacts' },
+                                    { name: 'Tasks', href: '/pages/crm/tasks' },
+                                    { name: 'Tickets', href: '/pages/crm/tickets' }
+                                ].map((item) => (
+                                    <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                        <i className="fas fa-circle text-[8px] mr-2"></i>
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Support System Dropdown */}
+                    <div>
+                        <button
+                            onClick={() => toggleSubmenu('support')}
+                            className={`menu-header w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}
+                        >
+                            <span className="flex items-center">
+                                <i className="fas fa-headset mr-2"></i>
+                                {!isSidebarCollapsed && <span>Support System</span>}
+                            </span>
+                            {!isSidebarCollapsed && <i className={`fas fa-chevron-down text-xs transition-transform duration-300 ${openSubmenu === 'support' ? 'rotate-180' : ''}`}></i>}
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'support' && !isSidebarCollapsed ? 'max-h-[500px] mt-1' : 'max-h-0'}`}>
+                            <div className="ml-4 space-y-1">
+                                {[
+                                    { name: 'Dashboard', href: '/pages/support' },
+                                    { name: 'Tickets', href: '/pages/support/tickets' },
+                                    { name: 'Customers', href: '/pages/support/customers' },
+                                ].map((item) => (
+                                    <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                        <i className="fas fa-circle text-[8px] mr-2"></i>
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Messenger Dropdown */}
+                    <div>
+                        <button
+                            onClick={() => toggleSubmenu('messenger')}
+                            className={`menu-header w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}
+                        >
+                            <span className="flex items-center">
+                                <i className="fas fa-comments mr-2"></i>
+                                {!isSidebarCollapsed && <span>Messenger</span>}
+                            </span>
+                            {!isSidebarCollapsed && <i className={`fas fa-chevron-down text-xs transition-transform duration-300 ${openSubmenu === 'messenger' ? 'rotate-180' : ''}`}></i>}
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'messenger' && !isSidebarCollapsed ? 'max-h-[500px] mt-1' : 'max-h-0'}`}>
+                            <div className="ml-4 space-y-1">
+                                {[
+                                    { name: 'Chats', href: '/pages/messenger/chats' },
+                                    { name: 'Calls', href: '/pages/messenger/calls' },
+                                    { name: 'Meetings', href: '/pages/messenger/meetings' },
+                                    { name: 'Contacts', href: '/pages/messenger/users' },
+                                ].map((item) => (
+                                    <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                        <i className="fas fa-circle text-[8px] mr-2"></i>
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* FAQs Dropdown */}
+                    <div>
+                        <button
+                            onClick={() => toggleSubmenu('faqs')}
+                            className={`menu-header w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}
+                        >
+                            <span className="flex items-center">
+                                <i className="fas fa-question-circle mr-2"></i>
+                                {!isSidebarCollapsed && <span>FAQs</span>}
+                            </span>
+                            {!isSidebarCollapsed && <i className={`fas fa-chevron-down text-xs transition-transform duration-300 ${openSubmenu === 'faqs' ? 'rotate-180' : ''}`}></i>}
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'faqs' && !isSidebarCollapsed ? 'max-h-[400px] mt-1' : 'max-h-0'}`}>
+                            <div className="ml-4 space-y-1">
+                                {[
+                                    { name: 'Manage FAQs', href: '/pages/faqs' },
+                                    { name: 'Categories', href: '/pages/faqs/categories' },
+                                    { name: 'Knowledge Base', href: '/pages/support/knowledge-base' },
                                 ].map((item) => (
                                     <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
                                         <i className="fas fa-circle text-[8px] mr-2"></i>
@@ -221,25 +414,15 @@ export default function Sidebar({ isSidebarCollapsed, toggleSidebar, isMobileMen
                     {/* More Items */}
                     {[
                         { name: 'Payments', icon: 'fa-credit-card', href: '/pages/payments' },
-                        { name: 'Recruitment', icon: 'fa-briefcase', href: '/pages/recruitment' },
-                        { name: 'Support System', icon: 'fa-headset', href: '/pages/support' },
-                        { name: 'Messenger', icon: 'fa-comments', href: '/pages/messenger' },
                         { name: 'Service Timeline', icon: 'fa-stream', href: '/pages/service-timeline' },
-                        { name: 'CRM System', icon: 'fa-address-book', href: '/pages/crm' },
                         { name: 'Testimonials', icon: 'fa-star', href: '/pages/testimonials' },
 
                         { name: 'Document', icon: 'fa-file-contract', href: '/pages/documents' },
                         { name: 'Comments (Blog)', icon: 'fa-comment', href: '/pages/comments' },
-                        { name: 'FAQs', icon: 'fa-question-circle', href: '/pages/faqs' },
-                        { name: 'Newsletters', icon: 'fa-newspaper', href: '/pages/newsletters' },
                         { name: 'Locations', icon: 'fa-map-marker-alt', href: '/pages/locations' },
-                        { name: 'Contact', icon: 'fa-envelope', href: '/pages/contact' },
 
                         { name: 'Company Info', icon: 'fa-building', href: '/pages/company-info' },
                         { name: 'Tools', icon: 'fa-tools', href: '/pages/tools' },
-                        { name: 'Settings', icon: 'fa-cog', href: '/pages/settings' },
-                        { name: 'Custom Code Manager', icon: 'fa-code', href: '/pages/custom' },
-                        { name: 'Create Blog Post', icon: 'fa-pen', href: '/pages/create-blog-post' },
                         { name: 'New partner onboard', icon: 'fa-handshake', href: '/pages/partners' },
 
                     ].map((item) => (
@@ -250,6 +433,89 @@ export default function Sidebar({ isSidebarCollapsed, toggleSidebar, isMobileMen
                             </Link>
                         </div>
                     ))}
+
+                    {/* Newsletters Dropdown */}
+                    <div>
+                        <button
+                            onClick={() => toggleSubmenu('newsletters')}
+                            className={`menu-header w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}
+                        >
+                            <span className="flex items-center">
+                                <i className="fas fa-newspaper mr-2"></i>
+                                {!isSidebarCollapsed && <span>Newsletters</span>}
+                            </span>
+                            {!isSidebarCollapsed && <i className={`fas fa-chevron-down text-xs transition-transform duration-300 ${openSubmenu === 'newsletters' ? 'rotate-180' : ''}`}></i>}
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'newsletters' && !isSidebarCollapsed ? 'max-h-[300px] mt-1' : 'max-h-0'}`}>
+                            <div className="ml-4 space-y-1">
+                                {[
+                                    { name: 'Subscribers', href: '/pages/newsletters/subscribers' },
+                                    { name: 'Campaigns', href: '/pages/newsletters/campaigns' },
+                                    { name: 'Templates', href: '/pages/newsletters/templates' },
+                                ].map((item) => (
+                                    <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                        <i className="fas fa-circle text-[8px] mr-2"></i>
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Contact Dropdown */}
+                    <div>
+                        <button
+                            onClick={() => toggleSubmenu('contact')}
+                            className={`menu-header w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}
+                        >
+                            <span className="flex items-center">
+                                <i className="fas fa-envelope mr-2"></i>
+                                {!isSidebarCollapsed && <span>Contact</span>}
+                            </span>
+                            {!isSidebarCollapsed && <i className={`fas fa-chevron-down text-xs transition-transform duration-300 ${openSubmenu === 'contact' ? 'rotate-180' : ''}`}></i>}
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'contact' && !isSidebarCollapsed ? 'max-h-[300px] mt-1' : 'max-h-0'}`}>
+                            <div className="ml-4 space-y-1">
+                                {[
+                                    { name: 'Inbox', href: '/pages/contact/inbox' },
+                                    { name: 'Contacts / Leads', href: '/pages/contact/contacts' },
+                                ].map((item) => (
+                                    <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                        <i className="fas fa-circle text-[8px] mr-2"></i>
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Custom Code Dropdown */}
+                    <div>
+                        <button
+                            onClick={() => toggleSubmenu('custom')}
+                            className={`menu-header w-full text-left p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}
+                        >
+                            <span className="flex items-center">
+                                <i className="fas fa-code mr-2"></i>
+                                {!isSidebarCollapsed && <span>Custom Code</span>}
+                            </span>
+                            {!isSidebarCollapsed && <i className={`fas fa-chevron-down text-xs transition-transform duration-300 ${openSubmenu === 'custom' ? 'rotate-180' : ''}`}></i>}
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openSubmenu === 'custom' && !isSidebarCollapsed ? 'max-h-[300px] mt-1' : 'max-h-0'}`}>
+                            <div className="ml-4 space-y-1">
+                                {[
+                                    { name: 'Scripts', href: '/pages/custom/scripts' },
+                                    { name: 'Custom CSS', href: '/pages/custom/styles' },
+                                    { name: 'Snippets', href: '/pages/custom/snippets' },
+                                ].map((item) => (
+                                    <Link key={item.name} href={item.href} className="block p-2 rounded hover:bg-gray-700 dark:hover:bg-gray-700 text-sm">
+                                        <i className="fas fa-circle text-[8px] mr-2"></i>
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>

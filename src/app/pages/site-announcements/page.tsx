@@ -127,15 +127,15 @@ export default function AnnouncementsPage() {
     }
 
     return (
-        <div className="w-full p-6 font-sans bg-white min-h-screen text-gray-900">
+        <div className="w-full p-6 font-sans bg-white dark:bg-gray-950 min-h-screen text-gray-900 dark:text-gray-100 transition-colors duration-300">
             {/* Page Header */}
             <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
+                    <h1 className="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-3">
                         <i className="fas fa-bullhorn text-primary"></i>
                         Announcements Manager
                     </h1>
-                    <p className="text-gray-600 mt-1">Manage and send critical notifications to your user base, tracking status and delivery times.</p>
+                    <p className="text-gray-600 dark:text-gray-400 mt-1">Manage and send critical notifications to your user base, tracking status and delivery times.</p>
                 </div>
                 <button
                     onClick={() => setIsCreateModalOpen(true)}
@@ -148,25 +148,25 @@ export default function AnnouncementsPage() {
             {/* Content Area */}
             <div className="mb-8">
                 <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
-                    <h2 className="text-xl font-semibold text-gray-800">Sent Notifications</h2>
+                    <h2 className="text-xl font-semibold text-gray-800 dark:text-white">Sent Notifications</h2>
 
                     {/* Filters */}
                     <div className="flex flex-wrap gap-4 w-full md:w-auto">
                         <select
                             value={filterValue}
                             onChange={(e) => setFilterValue(e.target.value as any)}
-                            className="py-2 px-3 rounded-lg border border-gray-300 outline-none focus:ring-2 focus:ring-primary"
+                            className="py-2 px-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 outline-none focus:ring-2 focus:ring-primary transition-colors"
                         >
-                            <option value="all">All Targets</option>
-                            <option value="specific">Specific Users</option>
-                            <option value="all-users">All Users</option>
+                            <option value="all" className="dark:bg-gray-800">All Targets</option>
+                            <option value="specific" className="dark:bg-gray-800">Specific Users</option>
+                            <option value="all-users" className="dark:bg-gray-800">All Users</option>
                         </select>
                         <input
                             type="text"
                             placeholder="Search title or user..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="py-2 px-3 rounded-lg border border-gray-300 outline-none flex-grow md:flex-grow-0 focus:ring-2 focus:ring-primary"
+                            className="py-2 px-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 outline-none flex-grow md:flex-grow-0 focus:ring-2 focus:ring-primary transition-colors"
                         />
                     </div>
                 </div>
@@ -175,45 +175,45 @@ export default function AnnouncementsPage() {
                 <div className="overflow-x-auto">
                     <table className="w-full border-collapse">
                         <thead>
-                            <tr className="bg-primary/10 text-primary-dark text-xs uppercase font-semibold text-left">
-                                <th className="p-4 border-b border-gray-200 w-1/2">Title / Content Preview</th>
-                                <th className="p-4 border-b border-gray-200 w-[15%]">Target</th>
-                                <th className="p-4 border-b border-gray-200 w-[20%]">Date Sent</th>
-                                <th className="p-4 border-b border-gray-200 w-[15%]">Actions</th>
+                            <tr className="bg-primary/10 dark:bg-blue-900/20 text-primary-dark dark:text-blue-300 text-xs uppercase font-bold text-left">
+                                <th className="p-4 border-b border-gray-200 dark:border-gray-700 w-1/2">Title / Content Preview</th>
+                                <th className="p-4 border-b border-gray-200 dark:border-gray-700 w-[15%]">Target</th>
+                                <th className="p-4 border-b border-gray-200 dark:border-gray-700 w-[20%]">Date Sent</th>
+                                <th className="p-4 border-b border-gray-200 dark:border-gray-700 w-[15%]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredAnnouncements.length === 0 ? (
                                 <tr>
-                                    <td colSpan={4} className="text-center p-8 text-gray-500">
+                                    <td colSpan={4} className="text-center p-8 text-gray-500 dark:text-gray-400">
                                         <i className="fas fa-frown text-4xl mb-4 block"></i>
                                         <p>No announcements found. Click 'Create New Announcement' to send one.</p>
                                     </td>
                                 </tr>
                             ) : (
                                 filteredAnnouncements.map(a => (
-                                    <tr key={a.id} className="hover:bg-primary/5 transition-colors border-b last:border-0 border-gray-100">
+                                    <tr key={a.id} className="hover:bg-primary/5 dark:hover:bg-blue-900/10 transition-colors border-b last:border-0 border-gray-100 dark:border-gray-800">
                                         <td className="p-4">
-                                            <strong className="text-primary block mb-1">{a.title}</strong>
-                                            <p className="text-gray-500 text-sm truncate">{a.content}</p>
+                                            <strong className="text-primary dark:text-blue-400 block mb-1 font-bold">{a.title}</strong>
+                                            <p className="text-gray-500 dark:text-gray-400 text-sm truncate">{a.content}</p>
                                         </td>
                                         <td className="p-4">
-                                            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${a.target === 'all-users'
-                                                ? 'bg-blue-100 text-blue-600'
-                                                : 'bg-indigo-100 text-indigo-600'
+                                            <span className={`px-3 py-1 rounded-full text-xs font-bold ${a.target === 'all-users'
+                                                ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300'
+                                                : 'bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-300'
                                                 }`}>
                                                 {a.target === 'all-users' ? 'All Users' : `${a.users.length} User(s)`}
                                             </span>
                                         </td>
-                                        <td className="p-4 text-sm text-gray-600">
+                                        <td className="p-4 text-sm text-gray-600 dark:text-gray-400">
                                             {formatTimestamp(a.timestamp)}
                                         </td>
                                         <td className="p-4">
                                             <button
                                                 onClick={() => setSelectedAnnouncement(a)}
-                                                className="bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 px-3 rounded transition-colors text-sm flex items-center gap-2"
+                                                className="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 py-2 px-3 rounded transition-colors text-sm font-bold flex items-center gap-2"
                                             >
-                                                <i className="fas fa-eye"></i> View
+                                                <i className="fas fa-eye text-xs"></i> View
                                             </button>
                                         </td>
                                     </tr>
@@ -226,58 +226,58 @@ export default function AnnouncementsPage() {
 
             {/* Create Modal */}
             {isCreateModalOpen && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in-down">
-                        <div className="p-6 border-b border-gray-200 flex justify-between items-center">
-                            <h3 className="text-xl font-bold flex items-center gap-2">
-                                <i className="fas fa-paper-plane text-primary"></i> Send Notification
+                <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                    <div className="bg-white dark:bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in-down border border-gray-200 dark:border-gray-700">
+                        <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-900/50">
+                            <h3 className="text-xl font-bold flex items-center gap-2 text-gray-900 dark:text-white">
+                                <i className="fas fa-paper-plane text-primary dark:text-blue-400"></i> Send Notification
                             </h3>
-                            <button onClick={closeCreateModal} className="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                            <button onClick={closeCreateModal} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-2xl">&times;</button>
                         </div>
                         <form onSubmit={handleCreateSubmit} className="p-6">
                             <div className="mb-4">
-                                <label className="block text-gray-700 font-semibold mb-2" htmlFor="title">Title / Subject</label>
+                                <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2" htmlFor="title">Title / Subject</label>
                                 <input
                                     type="text" id="title" required
                                     placeholder="e.g., System Maintenance Alert"
                                     value={formTitle} onChange={e => setFormTitle(e.target.value)}
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                                    className="w-full p-3 border border-gray-300 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:ring-2 focus:ring-primary dark:text-white outline-none transition-all"
                                 />
                             </div>
                             <div className="mb-4">
-                                <label className="block text-gray-700 font-semibold mb-2" htmlFor="content">Message Content</label>
+                                <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2" htmlFor="content">Message Content</label>
                                 <textarea
                                     id="content" rows={4} required
                                     placeholder="Enter the full message content here..."
                                     value={formContent} onChange={e => setFormContent(e.target.value)}
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                                    className="w-full p-3 border border-gray-300 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:ring-2 focus:ring-primary dark:text-white outline-none transition-all"
                                 ></textarea>
                             </div>
                             <div className="mb-4">
-                                <label className="block text-gray-700 font-semibold mb-2">Notification Target</label>
+                                <label className="block text-gray-700 dark:text-gray-300 font-bold mb-2">Notification Target</label>
                                 <select
                                     value={formTarget} onChange={e => setFormTarget(e.target.value as any)}
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                                    className="w-full p-3 border border-gray-300 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:ring-2 focus:ring-primary dark:text-white outline-none appearance-none transition-all"
                                 >
-                                    <option value="all-users">All Users</option>
-                                    <option value="specific">Specific User(s) / Group</option>
+                                    <option value="all-users" className="dark:bg-gray-900">All Users</option>
+                                    <option value="specific" className="dark:bg-gray-900">Specific User(s) / Group</option>
                                 </select>
                             </div>
                             {formTarget === 'specific' && (
                                 <div className="mb-4 animate-fade-in-down">
-                                    <label className="block text-gray-700 font-semibold mb-2">Target User(s) (IDs or Emails)</label>
+                                    <label className="block text-gray-700 dark:text-gray-300 font-bold mb-2">Target User(s) (IDs or Emails)</label>
                                     <input
                                         type="text" required
                                         placeholder="e.g., user@a.com, user@b.com (separate by comma)"
                                         value={formUsers} onChange={e => setFormUsers(e.target.value)}
-                                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                                        className="w-full p-3 border border-gray-300 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:ring-2 focus:ring-primary dark:text-white outline-none transition-all"
                                     />
                                 </div>
                             )}
-                            <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-gray-200">
-                                <button type="button" onClick={closeCreateModal} className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-semibold transition-colors">Cancel</button>
-                                <button type="submit" className="px-6 py-3 bg-primary hover:bg-blue-600 text-white rounded-lg font-semibold transition-colors flex items-center gap-2">
-                                    <i className="fas fa-rocket"></i> Send Announcement
+                            <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+                                <button type="button" onClick={closeCreateModal} className="px-6 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-lg font-bold transition-colors">Cancel</button>
+                                <button type="submit" className="px-6 py-3 bg-primary hover:bg-blue-600 text-white rounded-lg font-bold transition-all shadow-md flex items-center gap-2">
+                                    <i className="fas fa-rocket text-sm"></i> Send Announcement
                                 </button>
                             </div>
                         </form>
@@ -287,30 +287,30 @@ export default function AnnouncementsPage() {
 
             {/* Details Modal */}
             {selectedAnnouncement && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-white rounded-xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in-down">
-                        <div className="p-6 border-b border-gray-200 flex justify-between items-center">
-                            <h3 className="text-xl font-bold flex items-center gap-2">
-                                <i className="fas fa-info-circle text-primary"></i> Announcement Details
+                <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                    <div className="bg-white dark:bg-gray-800 rounded-xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in-down border border-gray-200 dark:border-gray-700">
+                        <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-gray-50/50 dark:bg-gray-900/50">
+                            <h3 className="text-xl font-bold flex items-center gap-2 text-gray-900 dark:text-white">
+                                <i className="fas fa-info-circle text-primary dark:text-blue-400"></i> Announcement Details
                             </h3>
-                            <button onClick={() => setSelectedAnnouncement(null)} className="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                            <button onClick={() => setSelectedAnnouncement(null)} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-2xl">&times;</button>
                         </div>
                         <div className="p-6">
                             <div className="mb-4">
-                                <strong className="text-lg block mb-1">{selectedAnnouncement.title}</strong>
-                                <p className="text-sm text-gray-500">
-                                    Sent to: <span className="font-medium text-gray-700">
+                                <strong className="text-lg block mb-1 text-gray-900 dark:text-white font-bold">{selectedAnnouncement.title}</strong>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                    Sent to: <span className="font-bold text-gray-700 dark:text-gray-200">
                                         {selectedAnnouncement.target === 'all-users' ? 'All Users' : selectedAnnouncement.users.join(', ')}
                                     </span>
                                     {' '} on {formatTimestamp(selectedAnnouncement.timestamp)}
                                 </p>
                             </div>
-                            <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-primary">
-                                <p className="whitespace-pre-wrap">{selectedAnnouncement.content}</p>
+                            <div className="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border-l-4 border-primary transition-colors">
+                                <p className="whitespace-pre-wrap text-gray-700 dark:text-gray-300">{selectedAnnouncement.content}</p>
                             </div>
                         </div>
-                        <div className="p-6 border-t border-gray-200 flex justify-end">
-                            <button onClick={() => setSelectedAnnouncement(null)} className="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-semibold transition-colors">Close</button>
+                        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex justify-end bg-gray-50/30 dark:bg-gray-900/30">
+                            <button onClick={() => setSelectedAnnouncement(null)} className="px-6 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-lg font-bold transition-colors">Close</button>
                         </div>
                     </div>
                 </div>

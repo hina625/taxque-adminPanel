@@ -149,18 +149,18 @@ export default function CommissionSettingsPage() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 p-4 lg:p-8">
+        <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 lg:p-8 transition-colors duration-300">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-900">Commission Settings</h1>
-                    <p className="text-slate-500 mt-1">Configure commission rates for partners. Services auto-synced from catalog.</p>
+                    <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Commission Settings</h1>
+                    <p className="text-slate-500 dark:text-gray-400 mt-1">Configure commission rates for partners. Services auto-synced from catalog.</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
-                    <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 shadow-sm transition-colors">
+                    <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-sm font-medium text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 shadow-sm transition-colors">
                         <RefreshCw className="w-4 h-4" /> Sync Services
                     </button>
-                    <button className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 shadow-sm transition-colors">
+                    <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-sm font-medium text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 shadow-sm transition-colors">
                         <RotateCcw className="w-4 h-4" /> Reset
                     </button>
                     <button className="flex items-center gap-2 px-4 py-2 bg-teal-700 text-white rounded-lg text-sm font-medium hover:bg-teal-800 shadow-sm transition-colors">
@@ -178,11 +178,11 @@ export default function CommissionSettingsPage() {
             </div>
 
             {/* Service Commission Table */}
-            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-8">
-                <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
+            <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm overflow-hidden mb-8 transition-colors">
+                <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-gray-700 bg-slate-50 dark:bg-gray-800/50 transition-colors">
                     <div>
-                        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wide">Service-wise Commission Rates</h3>
-                        <p className="text-xs text-slate-500 mt-0.5">Base prices are standard rates; partners earn commission on each sale.</p>
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white uppercase tracking-wide">Service-wise Commission Rates</h3>
+                        <p className="text-xs text-slate-500 dark:text-gray-400 mt-0.5">Base prices are standard rates; partners earn commission on each sale.</p>
                     </div>
                     <button className="flex items-center gap-1.5 px-3 py-1.5 bg-teal-700 text-white text-xs font-medium rounded-md hover:bg-teal-800 transition-colors">
                         <Plus className="w-3 h-3" /> Add Service
@@ -192,7 +192,7 @@ export default function CommissionSettingsPage() {
                 <div className="overflow-x-auto">
                     <table className="w-full text-left">
                         <thead>
-                            <tr className="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-500 font-semibold">
+                            <tr className="bg-slate-50 dark:bg-gray-900/30 border-b border-slate-200 dark:border-gray-700 text-xs uppercase text-slate-500 dark:text-gray-400 font-semibold transition-colors">
                                 <th className="px-6 py-3">Service Name</th>
                                 <th className="px-6 py-3">Category</th>
                                 <th className="px-6 py-3">Base Price (₹)</th>
@@ -202,17 +202,17 @@ export default function CommissionSettingsPage() {
                                 <th className="px-6 py-3 text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-100">
+                        <tbody className="divide-y divide-slate-100 dark:divide-gray-700">
                             {services.map(service => (
-                                <tr key={service.id} className="group hover:bg-slate-50 transition-colors">
+                                <tr key={service.id} className="group hover:bg-slate-50 dark:hover:bg-gray-700/50 transition-colors">
                                     <td className="px-6 py-4">
-                                        <p className="text-sm font-medium text-slate-900">{service.name}</p>
-                                        <p className="text-xs text-slate-500">{service.description}</p>
+                                        <p className="text-sm font-medium text-slate-900 dark:text-white transition-colors">{service.name}</p>
+                                        <p className="text-xs text-slate-500 dark:text-gray-400 transition-colors">{service.description}</p>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${service.category === 'Tax Services' ? 'bg-blue-50 text-blue-700' :
-                                                service.category === 'Corporate' ? 'bg-purple-50 text-purple-700' :
-                                                    'bg-slate-100 text-slate-700'
+                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors ${service.category === 'Tax Services' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' :
+                                            service.category === 'Corporate' ? 'bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400' :
+                                                'bg-slate-100 dark:bg-gray-700 text-slate-700 dark:text-gray-300'
                                             }`}>
                                             {service.category}
                                         </span>
@@ -223,62 +223,62 @@ export default function CommissionSettingsPage() {
                                                 type="number"
                                                 value={editForm.basePrice}
                                                 onChange={(e) => handleInputChange(e, 'basePrice')}
-                                                className="w-24 px-2 py-1 text-sm border border-slate-300 rounded focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                                                className="w-24 px-2 py-1 text-sm border border-slate-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition-colors"
                                             />
                                         ) : (
-                                            <span className="text-sm font-medium text-slate-700">₹ {service.basePrice.toLocaleString()}</span>
+                                            <span className="text-sm font-medium text-slate-700 dark:text-gray-300 transition-colors">₹ {service.basePrice.toLocaleString()}</span>
                                         )}
                                     </td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-6 py-4 text-sm text-slate-600 dark:text-gray-400 transition-colors">
                                         {editingServiceId === service.id ? (
                                             <select
                                                 value={editForm.commissionType}
                                                 onChange={(e) => handleInputChange(e, 'commissionType')}
-                                                className="w-28 px-2 py-1 text-sm border border-slate-300 rounded focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                                                className="w-28 px-2 py-1 text-sm border border-slate-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition-colors"
                                             >
                                                 <option value="Percentage">Percentage</option>
                                                 <option value="Flat">Flat Amount</option>
                                             </select>
                                         ) : (
-                                            <span className="text-sm text-slate-600">{service.commissionType}</span>
+                                            <span>{service.commissionType}</span>
                                         )}
                                     </td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-6 py-4 text-sm font-medium text-slate-700 dark:text-gray-300 transition-colors">
                                         {editingServiceId === service.id ? (
                                             <div className="flex items-center gap-1">
                                                 <input
                                                     type="number"
                                                     value={editForm.commissionValue}
                                                     onChange={(e) => handleInputChange(e, 'commissionValue')}
-                                                    className="w-20 px-2 py-1 text-sm border border-slate-300 rounded focus:ring-2 focus:ring-teal-500 focus:outline-none"
+                                                    className="w-20 px-2 py-1 text-sm border border-slate-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-teal-500 focus:outline-none transition-colors"
                                                 />
-                                                <span className="text-xs text-slate-500">{editForm.commissionType === 'Percentage' ? '%' : '₹'}</span>
+                                                <span className="text-xs text-slate-500 dark:text-gray-400">{editForm.commissionType === 'Percentage' ? '%' : '₹'}</span>
                                             </div>
                                         ) : (
-                                            <span className="text-sm font-medium text-slate-700">
+                                            <span>
                                                 {service.commissionValue}{service.commissionType === 'Percentage' ? '%' : ' ₹'}
                                             </span>
                                         )}
                                     </td>
                                     <td className="px-6 py-4">
-                                        <span className="text-sm font-bold text-emerald-600">₹ {service.partnerEarns.toLocaleString()}</span>
+                                        <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 transition-colors">₹ {service.partnerEarns.toLocaleString()}</span>
                                     </td>
                                     <td className="px-6 py-4 text-right">
                                         {editingServiceId === service.id ? (
                                             <div className="flex items-center justify-end gap-2">
-                                                <button onClick={saveService} className="p-1 text-emerald-600 hover:bg-emerald-50 rounded" title="Save">
+                                                <button onClick={saveService} className="p-1 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/40 rounded transition-colors" title="Save">
                                                     <Check className="w-4 h-4" />
                                                 </button>
-                                                <button onClick={cancelEditing} className="p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 rounded" title="Cancel">
+                                                <button onClick={cancelEditing} className="p-1 text-slate-400 dark:text-gray-500 hover:bg-slate-100 dark:hover:bg-gray-700 hover:text-slate-600 dark:hover:text-gray-300 rounded transition-colors" title="Cancel">
                                                     <X className="w-4 h-4" />
                                                 </button>
                                             </div>
                                         ) : (
                                             <div className="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                <button onClick={() => startEditing(service)} className="text-xs font-medium text-teal-700 hover:underline flex items-center gap-1">
+                                                <button onClick={() => startEditing(service)} className="text-xs font-medium text-teal-700 dark:text-teal-400 hover:underline flex items-center gap-1 transition-colors">
                                                     <Edit2 className="w-3 h-3" /> Update
                                                 </button>
-                                                <button className="text-xs font-medium text-red-600 hover:underline flex items-center gap-1">
+                                                <button className="text-xs font-medium text-red-600 dark:text-red-400 hover:underline flex items-center gap-1 transition-colors">
                                                     <Trash2 className="w-3 h-3" /> Delete
                                                 </button>
                                             </div>
@@ -292,18 +292,18 @@ export default function CommissionSettingsPage() {
             </div>
 
             {/* Tier Commission Table */}
-            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
+            <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm overflow-hidden transition-colors">
+                <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-gray-700 bg-slate-50 dark:bg-gray-800/50 transition-colors">
                     <div>
-                        <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wide">Tier-wise Commission Multipliers</h3>
-                        <p className="text-xs text-slate-500 mt-0.5">Additional commission multipliers based on partner tier.</p>
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white uppercase tracking-wide">Tier-wise Commission Multipliers</h3>
+                        <p className="text-xs text-slate-500 dark:text-gray-400 mt-0.5">Additional commission multipliers based on partner tier.</p>
                     </div>
                 </div>
 
                 <div className="overflow-x-auto">
                     <table className="w-full text-left">
                         <thead>
-                            <tr className="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-500 font-semibold">
+                            <tr className="bg-slate-50 dark:bg-gray-900/30 border-b border-slate-200 dark:border-gray-700 text-xs uppercase text-slate-500 dark:text-gray-400 font-semibold transition-colors">
                                 <th className="px-6 py-3">Partner Tier</th>
                                 <th className="px-6 py-3">Description</th>
                                 <th className="px-6 py-3">Bonus Multiplier</th>
@@ -312,32 +312,32 @@ export default function CommissionSettingsPage() {
                                 <th className="px-6 py-3 text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-100">
+                        <tbody className="divide-y divide-slate-100 dark:divide-gray-700">
                             {tiers.map((tier, idx) => (
-                                <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                                <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-gray-700/50 transition-colors">
                                     <td className="px-6 py-4">
-                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${tier.tier === 'Platinum' ? 'bg-amber-100 text-amber-700' :
-                                                tier.tier === 'Gold' ? 'bg-sky-100 text-sky-700' :
-                                                    'bg-slate-200 text-slate-700'
+                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors ${tier.tier === 'Platinum' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400' :
+                                            tier.tier === 'Gold' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-400' :
+                                                'bg-slate-200 dark:bg-gray-700 text-slate-700 dark:text-gray-300'
                                             }`}>
                                             {tier.tier}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 text-sm text-slate-600">
+                                    <td className="px-6 py-4 text-sm text-slate-600 dark:text-gray-400 transition-colors">
                                         {tier.description}
                                     </td>
-                                    <td className="px-6 py-4 text-sm font-medium text-slate-900">
+                                    <td className="px-6 py-4 text-sm font-medium text-slate-900 dark:text-white transition-colors">
                                         {tier.multiplier}x
                                     </td>
                                     <td className="px-6 py-4">
-                                        <p className="text-xs text-slate-500">Base: ₹{tier.exampleBase.toLocaleString()}</p>
-                                        <p className="text-xs font-bold text-emerald-600">Total: ₹{(tier.exampleBase * tier.multiplier).toLocaleString()}</p>
+                                        <p className="text-xs text-slate-500 dark:text-gray-500 transition-colors">Base: ₹{tier.exampleBase.toLocaleString()}</p>
+                                        <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 transition-colors">Total: ₹{(tier.exampleBase * tier.multiplier).toLocaleString()}</p>
                                     </td>
-                                    <td className="px-6 py-4 text-sm text-slate-600">
+                                    <td className="px-6 py-4 text-sm text-slate-600 dark:text-gray-400 transition-colors">
                                         {tier.benefits}
                                     </td>
                                     <td className="px-6 py-4 text-right">
-                                        <button className="text-xs font-medium text-teal-700 hover:underline flex items-center justify-end gap-1 w-full">
+                                        <button className="text-xs font-medium text-teal-700 dark:text-teal-400 hover:underline flex items-center justify-end gap-1 w-full transition-colors">
                                             <Edit2 className="w-3 h-3" /> Update
                                         </button>
                                     </td>
@@ -354,15 +354,15 @@ export default function CommissionSettingsPage() {
 
 function StatCard({ title, value, subtitle, icon }: { title: string, value: string | number, subtitle: string, icon: React.ReactNode }) {
     return (
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 flex flex-col justify-between hover:shadow-md transition-all group">
             <div>
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between">
+                <p className="text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider mb-2 flex items-center justify-between transition-colors">
                     {title}
-                    {icon}
+                    <span className="opacity-70 group-hover:opacity-100 transition-opacity">{icon}</span>
                 </p>
-                <p className="text-2xl font-bold text-slate-800">{value}</p>
+                <p className="text-2xl font-bold text-slate-800 dark:text-white transition-colors">{value}</p>
             </div>
-            <p className="text-xs text-slate-500 mt-2">{subtitle}</p>
+            <p className="text-xs text-slate-500 dark:text-gray-500 mt-2 transition-colors">{subtitle}</p>
         </div>
     );
 }

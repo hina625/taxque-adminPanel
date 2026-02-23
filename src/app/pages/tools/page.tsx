@@ -204,14 +204,14 @@ export default function ToolsPage() {
     };
 
     return (
-        <div className={`min-h-screen bg-[#f1f5f9] p-8 font-sans text-slate-900 relative ${isDrawerOpen ? 'overflow-hidden h-screen' : ''}`}>
-            <div className="max-w-[1400px] mx-auto bg-white rounded-2xl min-h-[85vh] border border-slate-200 flex flex-col overflow-hidden relative shadow-sm">
+        <div className={`min-h-screen bg-[#f1f5f9] dark:bg-gray-950 p-8 font-sans text-slate-900 dark:text-gray-100 relative transition-colors duration-300 ${isDrawerOpen ? 'overflow-hidden h-screen' : ''}`}>
+            <div className="max-w-[1400px] mx-auto bg-white dark:bg-gray-800 rounded-2xl min-h-[85vh] border border-slate-200 dark:border-gray-700 flex flex-col overflow-hidden relative shadow-sm transition-colors">
 
                 {/* Header */}
-                <header className="px-8 py-6 border-b border-slate-200 flex justify-between items-center bg-white">
+                <header className="px-8 py-6 border-b border-slate-200 dark:border-gray-700 flex justify-between items-center bg-white dark:bg-gray-800 transition-colors">
                     <div>
-                        <h2 className="text-2xl font-bold text-slate-900 mb-1">Tools Management</h2>
-                        <p className="text-sm text-slate-500 font-medium">Configure client calculators, generators, and SEO content.</p>
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Tools Management</h2>
+                        <p className="text-sm text-slate-500 dark:text-gray-400 font-medium">Configure client calculators, generators, and SEO content.</p>
                     </div>
                     <button onClick={() => openEditor()} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-colors shadow-sm active:scale-95">
                         <Plus weight="bold" size={18} /> Add New Tool
@@ -219,44 +219,44 @@ export default function ToolsPage() {
                 </header>
 
                 {/* Content */}
-                <div className="flex-1 p-8 bg-slate-50 overflow-y-auto">
+                <div className="flex-1 p-8 bg-slate-50 dark:bg-gray-900 overflow-y-auto transition-colors">
 
                     {/* Stats */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-                        <div className="bg-white border border-slate-200 rounded-xl p-5 flex items-center gap-4 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="w-12 h-12 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center text-2xl">
+                        <div className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl p-5 flex items-center gap-4 shadow-sm hover:shadow-md transition-all">
+                            <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-400 rounded-xl flex items-center justify-center text-2xl">
                                 <Calculator weight="bold" />
                             </div>
                             <div>
-                                <h4 className="text-2xl font-bold text-slate-900 leading-none mb-1">{tools.length}</h4>
-                                <span className="text-sm font-medium text-slate-500">Total Tools</span>
+                                <h4 className="text-2xl font-bold text-slate-900 dark:text-white leading-none mb-1">{tools.length}</h4>
+                                <span className="text-sm font-medium text-slate-500 dark:text-gray-400">Total Tools</span>
                             </div>
                         </div>
-                        <div className="bg-white border border-slate-200 rounded-xl p-5 flex items-center gap-4 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center text-2xl">
+                        <div className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl p-5 flex items-center gap-4 shadow-sm hover:shadow-md transition-all">
+                            <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 rounded-xl flex items-center justify-center text-2xl">
                                 <CheckCircle weight="bold" />
                             </div>
                             <div>
-                                <h4 className="text-2xl font-bold text-slate-900 leading-none mb-1">{tools.filter(t => t.isActive).length}</h4>
-                                <span className="text-sm font-medium text-slate-500">Active</span>
+                                <h4 className="text-2xl font-bold text-slate-900 dark:text-white leading-none mb-1">{tools.filter(t => t.isActive).length}</h4>
+                                <span className="text-sm font-medium text-slate-500 dark:text-gray-400">Active</span>
                             </div>
                         </div>
-                        <div className="bg-white border border-slate-200 rounded-xl p-5 flex items-center gap-4 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="w-12 h-12 bg-orange-100 text-orange-700 rounded-xl flex items-center justify-center text-2xl">
+                        <div className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl p-5 flex items-center gap-4 shadow-sm hover:shadow-md transition-all">
+                            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-400 rounded-xl flex items-center justify-center text-2xl">
                                 <Users weight="bold" />
                             </div>
                             <div>
-                                <h4 className="text-2xl font-bold text-slate-900 leading-none mb-1">2.4k</h4>
-                                <span className="text-sm font-medium text-slate-500">Monthly Users</span>
+                                <h4 className="text-2xl font-bold text-slate-900 dark:text-white leading-none mb-1">2.4k</h4>
+                                <span className="text-sm font-medium text-slate-500 dark:text-gray-400">Monthly Users</span>
                             </div>
                         </div>
-                        <div className="bg-white border border-slate-200 rounded-xl p-5 flex items-center gap-4 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="w-12 h-12 bg-purple-100 text-purple-700 rounded-xl flex items-center justify-center text-2xl">
+                        <div className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl p-5 flex items-center gap-4 shadow-sm hover:shadow-md transition-all">
+                            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-400 rounded-xl flex items-center justify-center text-2xl">
                                 <ChartLineUp weight="bold" />
                             </div>
                             <div>
-                                <h4 className="text-2xl font-bold text-slate-900 leading-none mb-1">GST</h4>
-                                <span className="text-sm font-medium text-slate-500">Top Tool</span>
+                                <h4 className="text-2xl font-bold text-slate-900 dark:text-white leading-none mb-1">GST</h4>
+                                <span className="text-sm font-medium text-slate-500 dark:text-gray-400">Top Tool</span>
                             </div>
                         </div>
                     </div>
@@ -264,7 +264,7 @@ export default function ToolsPage() {
                     {/* Tools Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {tools.map(tool => (
-                            <div key={tool.id} className="bg-white border border-slate-200 rounded-xl p-6 hover:-translate-y-1 hover:shadow-lg hover:border-slate-300 transition-all flex flex-col h-full group">
+                            <div key={tool.id} className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl p-6 hover:-translate-y-1 hover:shadow-lg hover:border-slate-300 dark:hover:border-indigo-600 transition-all flex flex-col h-full group">
                                 <div className="flex justify-between items-start mb-4">
                                     <div className={`w-14 h-14 ${tool.iconBg} ${tool.iconColor} rounded-xl flex items-center justify-center text-3xl`}>
                                         <tool.icon weight="bold" />
@@ -275,26 +275,26 @@ export default function ToolsPage() {
                                     </label>
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">{tool.name}</h3>
-                                    <p className="text-sm text-slate-500 mb-5 leading-relaxed line-clamp-2">{tool.description}</p>
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">{tool.name}</h3>
+                                    <p className="text-sm text-slate-500 dark:text-gray-400 mb-5 leading-relaxed line-clamp-2">{tool.description}</p>
 
                                     <div className="flex items-center gap-3 mb-5 flex-wrap">
-                                        <span className="bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1">
+                                        <span className="bg-slate-100 dark:bg-gray-700 text-slate-600 dark:text-gray-300 px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1">
                                             <Tag weight="fill" /> {tool.category}
                                         </span>
-                                        <span className="bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1">
+                                        <span className="bg-slate-100 dark:bg-gray-700 text-slate-600 dark:text-gray-300 px-2.5 py-1 rounded-md text-xs font-bold flex items-center gap-1">
                                             <Eye weight="fill" /> {tool.views} Views
                                         </span>
                                     </div>
                                 </div>
 
-                                <div className="pt-4 border-t border-slate-100 flex justify-between items-center mt-auto">
-                                    <span className="text-xs text-slate-400 font-medium font-mono truncate max-w-[120px]">/tools/{tool.slug}</span>
+                                <div className="pt-4 border-t border-slate-100 dark:border-gray-700 flex justify-between items-center mt-auto">
+                                    <span className="text-xs text-slate-400 dark:text-gray-500 font-medium font-mono truncate max-w-[120px]">/tools/{tool.slug}</span>
                                     <div className="flex gap-2">
-                                        <button onClick={() => openEditor(tool)} className="w-9 h-9 flex items-center justify-center rounded-lg bg-white border border-slate-200 text-slate-500 hover:text-indigo-600 hover:border-indigo-600 transition-colors">
+                                        <button onClick={() => openEditor(tool)} className="w-9 h-9 flex items-center justify-center rounded-lg bg-white dark:bg-gray-700 border border-slate-200 dark:border-gray-600 text-slate-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-600 transition-colors">
                                             <PencilSimple weight="bold" />
                                         </button>
-                                        <button className="w-9 h-9 flex items-center justify-center rounded-lg bg-white border border-slate-200 text-slate-500 hover:text-indigo-600 hover:border-indigo-600 transition-colors">
+                                        <button className="w-9 h-9 flex items-center justify-center rounded-lg bg-white dark:bg-gray-700 border border-slate-200 dark:border-gray-600 text-slate-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-600 transition-colors">
                                             <ChartBar weight="bold" />
                                         </button>
                                     </div>
@@ -314,19 +314,19 @@ export default function ToolsPage() {
                         onClick={closeEditor}
                     ></div>
 
-                    <div className="w-full max-w-4xl bg-[#f8fafc] h-full shadow-2xl flex flex-col relative z-10 translate-x-0">
-                        <div className="bg-white px-8 py-5 border-b border-slate-200 flex justify-between items-center shadow-sm">
+                    <div className="w-full max-w-4xl bg-[#f8fafc] dark:bg-gray-900 h-full shadow-2xl flex flex-col relative z-10 translate-x-0 transition-colors">
+                        <div className="bg-white dark:bg-gray-800 px-8 py-5 border-b border-slate-200 dark:border-gray-700 flex justify-between items-center shadow-sm transition-colors">
                             <div className="flex items-center gap-4">
-                                <button onClick={closeEditor} className="text-slate-500 hover:text-slate-900 transition-colors">
+                                <button onClick={closeEditor} className="text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                                     <ArrowLeft weight="bold" size={24} />
                                 </button>
                                 <div>
-                                    <h2 className="text-xl font-bold text-slate-900 leading-none">{isEditing ? 'Edit Tool' : 'New Tool'}</h2>
-                                    <span className="text-xs text-slate-500 font-medium">Configure tool settings and content</span>
+                                    <h2 className="text-xl font-bold text-slate-900 dark:text-white leading-none">{isEditing ? 'Edit Tool' : 'New Tool'}</h2>
+                                    <span className="text-xs text-slate-500 dark:text-gray-400 font-medium">Configure tool settings and content</span>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
-                                <button className="px-4 py-2 text-slate-600 font-bold hover:bg-slate-100 rounded-lg transition-colors border border-transparent hover:border-slate-200">Preview</button>
+                                <button className="px-4 py-2 text-slate-600 dark:text-gray-300 font-bold hover:bg-slate-100 dark:hover:bg-gray-700 rounded-lg transition-colors border border-transparent hover:border-slate-200 dark:hover:border-gray-600">Preview</button>
                                 <button onClick={handleSave} className="bg-indigo-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-indigo-700 shadow-md shadow-indigo-200 transition-colors active:scale-95">Save & Publish</button>
                             </div>
                         </div>
@@ -334,38 +334,38 @@ export default function ToolsPage() {
                         <div className="flex-1 overflow-y-auto p-8 space-y-6">
 
                             {/* 1. Basic Info */}
-                            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-                                <div className="flex justify-between items-center pb-3 mb-5 border-b border-slate-100">
-                                    <h3 className="text-base font-bold text-slate-800">Basic Information</h3>
+                            <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 p-6 shadow-sm transition-colors">
+                                <div className="flex justify-between items-center pb-3 mb-5 border-b border-slate-100 dark:border-gray-700">
+                                    <h3 className="text-base font-bold text-slate-800 dark:text-white">Basic Information</h3>
                                     <button onClick={() => handleAutoGenerate('seo')} className="text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-purple-500 px-3 py-1.5 rounded-lg flex items-center gap-1.5 hover:opacity-90 shadow-sm shadow-purple-200">
                                         <Sparkle weight="bold" /> Auto-Generate SEO
                                     </button>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                                     <div>
-                                        <label className="block text-sm font-bold text-slate-700 mb-2">Tool Name</label>
+                                        <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2">Tool Name</label>
                                         <input
                                             type="text"
-                                            className="w-full px-3 py-2.5 border border-slate-200 rounded-lg text-sm font-medium focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                                            className="w-full px-3 py-2.5 border border-slate-200 dark:border-gray-600 rounded-lg text-sm font-medium bg-white dark:bg-gray-700 text-slate-800 dark:text-gray-200 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                                             value={currentTool.name}
                                             onChange={(e) => setCurrentTool({ ...currentTool, name: e.target.value })}
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-bold text-slate-700 mb-2">URL Slug</label>
+                                        <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2">URL Slug</label>
                                         <input
                                             type="text"
-                                            className="w-full px-3 py-2.5 border border-slate-200 rounded-lg text-sm font-medium focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                                            className="w-full px-3 py-2.5 border border-slate-200 dark:border-gray-600 rounded-lg text-sm font-medium bg-white dark:bg-gray-700 text-slate-800 dark:text-gray-200 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
                                             value={currentTool.slug}
                                             onChange={(e) => setCurrentTool({ ...currentTool, slug: e.target.value })}
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Meta Description</label>
+                                    <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2">Meta Description</label>
                                     <textarea
                                         rows={2}
-                                        className="w-full px-3 py-2.5 border border-slate-200 rounded-lg text-sm font-medium focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none"
+                                        className="w-full px-3 py-2.5 border border-slate-200 dark:border-gray-600 rounded-lg text-sm font-medium bg-white dark:bg-gray-700 text-slate-800 dark:text-gray-200 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none"
                                         placeholder="SEO description for search engines..."
                                         value={currentTool.metaDescription}
                                         onChange={(e) => setCurrentTool({ ...currentTool, metaDescription: e.target.value })}
@@ -374,23 +374,23 @@ export default function ToolsPage() {
                             </div>
 
                             {/* 2. Instructions */}
-                            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-                                <div className="flex justify-between items-center pb-3 mb-5 border-b border-slate-100">
-                                    <h3 className="text-base font-bold text-slate-800">How to Use (Instructions)</h3>
+                            <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 p-6 shadow-sm transition-colors">
+                                <div className="flex justify-between items-center pb-3 mb-5 border-b border-slate-100 dark:border-gray-700">
+                                    <h3 className="text-base font-bold text-slate-800 dark:text-white">How to Use (Instructions)</h3>
                                     <button onClick={() => handleAutoGenerate('steps')} className="text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-purple-500 px-3 py-1.5 rounded-lg flex items-center gap-1.5 hover:opacity-90 shadow-sm shadow-purple-200">
                                         <MagicWand weight="bold" /> Generate Steps
                                     </button>
                                 </div>
-                                <div className="border border-slate-200 rounded-lg overflow-hidden">
-                                    <div className="bg-slate-50 border-b border-slate-200 p-2 flex gap-2">
-                                        <button onClick={() => handleRichTextAction('Bold')} className="p-1.5 hover:bg-white rounded text-slate-600 font-bold border border-transparent hover:border-slate-200 text-xs"><TextB size={16} /></button>
-                                        <button onClick={() => handleRichTextAction('Italic')} className="p-1.5 hover:bg-white rounded text-slate-600 font-bold border border-transparent hover:border-slate-200 text-xs"><TextItalic size={16} /></button>
-                                        <button onClick={() => handleRichTextAction('List')} className="p-1.5 hover:bg-white rounded text-slate-600 font-bold border border-transparent hover:border-slate-200 text-xs"><ListBullets size={16} /></button>
-                                        <button onClick={() => handleRichTextAction('Link')} className="p-1.5 hover:bg-white rounded text-slate-600 font-bold border border-transparent hover:border-slate-200 text-xs"><LinkIcon size={16} /></button>
+                                <div className="border border-slate-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                                    <div className="bg-slate-50 dark:bg-gray-700 border-b border-slate-200 dark:border-gray-600 p-2 flex gap-2">
+                                        <button onClick={() => handleRichTextAction('Bold')} className="p-1.5 hover:bg-white dark:hover:bg-gray-600 rounded text-slate-600 dark:text-gray-300 font-bold border border-transparent hover:border-slate-200 dark:hover:border-gray-500 text-xs"><TextB size={16} /></button>
+                                        <button onClick={() => handleRichTextAction('Italic')} className="p-1.5 hover:bg-white dark:hover:bg-gray-600 rounded text-slate-600 dark:text-gray-300 font-bold border border-transparent hover:border-slate-200 dark:hover:border-gray-500 text-xs"><TextItalic size={16} /></button>
+                                        <button onClick={() => handleRichTextAction('List')} className="p-1.5 hover:bg-white dark:hover:bg-gray-600 rounded text-slate-600 dark:text-gray-300 font-bold border border-transparent hover:border-slate-200 dark:hover:border-gray-500 text-xs"><ListBullets size={16} /></button>
+                                        <button onClick={() => handleRichTextAction('Link')} className="p-1.5 hover:bg-white dark:hover:bg-gray-600 rounded text-slate-600 dark:text-gray-300 font-bold border border-transparent hover:border-slate-200 dark:hover:border-gray-500 text-xs"><LinkIcon size={16} /></button>
                                     </div>
                                     <textarea
                                         rows={6}
-                                        className="w-full px-4 py-3 text-sm font-medium focus:outline-none resize-none block"
+                                        className="w-full px-4 py-3 text-sm font-medium bg-white dark:bg-gray-800 text-slate-700 dark:text-gray-200 focus:outline-none resize-none block"
                                         placeholder="1. Enter your Gross Annual Income..."
                                         value={currentTool.instructions}
                                         onChange={(e) => setCurrentTool({ ...currentTool, instructions: e.target.value })}
@@ -399,21 +399,21 @@ export default function ToolsPage() {
                             </div>
 
                             {/* 3. Benefits */}
-                            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-                                <div className="flex justify-between items-center pb-3 mb-5 border-b border-slate-100">
-                                    <h3 className="text-base font-bold text-slate-800">Benefits & Features</h3>
+                            <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 p-6 shadow-sm transition-colors">
+                                <div className="flex justify-between items-center pb-3 mb-5 border-b border-slate-100 dark:border-gray-700">
+                                    <h3 className="text-base font-bold text-slate-800 dark:text-white">Benefits & Features</h3>
                                     <button onClick={() => handleAutoGenerate('content')} className="text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-purple-500 px-3 py-1.5 rounded-lg flex items-center gap-1.5 hover:opacity-90 shadow-sm shadow-purple-200">
                                         <PencilCircle weight="bold" /> Write Content
                                     </button>
                                 </div>
-                                <div className="border border-slate-200 rounded-lg overflow-hidden">
-                                    <div className="bg-slate-50 border-b border-slate-200 p-2 flex gap-2">
-                                        <button onClick={() => handleRichTextAction('Bold')} className="p-1.5 hover:bg-white rounded text-slate-600 font-bold border border-transparent hover:border-slate-200 text-xs"><TextB size={16} /></button>
-                                        <button onClick={() => handleRichTextAction('Italic')} className="p-1.5 hover:bg-white rounded text-slate-600 font-bold border border-transparent hover:border-slate-200 text-xs"><TextItalic size={16} /></button>
+                                <div className="border border-slate-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                                    <div className="bg-slate-50 dark:bg-gray-700 border-b border-slate-200 dark:border-gray-600 p-2 flex gap-2">
+                                        <button onClick={() => handleRichTextAction('Bold')} className="p-1.5 hover:bg-white dark:hover:bg-gray-600 rounded text-slate-600 dark:text-gray-300 font-bold border border-transparent hover:border-slate-200 dark:hover:border-gray-500 text-xs"><TextB size={16} /></button>
+                                        <button onClick={() => handleRichTextAction('Italic')} className="p-1.5 hover:bg-white dark:hover:bg-gray-600 rounded text-slate-600 dark:text-gray-300 font-bold border border-transparent hover:border-slate-200 dark:hover:border-gray-500 text-xs"><TextItalic size={16} /></button>
                                     </div>
                                     <textarea
                                         rows={8}
-                                        className="w-full px-4 py-3 text-sm font-medium focus:outline-none resize-none block"
+                                        className="w-full px-4 py-3 text-sm font-medium bg-white dark:bg-gray-800 text-slate-700 dark:text-gray-200 focus:outline-none resize-none block"
                                         placeholder="Why use this tool?..."
                                         value={currentTool.benefits}
                                         onChange={(e) => setCurrentTool({ ...currentTool, benefits: e.target.value })}
@@ -422,25 +422,25 @@ export default function ToolsPage() {
                             </div>
 
                             {/* 4. Dev Config */}
-                            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-                                <div className="flex justify-between items-center pb-3 mb-5 border-b border-slate-100">
-                                    <h3 className="text-base font-bold text-slate-800">Developer Configuration</h3>
+                            <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 p-6 shadow-sm transition-colors">
+                                <div className="flex justify-between items-center pb-3 mb-5 border-b border-slate-100 dark:border-gray-700">
+                                    <h3 className="text-base font-bold text-slate-800 dark:text-white">Developer Configuration</h3>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div>
-                                        <label className="block text-sm font-bold text-slate-700 mb-2">Component Path</label>
+                                        <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2">Component Path</label>
                                         <input
                                             type="text"
-                                            className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm font-medium font-mono text-slate-600 focus:outline-none focus:border-indigo-500 transition-all"
+                                            className="w-full px-3 py-2.5 bg-slate-50 dark:bg-gray-700 border border-slate-200 dark:border-gray-600 rounded-lg text-sm font-medium font-mono text-slate-600 dark:text-gray-300 focus:outline-none focus:border-indigo-500 transition-all"
                                             value={currentTool.componentPath}
                                             onChange={(e) => setCurrentTool({ ...currentTool, componentPath: e.target.value })}
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-bold text-slate-700 mb-2">API Endpoint</label>
+                                        <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2">API Endpoint</label>
                                         <input
                                             type="text"
-                                            className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm font-medium font-mono text-slate-600 focus:outline-none focus:border-indigo-500 transition-all"
+                                            className="w-full px-3 py-2.5 bg-slate-50 dark:bg-gray-700 border border-slate-200 dark:border-gray-600 rounded-lg text-sm font-medium font-mono text-slate-600 dark:text-gray-300 focus:outline-none focus:border-indigo-500 transition-all"
                                             value={currentTool.apiEndpoint}
                                             onChange={(e) => setCurrentTool({ ...currentTool, apiEndpoint: e.target.value })}
                                         />

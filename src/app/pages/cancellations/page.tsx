@@ -70,35 +70,35 @@ const CancellationsPage = () => {
         : CANCELLATIONS.filter(c => c.status === activeTab);
 
     return (
-        <div className="min-h-screen bg-slate-50/50 pb-12">
+        <div className="min-h-screen bg-slate-50/50 dark:bg-gray-950 pb-12 transition-colors duration-300">
             {/* Header */}
-            <div className="bg-white border text-card-foreground shadow-sm rounded-xl p-6 mb-8">
+            <div className="bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 text-card-foreground shadow-sm rounded-xl p-6 mb-8 transition-colors">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
                     <div>
-                        <h1 className="text-2xl font-black text-slate-800 flex items-center gap-3">
+                        <h1 className="text-2xl font-black text-slate-800 dark:text-white flex items-center gap-3 transition-colors">
                             <XCircle className="text-rose-500" size={28} />
                             Order Cancellations & Refunds
                         </h1>
-                        <p className="text-slate-500 font-medium">Manage cancelled orders and process refunds • Updated: Dec 17, 2025</p>
+                        <p className="text-slate-500 dark:text-gray-400 font-medium transition-colors">Manage cancelled orders and process refunds • Updated: Dec 17, 2025</p>
                     </div>
                     <div className="flex gap-2">
-                        <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-slate-700 font-bold rounded-lg hover:border-indigo-500 hover:text-indigo-600 transition">
+                        <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-slate-700 dark:text-gray-200 font-bold rounded-lg hover:border-indigo-500 dark:hover:border-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all">
                             <Download size={18} /> Export Report
                         </button>
-                        <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
+                        <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 dark:shadow-none">
                             <CreditCard size={18} /> Process Refunds
                         </button>
                     </div>
                 </div>
 
                 {/* Alert Box */}
-                <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-4 mb-6">
-                    <div className="p-2 bg-amber-100/50 rounded-lg text-amber-700 shrink-0">
+                <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/30 rounded-xl p-4 flex items-start gap-4 mb-6 transition-colors">
+                    <div className="p-2 bg-amber-100/50 dark:bg-amber-900/40 rounded-lg text-amber-700 dark:text-amber-400 shrink-0 transition-colors">
                         <AlertTriangle size={24} />
                     </div>
                     <div>
-                        <h3 className="font-bold text-amber-800 text-base">Pending Refund Actions</h3>
-                        <p className="text-amber-700 text-sm mt-1">
+                        <h3 className="font-bold text-amber-800 dark:text-amber-200 text-base transition-colors">Pending Refund Actions</h3>
+                        <p className="text-amber-700 dark:text-amber-300 text-sm mt-1 transition-colors">
                             <strong>12 refunds</strong> are pending approval. <strong>₹67,450</strong> total refund amount. Process refunds within 48 hours as per policy.
                         </p>
                     </div>
@@ -112,19 +112,19 @@ const CancellationsPage = () => {
                         { label: "Processing", value: "8", sub: "In progress", icon: RefreshCcw, color: "amber", footer: "3-5 business days", footerIcon: Clock },
                         { label: "Completed", value: "14", sub: "This month", icon: CheckCircle, color: "emerald", footer: "₹89,250 refunded", footerIcon: CreditCard },
                     ].map((stat, i) => (
-                        <div key={i} className={`bg-white border border-gray-100 rounded-xl p-5 shadow-sm relative overflow-hidden group hover:-translate-y-1 transition duration-200`}>
-                            <div className={`absolute top-0 left-0 right-0 h-1 bg-${stat.color}-500`}></div>
+                        <div key={i} className={`bg-white dark:bg-gray-800/40 border border-slate-100 dark:border-gray-700 rounded-xl p-5 shadow-sm relative overflow-hidden group hover:-translate-y-1 transition duration-200`}>
+                            <div className={`absolute top-0 left-0 right-0 h-1 bg-${stat.color}-500 shadow-[0_0_10px_rgba(244,63,94,0.3)]`}></div>
                             <div className="flex justify-between items-start mb-3">
                                 <div>
-                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">{stat.label}</div>
-                                    <div className="text-3xl font-black text-slate-800 mb-1">{stat.value}</div>
-                                    <div className="text-xs font-bold text-slate-400">{stat.sub}</div>
+                                    <div className="text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider mb-1 transition-colors">{stat.label}</div>
+                                    <div className="text-3xl font-black text-slate-800 dark:text-white mb-1 transition-colors">{stat.value}</div>
+                                    <div className="text-xs font-bold text-slate-400 dark:text-gray-500 transition-colors">{stat.sub}</div>
                                 </div>
-                                <div className={`w-12 h-12 rounded-xl bg-${stat.color}-50 text-${stat.color}-600 flex items-center justify-center`}>
+                                <div className={`w-12 h-12 rounded-xl bg-${stat.color}-50 dark:bg-${stat.color}-900/20 text-${stat.color}-600 dark:text-${stat.color}-400 flex items-center justify-center transition-colors`}>
                                     <stat.icon size={24} strokeWidth={2.5} />
                                 </div>
                             </div>
-                            <div className="pt-3 border-t border-gray-50 flex items-center gap-2 text-xs font-bold text-slate-500">
+                            <div className="pt-3 border-t border-slate-50 dark:border-gray-700 flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-gray-400 transition-colors">
                                 <stat.footerIcon size={14} /> {stat.footer}
                             </div>
                         </div>
@@ -133,7 +133,7 @@ const CancellationsPage = () => {
             </div>
 
             {/* Tabs */}
-            <div className="bg-white border text-card-foreground shadow-sm rounded-xl p-1 mb-6 flex overflow-x-auto">
+            <div className="bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 text-card-foreground shadow-sm rounded-xl p-1 mb-6 flex overflow-x-auto transition-colors">
                 {[
                     { id: 'all', label: 'All Cancellations', count: 34, icon: Package },
                     { id: 'pending', label: 'Pending Refunds', count: 12, icon: Clock },
@@ -144,13 +144,13 @@ const CancellationsPage = () => {
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
                         className={`flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-sm whitespace-nowrap transition-all ${activeTab === tab.id
-                                ? 'bg-indigo-50 text-indigo-600 shadow-sm'
-                                : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'
+                            ? 'bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-300 shadow-sm'
+                            : 'text-slate-500 dark:text-gray-400 hover:bg-slate-50 dark:hover:bg-gray-800 hover:text-slate-700 dark:hover:text-gray-200'
                             }`}
                     >
                         <tab.icon size={18} />
                         {tab.label}
-                        <span className={`px-2 py-0.5 rounded text-xs ${activeTab === tab.id ? 'bg-white text-indigo-600' : 'bg-slate-100 text-slate-500'}`}>
+                        <span className={`px-2 py-0.5 rounded text-xs transition-colors ${activeTab === tab.id ? 'bg-white dark:bg-gray-900 text-indigo-600 dark:text-indigo-300' : 'bg-slate-100 dark:bg-gray-800 text-slate-500 dark:text-gray-400'}`}>
                             {tab.count}
                         </span>
                     </button>
@@ -158,103 +158,103 @@ const CancellationsPage = () => {
             </div>
 
             {/* Content Area */}
-            <div className="bg-white border text-card-foreground shadow-sm rounded-xl p-6">
+            <div className="bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 text-card-foreground shadow-sm rounded-xl p-6 transition-colors">
                 <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-                    <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 transition-colors">
                         <Package size={20} className="text-slate-400" /> Recent Cancellations
                     </h2>
                     <div className="relative w-full sm:w-80">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                        <input type="text" placeholder="Search by order ID, customer..." className="w-full pl-10 pr-4 py-2 bg-slate-50 border-none rounded-lg text-sm font-bold text-slate-700 focus:ring-2 focus:ring-indigo-500/20 outline-none" />
+                        <input type="text" placeholder="Search by order ID, customer..." className="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-gray-800 border border-slate-100 dark:border-gray-700 rounded-lg text-sm font-bold text-slate-700 dark:text-gray-200 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-colors" />
                     </div>
                 </div>
 
                 <div className="space-y-4">
                     {filteredCancellations.map((item) => (
-                        <div key={item.id} className="border border-gray-200 rounded-xl hover:border-rose-200 hover:shadow-md transition duration-200 group overflow-hidden">
-                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-rose-500 rounded-l-xl"></div>
+                        <div key={item.id} className="border border-gray-200 dark:border-gray-700/50 rounded-xl hover:border-rose-200 dark:hover:border-rose-900/50 hover:shadow-md transition duration-200 group overflow-hidden bg-white dark:bg-gray-900/50 relative">
+                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-rose-500 rounded-l-xl shadow-[0_0_10px_rgba(244,63,94,0.3)]"></div>
 
                             <div className="p-5">
                                 {/* Card Header */}
                                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4 pl-2">
                                     <div className="flex items-center gap-3">
-                                        <div className={`w-12 h-12 rounded-xl ${item.customer.color} text-white flex items-center justify-center font-bold text-lg shadow-sm`}>
+                                        <div className={`w-12 h-12 rounded-xl ${item.customer.color} text-white flex items-center justify-center font-bold text-lg shadow-sm transition-colors`}>
                                             {item.customer.initials}
                                         </div>
                                         <div>
-                                            <div className="font-bold text-slate-800 text-lg">{item.customer.name}</div>
-                                            <div className="flex items-center gap-3 text-sm text-slate-500 font-medium">
+                                            <div className="font-bold text-slate-800 dark:text-white text-lg transition-colors">{item.customer.name}</div>
+                                            <div className="flex items-center gap-3 text-sm text-slate-500 dark:text-gray-400 font-medium transition-colors">
                                                 <span className="flex items-center gap-1"><Mail size={14} /> {item.customer.email}</span>
                                                 <span className="flex items-center gap-1"><Phone size={14} /> {item.customer.phone}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <span className="px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-lg">#{item.id}</span>
-                                        {item.status === 'pending' && <span className="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-lg flex items-center gap-1"><Clock size={14} /> Pending Refund</span>}
-                                        {item.status === 'processing' && <span className="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-lg flex items-center gap-1"><RefreshCcw size={14} /> Refund Processing</span>}
-                                        {item.status === 'completed' && <span className="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-bold rounded-lg flex items-center gap-1"><CheckCircle size={14} /> Refund Completed</span>}
+                                        <span className="px-3 py-1 bg-indigo-600 text-white text-xs font-bold rounded-lg transition-colors">#{item.id}</span>
+                                        {item.status === 'pending' && <span className="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold rounded-lg flex items-center gap-1 transition-colors"><Clock size={14} /> Pending Refund</span>}
+                                        {item.status === 'processing' && <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs font-bold rounded-lg flex items-center gap-1 transition-colors"><RefreshCcw size={14} /> Refund Processing</span>}
+                                        {item.status === 'completed' && <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-xs font-bold rounded-lg flex items-center gap-1 transition-colors"><CheckCircle size={14} /> Refund Completed</span>}
                                     </div>
                                 </div>
 
                                 {/* Reason Content */}
-                                <div className="ml-2 mb-4 bg-rose-50 border border-rose-100 rounded-lg p-4">
-                                    <div className="text-xs font-bold text-rose-800 uppercase tracking-wide mb-2 flex items-center gap-1">
+                                <div className="ml-2 mb-4 bg-rose-50 dark:bg-rose-900/10 border border-rose-100 dark:border-rose-900/20 rounded-lg p-4 transition-colors">
+                                    <div className="text-xs font-bold text-rose-800 dark:text-rose-400 uppercase tracking-wide mb-2 flex items-center gap-1 transition-colors">
                                         <AlertTriangle size={14} /> Cancellation Reason
                                     </div>
-                                    <div className="bg-white border border-rose-100 rounded-lg p-3">
-                                        <div className="font-bold text-rose-900 text-sm mb-1">{item.reason.title}</div>
-                                        <div className="text-rose-800 text-sm leading-relaxed">"{item.reason.text}"</div>
+                                    <div className="bg-white dark:bg-gray-800/50 border border-rose-100 dark:border-rose-900/30 rounded-lg p-3 transition-colors">
+                                        <div className="font-bold text-rose-900 dark:text-rose-200 text-sm mb-1 transition-colors">{item.reason.title}</div>
+                                        <div className="text-rose-800 dark:text-rose-300 text-sm leading-relaxed transition-colors">"{item.reason.text}"</div>
                                     </div>
                                 </div>
 
                                 {/* Order Items */}
-                                <div className="ml-2 mb-4 bg-slate-50 rounded-lg p-4">
-                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3 flex items-center gap-1">
+                                <div className="ml-2 mb-4 bg-slate-50 dark:bg-gray-800/40 rounded-lg p-4 transition-colors">
+                                    <div className="text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wide mb-3 flex items-center gap-1 transition-colors">
                                         <Package size={14} /> Cancelled Services ({item.items.length})
                                     </div>
                                     <div className="space-y-2">
                                         {item.items.map((srv, idx) => (
-                                            <div key={idx} className="bg-white border border-gray-200 rounded-lg p-3 flex justify-between items-center">
+                                            <div key={idx} className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 flex justify-between items-center transition-colors">
                                                 <div className="flex items-center gap-3">
-                                                    <div className={`w-10 h-10 rounded-lg ${srv.iconColor} flex items-center justify-center`}>
+                                                    <div className={`w-10 h-10 rounded-lg ${srv.iconColor} dark:bg-opacity-20 flex items-center justify-center transition-colors`}>
                                                         <srv.icon size={18} />
                                                     </div>
                                                     <div>
-                                                        <div className="font-bold text-slate-800 text-sm">{srv.name}</div>
-                                                        <div className="text-xs font-medium text-slate-500">{srv.category}</div>
+                                                        <div className="font-bold text-slate-800 dark:text-gray-100 text-sm transition-colors">{srv.name}</div>
+                                                        <div className="text-xs font-medium text-slate-500 dark:text-gray-400 transition-colors">{srv.category}</div>
                                                     </div>
                                                 </div>
-                                                <div className="font-bold text-slate-800">{srv.price}</div>
+                                                <div className="font-bold text-slate-800 dark:text-white transition-colors">{srv.price}</div>
                                             </div>
                                         ))}
                                     </div>
-                                    <div className="mt-3 bg-rose-100 rounded-lg p-3 flex justify-between items-center text-rose-900">
-                                        <span className="font-bold text-sm uppercase">Refund Amount</span>
-                                        <span className="font-black text-xl">{item.refundAmount}</span>
+                                    <div className="mt-3 bg-rose-100 dark:bg-rose-900/30 rounded-lg p-3 flex justify-between items-center text-rose-900 dark:text-rose-300 transition-colors">
+                                        <span className="font-bold text-sm uppercase transition-colors">Refund Amount</span>
+                                        <span className="font-black text-xl transition-colors">{item.refundAmount}</span>
                                     </div>
                                 </div>
 
                                 {/* Meta Grid */}
                                 <div className="ml-2 grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                                     <div>
-                                        <div className="text-xs font-bold text-slate-400 uppercase mb-1">Order Date</div>
-                                        <div className="font-bold text-slate-700 text-sm">{item.meta.orderDate}</div>
+                                        <div className="text-xs font-bold text-slate-400 dark:text-gray-500 uppercase mb-1 transition-colors">Order Date</div>
+                                        <div className="font-bold text-slate-700 dark:text-gray-300 text-sm transition-colors">{item.meta.orderDate}</div>
                                     </div>
                                     <div>
-                                        <div className="text-xs font-bold text-slate-400 uppercase mb-1">Cancelled On</div>
-                                        <div className="font-bold text-slate-700 text-sm">{item.meta.cancelledOn}</div>
+                                        <div className="text-xs font-bold text-slate-400 dark:text-gray-500 uppercase mb-1 transition-colors">Cancelled On</div>
+                                        <div className="font-bold text-slate-700 dark:text-gray-300 text-sm transition-colors">{item.meta.cancelledOn}</div>
                                     </div>
                                     <div>
-                                        <div className="text-xs font-bold text-slate-400 uppercase mb-1">Payment Method</div>
-                                        <div className="font-bold text-slate-700 text-sm">{item.meta.paymentMethod}</div>
+                                        <div className="text-xs font-bold text-slate-400 dark:text-gray-500 uppercase mb-1 transition-colors">Payment Method</div>
+                                        <div className="font-bold text-slate-700 dark:text-gray-300 text-sm transition-colors">{item.meta.paymentMethod}</div>
                                     </div>
                                     <div>
-                                        <div className="text-xs font-bold text-slate-400 uppercase mb-1">Refund Status</div>
-                                        <div className="font-bold text-slate-700 text-sm">
-                                            <span className={`px-2 py-0.5 rounded text-xs ${item.status === 'pending' ? 'bg-amber-100 text-amber-700' :
-                                                    item.status === 'processing' ? 'bg-blue-100 text-blue-700' :
-                                                        'bg-emerald-100 text-emerald-700'
+                                        <div className="text-xs font-bold text-slate-400 dark:text-gray-500 uppercase mb-1 transition-colors">Refund Status</div>
+                                        <div className="font-bold text-slate-700 dark:text-gray-300 text-sm transition-colors">
+                                            <span className={`px-2 py-0.5 rounded text-xs transition-colors ${item.status === 'pending' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400' :
+                                                item.status === 'processing' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' :
+                                                    'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400'
                                                 }`}>
                                                 {item.meta.refundStatus}
                                             </span>
@@ -263,33 +263,33 @@ const CancellationsPage = () => {
                                 </div>
 
                                 {/* Footer Actions */}
-                                <div className="ml-2 pt-4 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
-                                    <div className="flex items-center gap-2 text-slate-500 text-sm font-medium">
-                                        <div className="bg-slate-100 p-1.5 rounded-full"><Clock size={14} /></div>
+                                <div className="ml-2 pt-4 border-t border-gray-100 dark:border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4 transition-colors">
+                                    <div className="flex items-center gap-2 text-slate-500 dark:text-gray-400 text-sm font-medium transition-colors">
+                                        <div className="bg-slate-100 dark:bg-gray-800 p-1.5 rounded-full transition-colors"><Clock size={14} /></div>
                                         {item.timeText}
                                     </div>
                                     <div className="flex gap-2">
                                         {item.status === 'pending' && (
                                             <>
-                                                <button className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 transition text-sm">
+                                                <button className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 transition-all text-sm shadow-sm">
                                                     <Check size={16} /> Approve Refund
                                                 </button>
-                                                <button className="flex items-center gap-2 px-4 py-2 border border-rose-200 text-rose-600 font-bold rounded-lg hover:bg-rose-50 transition text-sm">
+                                                <button className="flex items-center gap-2 px-4 py-2 border border-rose-200 dark:border-rose-900/30 text-rose-600 dark:text-rose-400 font-bold rounded-lg hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-all text-sm">
                                                     <X size={16} /> Reject
                                                 </button>
                                             </>
                                         )}
                                         {item.status === 'processing' && (
-                                            <button className="flex items-center gap-2 px-4 py-2 border border-blue-200 text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition text-sm">
+                                            <button className="flex items-center gap-2 px-4 py-2 border border-blue-200 dark:border-blue-900/30 text-blue-600 dark:text-blue-400 font-bold rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all text-sm">
                                                 <MapPin size={16} /> Track Refund
                                             </button>
                                         )}
                                         {item.status === 'completed' && (
-                                            <button className="flex items-center gap-2 px-4 py-2 border border-slate-200 text-slate-600 font-bold rounded-lg hover:bg-slate-50 transition text-sm">
+                                            <button className="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-gray-700 text-slate-600 dark:text-gray-300 font-bold rounded-lg hover:bg-slate-50 dark:hover:bg-gray-800 transition-all text-sm">
                                                 <Download size={16} /> Download Receipt
                                             </button>
                                         )}
-                                        <button className="flex items-center gap-2 px-4 py-2 border border-slate-200 text-slate-600 font-bold rounded-lg hover:bg-slate-50 transition text-sm">
+                                        <button className="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-gray-700 text-slate-600 dark:text-gray-300 font-bold rounded-lg hover:bg-slate-50 dark:hover:bg-gray-800 transition-all text-sm">
                                             <Phone size={16} /> Contact
                                         </button>
                                     </div>

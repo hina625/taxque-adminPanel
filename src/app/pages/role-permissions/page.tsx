@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
     ShieldCheck,
     FloppyDisk,
@@ -107,22 +107,22 @@ export default function RolePermissionsPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#f1f5f9] text-slate-800 font-sans pb-12">
+        <div className="min-h-screen bg-[#f1f5f9] dark:bg-gray-950 text-slate-800 dark:text-gray-100 font-sans pb-12 transition-colors duration-300">
             {/* Top Navigation Bar */}
-            <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/60 px-6 py-4 mb-8">
+            <nav className="sticky top-0 z-40 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-b border-slate-200/60 dark:border-gray-700 px-6 py-4 mb-8 transition-colors">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
                             <ShieldCheck size={24} weight="bold" />
                         </div>
                         <div>
-                            <h1 className="text-xl font-bold text-slate-900 tracking-tight">Access Control Center</h1>
-                            <p className="text-xs text-slate-500 font-medium">RBAC Configuration v2.0</p>
+                            <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">Access Control Center</h1>
+                            <p className="text-xs text-slate-500 dark:text-gray-400 font-medium">RBAC Configuration v2.0</p>
                         </div>
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <span className="text-xs font-medium text-slate-400 hidden sm:block">Last saved: Just now</span>
+                        <span className="text-xs font-medium text-slate-400 dark:text-gray-500 hidden sm:block">Last saved: Just now</span>
                         <button onClick={handleSave}
                             className="group relative bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-full shadow-lg shadow-indigo-200 flex items-center gap-2 font-medium transition-all transform active:scale-95 overflow-hidden">
                             <FloppyDisk size={20} weight="bold" />
@@ -137,10 +137,10 @@ export default function RolePermissionsPage() {
 
                     {/* Left Panel: Roles List */}
                     <div className="lg:sticky lg:top-28 space-y-6">
-                        <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-5 shadow-xl shadow-slate-200/50 border border-white/50">
+                        <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-2xl p-5 shadow-xl shadow-slate-200/50 dark:shadow-black/20 border border-white/50 dark:border-gray-700 transition-colors">
                             <div className="flex justify-between items-center mb-6 px-1">
-                                <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider">User Roles</h2>
-                                <button className="text-indigo-600 hover:bg-indigo-50 p-1.5 rounded-lg transition-colors text-sm font-medium flex items-center gap-1">
+                                <h2 className="text-xs font-bold text-slate-400 dark:text-gray-500 uppercase tracking-wider">User Roles</h2>
+                                <button className="text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/40 p-1.5 rounded-lg transition-colors text-sm font-medium flex items-center gap-1">
                                     <Plus size={16} weight="bold" /> New
                                 </button>
                             </div>
@@ -153,19 +153,19 @@ export default function RolePermissionsPage() {
                                             key={role.id}
                                             onClick={() => setCurrentRole(role.id)}
                                             className={`cursor-pointer rounded-xl p-4 transition-all duration-300 border shadow-sm group ${isActive
-                                                    ? 'bg-gradient-to-br from-emerald-500 to-emerald-600 text-white shadow-emerald-500/30 scale-105 border-transparent'
-                                                    : 'bg-white border-slate-100 hover:bg-slate-50 hover:translate-x-1'
+                                                ? 'bg-gradient-to-br from-emerald-500 to-emerald-600 text-white shadow-emerald-500/30 scale-105 border-transparent'
+                                                : 'bg-white dark:bg-gray-700 border-slate-100 dark:border-gray-600 hover:bg-slate-50 dark:hover:bg-gray-600 hover:translate-x-1'
                                                 }`}
                                         >
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-3">
-                                                    <role.icon size={24} weight="duotone" className={isActive ? 'text-emerald-100' : 'text-slate-400'} />
+                                                    <role.icon size={24} weight="duotone" className={isActive ? 'text-emerald-100' : 'text-slate-400 dark:text-gray-400'} />
                                                     <div>
                                                         <h4 className="font-bold text-sm">{role.id}</h4>
-                                                        <p className={`text-xs ${isActive ? 'text-emerald-100' : 'text-slate-400'}`}>{role.type} Role</p>
+                                                        <p className={`text-xs ${isActive ? 'text-emerald-100' : 'text-slate-400 dark:text-gray-400'}`}>{role.type} Role</p>
                                                     </div>
                                                 </div>
-                                                <CaretRight size={16} weight="bold" className={`transition-opacity ${isActive ? 'text-white' : 'text-slate-300 opacity-0 group-hover:opacity-100'}`} />
+                                                <CaretRight size={16} weight="bold" className={`transition-opacity ${isActive ? 'text-white' : 'text-slate-300 dark:text-gray-500 opacity-0 group-hover:opacity-100'}`} />
                                             </div>
                                         </div>
                                     );
@@ -183,25 +183,25 @@ export default function RolePermissionsPage() {
                     </div>
 
                     {/* Right Panel: Matrix */}
-                    <div className="bg-white/70 backdrop-blur-xl rounded-2xl shadow-xl shadow-slate-200/50 border border-white/50 overflow-hidden flex flex-col min-h-[600px]">
+                    <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-black/20 border border-white/50 dark:border-gray-700 overflow-hidden flex flex-col min-h-[600px] transition-colors">
 
                         {/* Matrix Header */}
-                        <div className="p-8 border-b border-slate-100 bg-white/50">
+                        <div className="p-8 border-b border-slate-100 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50">
                             <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-2xl text-slate-600">
+                                <div className="w-12 h-12 rounded-full bg-slate-100 dark:bg-gray-700 flex items-center justify-center text-2xl text-slate-600 dark:text-gray-300">
                                     {(() => {
                                         const RoleIcon = ROLES.find(r => r.id === currentRole)?.icon || ShieldCheck;
                                         return <RoleIcon size={28} weight="duotone" />;
                                     })()}
                                 </div>
                                 <div>
-                                    <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white flex items-center gap-2">
                                         {currentRole}
-                                        <span className="px-2 py-0.5 rounded-md bg-slate-200 text-slate-600 text-[10px] font-bold uppercase tracking-wide">
+                                        <span className="px-2 py-0.5 rounded-md bg-slate-200 dark:bg-gray-700 text-slate-600 dark:text-gray-300 text-[10px] font-bold uppercase tracking-wide">
                                             {ROLES.find(r => r.id === currentRole)?.type || 'Custom'}
                                         </span>
                                     </h2>
-                                    <p className="text-slate-500 text-sm mt-1">Configure visibility and action permissions for this role.</p>
+                                    <p className="text-slate-500 dark:text-gray-400 text-sm mt-1">Configure visibility and action permissions for this role.</p>
                                 </div>
                             </div>
                         </div>
@@ -211,32 +211,32 @@ export default function RolePermissionsPage() {
                             <table className="w-full text-left border-collapse">
                                 <thead>
                                     <tr>
-                                        <th className="sticky top-0 bg-slate-50/95 backdrop-blur-sm z-10 px-8 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200 w-1/3">
+                                        <th className="sticky top-0 bg-slate-50/95 dark:bg-gray-800/95 backdrop-blur-sm z-10 px-8 py-4 text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider border-b border-slate-200 dark:border-gray-700 w-1/3">
                                             Feature Module
                                         </th>
                                         {PERM_LEVELS.map(level => (
-                                            <th key={level} className="sticky top-0 bg-slate-50/95 backdrop-blur-sm z-10 px-4 py-4 text-center text-xs font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
+                                            <th key={level} className="sticky top-0 bg-slate-50/95 dark:bg-gray-800/95 backdrop-blur-sm z-10 px-4 py-4 text-center text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wider border-b border-slate-200 dark:border-gray-700">
                                                 {level}
                                             </th>
                                         ))}
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-slate-100 bg-white/40">
+                                <tbody className="divide-y divide-slate-100 dark:divide-gray-700 bg-white/40 dark:bg-gray-800/40">
                                     {MODULES.map((module) => (
-                                        <tr key={module.key} className="group hover:bg-indigo-50/30 transition-colors">
-                                            <td className="px-8 py-5 border-b border-slate-100">
+                                        <tr key={module.key} className="group hover:bg-indigo-50/30 dark:hover:bg-indigo-900/20 transition-colors">
+                                            <td className="px-8 py-5 border-b border-slate-100 dark:border-gray-700">
                                                 <div className="flex items-center gap-4">
-                                                    <div className="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
+                                                    <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0">
                                                         <module.icon size={24} weight="duotone" />
                                                     </div>
                                                     <div>
-                                                        <p className="font-bold text-slate-800 text-sm">{module.name}</p>
-                                                        <p className="text-xs text-slate-500 mt-0.5">{module.desc}</p>
+                                                        <p className="font-bold text-slate-800 dark:text-white text-sm">{module.name}</p>
+                                                        <p className="text-xs text-slate-500 dark:text-gray-400 mt-0.5">{module.desc}</p>
                                                     </div>
                                                 </div>
                                             </td>
                                             {PERM_LEVELS.map(perm => (
-                                                <td key={perm} className="px-4 py-5 text-center border-b border-slate-100">
+                                                <td key={perm} className="px-4 py-5 text-center border-b border-slate-100 dark:border-gray-700">
                                                     <div className="flex justify-center">
                                                         <label className={`relative inline-flex items-center cursor-pointer ${(currentRole === 'Admin') ? 'opacity-50 cursor-not-allowed' : ''}`}>
                                                             <input
@@ -246,7 +246,7 @@ export default function RolePermissionsPage() {
                                                                 onChange={() => handlePermissionChange(module.key, perm)}
                                                                 disabled={currentRole === 'Admin'}
                                                             />
-                                                            <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+                                                            <div className="w-11 h-6 bg-slate-200 dark:bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
                                                         </label>
                                                     </div>
                                                 </td>

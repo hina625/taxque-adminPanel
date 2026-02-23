@@ -86,11 +86,11 @@ export function Modal({ isOpen, onClose, title, children, footer }: ModalProps) 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm animate-in fade-in duration-200">
-            <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200">
-                <div className="flex items-center justify-between p-6 border-b border-slate-100">
-                    <h2 className="text-xl font-bold text-slate-800">{title}</h2>
-                    <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full text-slate-400 hover:text-slate-600 transition-colors">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 dark:bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-lg flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200 border border-transparent dark:border-gray-700 transition-colors">
+                <div className="flex items-center justify-between p-6 border-b border-slate-100 dark:border-gray-700">
+                    <h2 className="text-xl font-bold text-slate-800 dark:text-gray-100">{title}</h2>
+                    <button onClick={onClose} className="p-2 hover:bg-slate-100 dark:hover:bg-gray-700 rounded-full text-slate-400 hover:text-slate-300 transition-colors">
                         <X className="w-5 h-5" />
                     </button>
                 </div>
@@ -98,7 +98,7 @@ export function Modal({ isOpen, onClose, title, children, footer }: ModalProps) 
                     {children}
                 </div>
                 {footer && (
-                    <div className="p-6 border-t border-slate-100 bg-slate-50 rounded-b-xl flex justify-end gap-3">
+                    <div className="p-6 border-t border-slate-100 dark:border-gray-700 bg-slate-50 dark:bg-gray-900/50 rounded-b-xl flex justify-end gap-3 transition-colors">
                         {footer}
                     </div>
                 )}
@@ -133,8 +133,8 @@ export function DealModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClos
             title="Create New Deal"
             footer={
                 <>
-                    <button onClick={onClose} className="px-4 py-2 text-slate-600 font-medium hover:bg-slate-100 rounded-lg transition-colors">Cancel</button>
-                    <button onClick={handleSubmit} className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2">
+                    <button onClick={onClose} className="px-4 py-2 text-slate-600 dark:text-gray-400 font-medium hover:bg-slate-100 dark:hover:bg-gray-800 rounded-lg transition-colors">Cancel</button>
+                    <button onClick={handleSubmit} className="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white font-medium rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors flex items-center gap-2">
                         <Check className="w-4 h-4" /> Save Deal
                     </button>
                 </>
@@ -142,11 +142,11 @@ export function DealModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClos
         >
             <form id="dealForm" className="space-y-4">
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Deal Name <span className="text-red-500">*</span></label>
+                    <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Deal Name <span className="text-red-500">*</span></label>
                     <input
                         type="text"
                         required
-                        className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                        className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 dark:placeholder:text-gray-500"
                         value={formData.name}
                         onChange={e => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Website Redesign"
@@ -154,21 +154,21 @@ export function DealModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClos
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Company <span className="text-red-500">*</span></label>
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Company <span className="text-red-500">*</span></label>
                         <input
                             type="text"
                             required
-                            className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                            className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                             value={formData.company}
                             onChange={e => setFormData({ ...formData, company: e.target.value })}
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Value ($) <span className="text-red-500">*</span></label>
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Value ($) <span className="text-red-500">*</span></label>
                         <input
                             type="number"
                             required
-                            className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+                            className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                             value={formData.value}
                             onChange={e => setFormData({ ...formData, value: parseFloat(e.target.value) || 0 })}
                         />
@@ -241,8 +241,8 @@ export function LeadModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClos
             title="Add New Lead"
             footer={
                 <>
-                    <button onClick={onClose} className="px-4 py-2 text-slate-600 font-medium hover:bg-slate-100 rounded-lg transition-colors">Cancel</button>
-                    <button onClick={handleSubmit} className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2">
+                    <button onClick={onClose} className="px-4 py-2 text-slate-600 dark:text-gray-400 font-medium hover:bg-slate-100 dark:hover:bg-gray-800 rounded-lg transition-colors">Cancel</button>
+                    <button onClick={handleSubmit} className="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white font-medium rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors flex items-center gap-2">
                         <Check className="w-4 h-4" /> Save Lead
                     </button>
                 </>
@@ -251,32 +251,32 @@ export function LeadModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClos
             <form className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">First Name <span className="text-red-500">*</span></label>
-                        <input type="text" required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">First Name <span className="text-red-500">*</span></label>
+                        <input type="text" required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Last Name <span className="text-red-500">*</span></label>
-                        <input type="text" required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Last Name <span className="text-red-500">*</span></label>
+                        <input type="text" required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} />
                     </div>
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Email <span className="text-red-500">*</span></label>
-                    <input type="email" required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} placeholder="email@company.com" />
+                    <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Email <span className="text-red-500">*</span></label>
+                    <input type="email" required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} placeholder="email@company.com" />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Company <span className="text-red-500">*</span></label>
-                        <input type="text" required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.company} onChange={e => setFormData({ ...formData, company: e.target.value })} />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Company <span className="text-red-500">*</span></label>
+                        <input type="text" required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.company} onChange={e => setFormData({ ...formData, company: e.target.value })} />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Phone</label>
-                        <input type="tel" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Phone</label>
+                        <input type="tel" className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Status</label>
-                        <select className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 bg-white" value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value })}>
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Status</label>
+                        <select className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value })}>
                             <option value="New">New</option>
                             <option value="Contacted">Contacted</option>
                             <option value="Qualified">Qualified</option>
@@ -284,13 +284,13 @@ export function LeadModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClos
                         </select>
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Expected Value ($)</label>
-                        <input type="number" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.value} onChange={e => setFormData({ ...formData, value: parseFloat(e.target.value) || 0 })} />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Expected Value ($)</label>
+                        <input type="number" className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.value} onChange={e => setFormData({ ...formData, value: parseFloat(e.target.value) || 0 })} />
                     </div>
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Source</label>
-                    <select className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 bg-white" value={formData.source} onChange={e => setFormData({ ...formData, source: e.target.value })}>
+                    <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Source</label>
+                    <select className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.source} onChange={e => setFormData({ ...formData, source: e.target.value })}>
                         <option value="Website">Website</option>
                         <option value="Referral">Referral</option>
                         <option value="Social Media">Social Media</option>
@@ -300,8 +300,8 @@ export function LeadModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClos
                     </select>
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Notes</label>
-                    <textarea className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 min-h-[80px]" value={formData.notes} onChange={e => setFormData({ ...formData, notes: e.target.value })}></textarea>
+                    <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Notes</label>
+                    <textarea className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all min-h-[80px] font-medium" value={formData.notes} onChange={e => setFormData({ ...formData, notes: e.target.value })}></textarea>
                 </div>
             </form>
         </Modal>
@@ -333,8 +333,8 @@ export function ContactModal({ isOpen, onClose, onSave }: { isOpen: boolean; onC
             title="Add New Contact"
             footer={
                 <>
-                    <button onClick={onClose} className="px-4 py-2 text-slate-600 font-medium hover:bg-slate-100 rounded-lg transition-colors">Cancel</button>
-                    <button onClick={handleSubmit} className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2">
+                    <button onClick={onClose} className="px-4 py-2 text-slate-600 dark:text-gray-400 font-medium hover:bg-slate-100 dark:hover:bg-gray-800 rounded-lg transition-colors">Cancel</button>
+                    <button onClick={handleSubmit} className="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white font-medium rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors flex items-center gap-2">
                         <Check className="w-4 h-4" /> Save Contact
                     </button>
                 </>
@@ -343,35 +343,35 @@ export function ContactModal({ isOpen, onClose, onSave }: { isOpen: boolean; onC
             <form className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">First Name <span className="text-red-500">*</span></label>
-                        <input type="text" required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">First Name <span className="text-red-500">*</span></label>
+                        <input type="text" required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Last Name <span className="text-red-500">*</span></label>
-                        <input type="text" required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Last Name <span className="text-red-500">*</span></label>
+                        <input type="text" required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} />
                     </div>
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Email <span className="text-red-500">*</span></label>
-                    <input type="email" required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
+                    <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Email <span className="text-red-500">*</span></label>
+                    <input type="email" required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Phone</label>
-                        <input type="tel" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Phone</label>
+                        <input type="tel" className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Company</label>
-                        <input type="text" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.company} onChange={e => setFormData({ ...formData, company: e.target.value })} />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Company</label>
+                        <input type="text" className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.company} onChange={e => setFormData({ ...formData, company: e.target.value })} />
                     </div>
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Job Title</label>
-                    <input type="text" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} placeholder="e.g. Sales Manager" />
+                    <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Job Title</label>
+                    <input type="text" className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} placeholder="e.g. Sales Manager" />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Address</label>
-                    <textarea className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 min-h-[80px]" value={formData.address} onChange={e => setFormData({ ...formData, address: e.target.value })}></textarea>
+                    <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Address</label>
+                    <textarea className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all min-h-[80px] font-medium" value={formData.address} onChange={e => setFormData({ ...formData, address: e.target.value })}></textarea>
                 </div>
             </form>
         </Modal>
@@ -403,8 +403,8 @@ export function TaskModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClos
             title="Create New Task"
             footer={
                 <>
-                    <button onClick={onClose} className="px-4 py-2 text-slate-600 font-medium hover:bg-slate-100 rounded-lg transition-colors">Cancel</button>
-                    <button onClick={handleSubmit} className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2">
+                    <button onClick={onClose} className="px-4 py-2 text-slate-600 dark:text-gray-400 font-medium hover:bg-slate-100 dark:hover:bg-gray-800 rounded-lg transition-colors">Cancel</button>
+                    <button onClick={handleSubmit} className="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white font-medium rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors flex items-center gap-2">
                         <Check className="w-4 h-4" /> Save Task
                     </button>
                 </>
@@ -412,21 +412,21 @@ export function TaskModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClos
         >
             <form className="space-y-4">
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Task Title <span className="text-red-500">*</span></label>
-                    <input type="text" required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} />
+                    <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Task Title <span className="text-red-500">*</span></label>
+                    <input type="text" required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Description</label>
-                    <textarea className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 min-h-[100px]" value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })}></textarea>
+                    <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Description</label>
+                    <textarea className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all min-h-[100px] font-medium" value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })}></textarea>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Due Date <span className="text-red-500">*</span></label>
-                        <input type="date" required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.dueDate} onChange={e => setFormData({ ...formData, dueDate: e.target.value })} />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Due Date <span className="text-red-500">*</span></label>
+                        <input type="date" required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.dueDate} onChange={e => setFormData({ ...formData, dueDate: e.target.value })} />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Priority <span className="text-red-500">*</span></label>
-                        <select className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 bg-white" value={formData.priority} onChange={e => setFormData({ ...formData, priority: e.target.value as any })}>
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Priority <span className="text-red-500">*</span></label>
+                        <select className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.priority} onChange={e => setFormData({ ...formData, priority: e.target.value as any })}>
                             <option value="low">Low</option>
                             <option value="medium">Medium</option>
                             <option value="high">High</option>
@@ -435,12 +435,12 @@ export function TaskModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClos
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Assigned To</label>
-                        <input type="text" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.assignedTo} onChange={e => setFormData({ ...formData, assignedTo: e.target.value })} placeholder="Team member" />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Assigned To</label>
+                        <input type="text" className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.assignedTo} onChange={e => setFormData({ ...formData, assignedTo: e.target.value })} placeholder="Team member" />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Status <span className="text-red-500">*</span></label>
-                        <select className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 bg-white" value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value as any })}>
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Status <span className="text-red-500">*</span></label>
+                        <select className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value as any })}>
                             <option value="pending">Pending</option>
                             <option value="in-progress">In Progress</option>
                             <option value="completed">Completed</option>
@@ -448,8 +448,8 @@ export function TaskModal({ isOpen, onClose, onSave }: { isOpen: boolean; onClos
                     </div>
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Related To</label>
-                    <input type="text" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.relatedTo} onChange={e => setFormData({ ...formData, relatedTo: e.target.value })} placeholder="Deal, Lead, or Contact" />
+                    <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Related To</label>
+                    <input type="text" className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.relatedTo} onChange={e => setFormData({ ...formData, relatedTo: e.target.value })} placeholder="Deal, Lead, or Contact" />
                 </div>
             </form>
         </Modal>
@@ -482,8 +482,8 @@ export function TicketModal({ isOpen, onClose, onSave }: { isOpen: boolean; onCl
             title="Create Support Ticket"
             footer={
                 <>
-                    <button onClick={onClose} className="px-4 py-2 text-slate-600 font-medium hover:bg-slate-100 rounded-lg transition-colors">Cancel</button>
-                    <button onClick={handleSubmit} className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2">
+                    <button onClick={onClose} className="px-4 py-2 text-slate-600 dark:text-gray-400 font-medium hover:bg-slate-100 dark:hover:bg-gray-800 rounded-lg transition-colors">Cancel</button>
+                    <button onClick={handleSubmit} className="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white font-medium rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors flex items-center gap-2">
                         <Check className="w-4 h-4" /> Save Ticket
                     </button>
                 </>
@@ -491,35 +491,35 @@ export function TicketModal({ isOpen, onClose, onSave }: { isOpen: boolean; onCl
         >
             <form className="space-y-4">
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Subject <span className="text-red-500">*</span></label>
-                    <input type="text" required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.subject} onChange={e => setFormData({ ...formData, subject: e.target.value })} />
+                    <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Subject <span className="text-red-500">*</span></label>
+                    <input type="text" required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.subject} onChange={e => setFormData({ ...formData, subject: e.target.value })} />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Description <span className="text-red-500">*</span></label>
-                    <textarea required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 min-h-[100px]" value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })}></textarea>
+                    <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Description <span className="text-red-500">*</span></label>
+                    <textarea required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all min-h-[100px] font-medium" value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })}></textarea>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Customer Name <span className="text-red-500">*</span></label>
-                        <input type="text" required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.customer} onChange={e => setFormData({ ...formData, customer: e.target.value })} />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Customer Name <span className="text-red-500">*</span></label>
+                        <input type="text" required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.customer} onChange={e => setFormData({ ...formData, customer: e.target.value })} />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Customer Email <span className="text-red-500">*</span></label>
-                        <input type="email" required className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Customer Email <span className="text-red-500">*</span></label>
+                        <input type="email" required className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Priority <span className="text-red-500">*</span></label>
-                        <select className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 bg-white" value={formData.priority} onChange={e => setFormData({ ...formData, priority: e.target.value as any })}>
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Priority <span className="text-red-500">*</span></label>
+                        <select className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.priority} onChange={e => setFormData({ ...formData, priority: e.target.value as any })}>
                             <option value="low">Low</option>
                             <option value="medium">Medium</option>
                             <option value="high">High</option>
                         </select>
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Category <span className="text-red-500">*</span></label>
-                        <select className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 bg-white" value={formData.category} onChange={e => setFormData({ ...formData, category: e.target.value })}>
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Category <span className="text-red-500">*</span></label>
+                        <select className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.category} onChange={e => setFormData({ ...formData, category: e.target.value })}>
                             <option value="technical">Technical Issue</option>
                             <option value="billing">Billing</option>
                             <option value="general">General Inquiry</option>
@@ -530,12 +530,12 @@ export function TicketModal({ isOpen, onClose, onSave }: { isOpen: boolean; onCl
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Assigned Agent</label>
-                        <input type="text" className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500" value={formData.assignedTo} onChange={e => setFormData({ ...formData, assignedTo: e.target.value })} placeholder="Agent Name" />
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Assigned Agent</label>
+                        <input type="text" className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.assignedTo} onChange={e => setFormData({ ...formData, assignedTo: e.target.value })} placeholder="Agent Name" />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-700">Status <span className="text-red-500">*</span></label>
-                        <select className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 bg-white" value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value as any })}>
+                        <label className="text-sm font-medium text-slate-700 dark:text-gray-300">Status <span className="text-red-500">*</span></label>
+                        <select className="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all font-medium" value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value as any })}>
                             <option value="open">Open</option>
                             <option value="in-progress">In Progress</option>
                             <option value="resolved">Resolved</option>

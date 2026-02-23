@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { X } from 'lucide-react';
+
 
 interface BlogTag {
     id: number;
@@ -120,13 +122,13 @@ export default function BlogTagsPage() {
     };
 
     return (
-        <div className="w-full p-6 font-sans text-gray-900 bg-white min-h-screen">
+        <div className="w-full p-6 font-sans text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 min-h-screen transition-colors duration-300">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold flex items-center gap-3">
+                    <h1 className="text-2xl font-bold flex items-center gap-3 text-gray-900 dark:text-white">
                         <i className="fas fa-tags text-primary"></i> Tags Management
                     </h1>
-                    <p className="text-gray-500 text-sm mt-1">Create, edit, and manage tags for organizing your blog content efficiently.</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Create, edit, and manage tags for organizing your blog content efficiently.</p>
                 </div>
                 <button onClick={() => handleOpenModal()} className="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-lg font-semibold transition-all shadow-md flex items-center gap-2">
                     <i className="fas fa-plus"></i> Add New Tag
@@ -135,83 +137,83 @@ export default function BlogTagsPage() {
 
             {/* Stats Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                <div className="p-5 border border-gray-200 rounded-lg flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
+                <div className="p-5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-lg flex items-center gap-4 transition-colors">
+                    <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl">
                         <i className="fas fa-tags"></i>
                     </div>
                     <div>
-                        <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
-                        <div className="text-sm text-gray-500">Total Tags</div>
+                        <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.total}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">Total Tags</div>
                     </div>
                 </div>
-                <div className="bg-gray-50 p-5 rounded-xl border border-gray-200 flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center text-xl">
+                <div className="bg-gray-50 dark:bg-gray-800/50 p-5 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center gap-4 transition-colors">
+                    <div className="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center text-xl">
                         <i className="fas fa-check-circle"></i>
                     </div>
                     <div>
-                        <div className="text-2xl font-bold text-gray-900">{stats.active}</div>
-                        <div className="text-sm text-gray-500">Active Tags</div>
+                        <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.active}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">Active Tags</div>
                     </div>
                 </div>
-                <div className="bg-gray-50 p-5 rounded-xl border border-gray-200 flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-red-100 text-red-600 flex items-center justify-center text-xl">
+                <div className="bg-gray-50 dark:bg-gray-800/50 p-5 rounded-xl border border-gray-200 dark:border-gray-700 flex items-center gap-4 transition-colors">
+                    <div className="w-12 h-12 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 flex items-center justify-center text-xl">
                         <i className="fas fa-times-circle"></i>
                     </div>
                     <div>
-                        <div className="text-2xl font-bold text-gray-900">{stats.inactive}</div>
-                        <div className="text-sm text-gray-500">Inactive</div>
+                        <div className="text-2xl font-bold text-gray-900 dark:text-white">{stats.inactive}</div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">Inactive</div>
                     </div>
                 </div>
             </div>
 
             {/* List Section */}
             <div className="overflow-hidden">
-                <div className="p-5 border-b border-gray-200 bg-gray-50 rounded-t-xl flex justify-between items-center flex-wrap gap-4">
-                    <h3 className="text-lg font-semibold flex items-center gap-2">
+                <div className="p-5 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 rounded-t-xl flex justify-between items-center flex-wrap gap-4 transition-colors">
+                    <h3 className="text-lg font-semibold flex items-center gap-2 text-gray-900 dark:text-white">
                         Tag List
                     </h3>
                     <div className="relative">
                         <input
                             type="text"
                             placeholder="Search tags..."
-                            className="pl-8 pr-4 py-1.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none w-full md:w-48"
+                            className="pl-8 pr-4 py-1.5 border border-gray-300 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary outline-none w-full md:w-48 transition-colors"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
-                        <i className="fas fa-search absolute left-2.5 top-2 text-gray-400 text-xs"></i>
+                        <i className="fas fa-search absolute left-2.5 top-2 text-gray-400 dark:text-gray-500 text-xs"></i>
                     </div>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="bg-gray-50 text-gray-700 text-sm">
-                                <th className="p-4 font-semibold border-b">Tag Name</th>
-                                <th className="p-4 font-semibold border-b">Slug</th>
-                                <th className="p-4 font-semibold border-b">Count</th>
-                                <th className="p-4 font-semibold border-b">Status</th>
-                                <th className="p-4 font-semibold border-b text-right">Actions</th>
+                            <tr className="bg-gray-50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 text-sm transition-colors">
+                                <th className="p-4 font-semibold border-b border-gray-200 dark:border-gray-700">Tag Name</th>
+                                <th className="p-4 font-semibold border-b border-gray-200 dark:border-gray-700">Slug</th>
+                                <th className="p-4 font-semibold border-b border-gray-200 dark:border-gray-700">Count</th>
+                                <th className="p-4 font-semibold border-b border-gray-200 dark:border-gray-700">Status</th>
+                                <th className="p-4 font-semibold border-b border-gray-200 dark:border-gray-700 text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredTags.length > 0 ? (
                                 filteredTags.map(tag => (
-                                    <tr key={tag.id} className="hover:bg-gray-50 transition-colors border-b last:border-0">
+                                    <tr key={tag.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors border-b border-gray-100 dark:border-gray-800 last:border-0">
                                         <td className="p-4">
                                             <div className="flex items-center gap-2">
                                                 <span className={`w-3 h-3 rounded-full ${tag.color}`}></span>
-                                                <span className="font-semibold text-gray-900">{tag.name}</span>
+                                                <span className="font-semibold text-gray-900 dark:text-white">{tag.name}</span>
                                             </div>
-                                            <div className="text-xs text-gray-500 mt-1">{tag.description}</div>
+                                            <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{tag.description}</div>
                                         </td>
-                                        <td className="p-4 text-sm text-gray-600">{tag.slug}</td>
+                                        <td className="p-4 text-sm text-gray-600 dark:text-gray-400">{tag.slug}</td>
                                         <td className="p-4">
-                                            <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded text-xs font-semibold">{tag.count} posts</span>
+                                            <span className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-2 py-0.5 rounded text-xs font-semibold transition-colors">{tag.count} posts</span>
                                         </td>
                                         <td className="p-4">
                                             {tag.status ? (
-                                                <span className="px-2 py-1 bg-green-100 text-green-700 border border-green-200 text-xs rounded-full font-semibold">Active</span>
+                                                <span className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800/50 text-xs rounded-full font-semibold">Active</span>
                                             ) : (
-                                                <span className="px-2 py-1 bg-red-100 text-red-700 border border-red-200 text-xs rounded-full font-semibold">Inactive</span>
+                                                <span className="px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800/50 text-xs rounded-full font-semibold">Inactive</span>
                                             )}
                                         </td>
                                         <td className="p-4 text-right">
@@ -228,7 +230,7 @@ export default function BlogTagsPage() {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={5} className="p-8 text-center text-gray-500">No tags found.</td>
+                                    <td colSpan={5} className="p-8 text-center text-gray-500 dark:text-gray-400">No tags found.</td>
                                 </tr>
                             )}
                         </tbody>
@@ -238,83 +240,101 @@ export default function BlogTagsPage() {
 
             {/* Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-white rounded-xl shadow-2xl w-full max-w-md border">
-                        <div className="flex justify-between items-center p-5 border-b">
-                            <h3 className="text-lg font-bold">
-                                {isEditing ? 'Edit Tag' : 'Create New Tag'}
-                            </h3>
-                            <button onClick={handleCloseModal} className="text-gray-400 hover:text-gray-600">&times;</button>
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="bg-white dark:bg-gray-900 rounded-2xl border dark:border-gray-800 shadow-xl w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-200">
+                        <div className="flex items-center justify-between px-6 py-4 border-b dark:border-gray-800">
+                            <h2 className="text-lg font-semibold dark:text-white">{isEditing ? 'Edit Tag' : 'Create New Tag'}</h2>
+                            <button
+                                onClick={handleCloseModal}
+                                className="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-gray-800 text-slate-500 dark:text-gray-400 transition-colors"
+                            >
+                                <X className="h-5 w-5" />
+                            </button>
                         </div>
-                        <div className="p-6">
-                            <form onSubmit={handleSubmit}>
-                                <div className="mb-4">
-                                    <label className="block font-semibold mb-2 text-sm">Tag Name *</label>
-                                    <input
-                                        type="text"
-                                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
-                                        required
-                                        placeholder="Enter tag name"
-                                        value={currentTag.name}
-                                        onChange={(e) => setCurrentTag({ ...currentTag, name: e.target.value })}
-                                    />
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block font-semibold mb-2 text-sm">Slug *</label>
-                                    <input
-                                        type="text"
-                                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
-                                        required
-                                        placeholder="tag-slug"
-                                        value={currentTag.slug}
-                                        onChange={(e) => setCurrentTag({ ...currentTag, slug: e.target.value })}
-                                    />
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block font-semibold mb-2 text-sm">Description</label>
-                                    <textarea
-                                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
-                                        rows={3}
-                                        placeholder="Optional description"
-                                        value={currentTag.description}
-                                        onChange={(e) => setCurrentTag({ ...currentTag, description: e.target.value })}
-                                    ></textarea>
-                                </div>
-                                <div className="mb-4">
-                                    <label className="block font-semibold mb-2 text-sm">Tag Color</label>
-                                    <div className="flex flex-wrap gap-2">
-                                        {colors.map(color => (
-                                            <div
-                                                key={color}
-                                                className={`w-8 h-8 rounded-full cursor-pointer transition-transform hover:scale-110 ${color} ${currentTag.color === color ? 'ring-2 ring-offset-2 ring-gray-400' : ''}`}
-                                                onClick={() => setCurrentTag({ ...currentTag, color })}
-                                            ></div>
-                                        ))}
-                                    </div>
-                                </div>
-                                <div className="mb-6">
-                                    <label className="flex items-center gap-2 font-semibold cursor-pointer">
-                                        <input
-                                            type="checkbox"
-                                            className="w-4 h-4 text-primary rounded focus:ring-primary"
-                                            checked={currentTag.status}
-                                            onChange={(e) => setCurrentTag({ ...currentTag, status: e.target.checked })}
-                                        />
-                                        Active
-                                    </label>
-                                </div>
 
-                                <div className="flex justify-end gap-3 pt-4 border-t">
-                                    <button type="button" className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-lg font-semibold transition-colors" onClick={handleCloseModal}>Cancel</button>
-                                    <button type="submit" className="px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-colors">
-                                        {isEditing ? 'Update Tag' : 'Create Tag'}
-                                    </button>
+                        <form className="p-6 space-y-4" onSubmit={handleSubmit}>
+                            <div className="space-y-1">
+                                <label className="text-xs font-medium text-slate-700 dark:text-gray-300">Tag Name *</label>
+                                <input
+                                    type="text"
+                                    className="w-full px-3 py-2 text-sm border dark:border-gray-800 rounded-lg bg-white dark:bg-gray-950 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary transition-all shadow-sm"
+                                    required
+                                    placeholder="Enter tag name"
+                                    value={currentTag.name}
+                                    onChange={(e) => setCurrentTag({ ...currentTag, name: e.target.value })}
+                                />
+                            </div>
+
+                            <div className="space-y-1">
+                                <label className="text-xs font-medium text-slate-700 dark:text-gray-300">Slug *</label>
+                                <input
+                                    type="text"
+                                    className="w-full px-3 py-2 text-sm border dark:border-gray-800 rounded-lg bg-white dark:bg-gray-950 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary transition-all shadow-sm"
+                                    required
+                                    placeholder="tag-slug"
+                                    value={currentTag.slug}
+                                    onChange={(e) => setCurrentTag({ ...currentTag, slug: e.target.value })}
+                                />
+                            </div>
+
+                            <div className="space-y-1">
+                                <label className="text-xs font-medium text-slate-700 dark:text-gray-300">Description</label>
+                                <textarea
+                                    className="w-full px-3 py-2 text-sm border dark:border-gray-800 rounded-lg bg-white dark:bg-gray-950 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary transition-all shadow-sm"
+                                    rows={3}
+                                    placeholder="Optional description"
+                                    value={currentTag.description}
+                                    onChange={(e) => setCurrentTag({ ...currentTag, description: e.target.value })}
+                                ></textarea>
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-xs font-medium text-slate-700 dark:text-gray-300">Tag Color</label>
+                                <div className="flex flex-wrap gap-2">
+                                    {colors.map(color => (
+                                        <button
+                                            key={color}
+                                            type="button"
+                                            className={`w-7 h-7 rounded-full transition-transform hover:scale-110 shadow-sm ${color} ${currentTag.color === color ? 'ring-2 ring-primary ring-offset-2 dark:ring-offset-gray-900' : ''}`}
+                                            onClick={() => setCurrentTag({ ...currentTag, color })}
+                                        />
+                                    ))}
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+
+                            <div className="flex items-center gap-3 py-1">
+                                <label className="relative inline-flex items-center cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        className="sr-only peer"
+                                        checked={currentTag.status}
+                                        onChange={(e) => setCurrentTag({ ...currentTag, status: e.target.checked })}
+                                    />
+                                    <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-600 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                </label>
+                                <span className="text-xs font-medium text-slate-600 dark:text-gray-400">Active</span>
+                            </div>
+
+                            <div className="pt-2 flex items-center gap-3">
+                                <button
+                                    type="button"
+                                    onClick={handleCloseModal}
+                                    className="flex-1 px-4 py-2 text-sm font-medium rounded-lg border dark:border-gray-800 text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-800 transition-all"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="flex-1 px-4 py-2 text-sm font-medium rounded-lg bg-primary text-white hover:bg-primary-dark shadow-sm transition-all"
+                                >
+                                    {isEditing ? 'Update Tag' : 'Create Tag'}
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             )}
+
 
             {/* Notification Toast */}
             {notification && (

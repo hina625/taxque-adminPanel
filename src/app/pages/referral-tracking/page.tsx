@@ -1,502 +1,334 @@
-"use client";
+'use client';
 
 import React, { useState } from 'react';
 import {
     MagnifyingGlass,
     Funnel,
-    ArrowsClockwise,
     DownloadSimple,
-    Plus,
-    TrendUp,
-    CurrencyInr,
-    UserList,
+    CaretLeft,
+    CaretRight,
     Eye,
-    Pencil,
+    ArrowsClockwise,
     X,
     CheckCircle,
+    XCircle,
     Clock,
-    Phone,
-    Envelope,
-    Buildings,
-    WarningCircle
+    LinkSimple,
+    CurrencyDollar,
+    Users,
+    TrendUp,
 } from '@phosphor-icons/react';
 
-// Types
 interface Referral {
     id: string;
+    referrer: { name: string; email: string; initials: string; };
+    referee: { name: string; email: string; initials: string; };
+    program: string;
+    status: 'converted' | 'pending' | 'rejected' | 'expired';
+    reward: string;
     date: string;
-    time: string;
-    partnerName: string;
-    partnerTier: 'Platinum' | 'Gold' | 'Silver' | 'Bronze';
-    partnerInitials: string;
-    customerName: string;
-    customerPhone: string;
-    customerEmail: string;
-    service: string;
-    serviceCategory: string;
-    value: number;
-    commission: number;
-    commissionRate: string;
-    status: 'New lead' | 'Contacted' | 'Qualified' | 'Converted' | 'Rejected';
+    orderId?: string;
 }
 
+const REFERRALS: Referral[] = [
+    { id: 'REF-001', referrer: { name: 'Rahul Verma', email: 'rahul@example.com', initials: 'RV' }, referee: { name: 'Pooja Sharma', email: 'pooja@example.com', initials: 'PS' }, program: 'Public Campaign', status: 'converted', reward: '₹ 500', date: '17 Dec 2025', orderId: 'ORD-8821' },
+    { id: 'REF-002', referrer: { name: 'Anita Desai', email: 'anita@example.com', initials: 'AD' }, referee: { name: 'Karan Mehta', email: 'karan@example.com', initials: 'KM' }, program: 'VIP Partners', status: 'pending', reward: '₹ 750', date: '16 Dec 2025' },
+    { id: 'REF-003', referrer: { name: 'Imran Khan', email: 'imran@example.com', initials: 'IK' }, referee: { name: 'Sneha Patel', email: 'sneha@example.com', initials: 'SP' }, program: 'Public Campaign', status: 'rejected', reward: '—', date: '15 Dec 2025' },
+    { id: 'REF-004', referrer: { name: 'Rahul Verma', email: 'rahul@example.com', initials: 'RV' }, referee: { name: 'Arjun Bose', email: 'arjun@example.com', initials: 'AB' }, program: 'VIP Partners', status: 'converted', reward: '₹ 750', date: '14 Dec 2025', orderId: 'ORD-8803' },
+    { id: 'REF-005', referrer: { name: 'Meera Iyer', email: 'meera@example.com', initials: 'MI' }, referee: { name: 'Vikram Nair', email: 'vikram@example.com', initials: 'VN' }, program: 'Public Campaign', status: 'expired', reward: '—', date: '10 Dec 2025' },
+];
+
+const STATUS_STYLES: Record<string, string> = {
+    converted: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400',
+    pending: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400',
+    rejected: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400',
+    expired: 'bg-slate-100 text-slate-600 dark:bg-gray-700 dark:text-gray-400',
+};
+
+const STATUS_ICONS: Record<string, React.ElementType> = {
+    converted: CheckCircle,
+    pending: Clock,
+    rejected: XCircle,
+    expired: Clock,
+};
+
 export default function ReferralTrackingPage() {
-    // State
-    const [referrals, setReferrals] = useState<Referral[]>([
-        {
-            id: 'REF-001',
-            date: '17 Dec 2025',
-            time: '6:45 PM',
-            partnerName: 'PrimeSoft Solutions',
-            partnerTier: 'Platinum',
-            partnerInitials: 'PS',
-            customerName: 'Rohan Sharma',
-            customerPhone: '+91-98765-00001',
-            customerEmail: 'rohan.sharma@example.com',
-            service: 'GST Registration',
-            serviceCategory: 'Tax Services',
-            value: 5000,
-            commission: 1500,
-            commissionRate: '30%',
-            status: 'Converted'
-        },
-        {
-            id: 'REF-002',
-            date: '16 Dec 2025',
-            time: '4:12 PM',
-            partnerName: 'NorthGate Tech',
-            partnerTier: 'Gold',
-            partnerInitials: 'NG',
-            customerName: 'Meera Iyer',
-            customerPhone: '+91-98765-00002',
-            customerEmail: 'meera.iyer@example.com',
-            service: 'Business Incorporation',
-            serviceCategory: 'Corporate',
-            value: 15000,
-            commission: 3750,
-            commissionRate: '25%',
-            status: 'Qualified'
-        },
-        {
-            id: 'REF-003',
-            date: '15 Dec 2025',
-            time: '11:05 AM',
-            partnerName: 'Elara Alliance',
-            partnerTier: 'Silver',
-            partnerInitials: 'EA',
-            customerName: 'Arjun Patil',
-            customerPhone: '+91-98765-00003',
-            customerEmail: 'arjun.patil@example.com',
-            service: 'Engine Parts – Bulk',
-            serviceCategory: 'Elara Spares',
-            value: 50000,
-            commission: 6600,
-            commissionRate: '13.2%',
-            status: 'New lead'
-        },
-        {
-            id: 'REF-004',
-            date: '15 Dec 2025',
-            time: '9:30 AM',
-            partnerName: 'PrimeSoft Solutions',
-            partnerTier: 'Platinum',
-            partnerInitials: 'PS',
-            customerName: 'Kavya Nair',
-            customerPhone: '+91-98765-00004',
-            customerEmail: 'kavya.nair@example.com',
-            service: 'Income Tax Filing',
-            serviceCategory: 'Tax Services',
-            value: 2500,
-            commission: 563,
-            commissionRate: '22.5%',
-            status: 'Contacted'
-        },
-        {
-            id: 'REF-005',
-            date: '14 Dec 2025',
-            time: '3:18 PM',
-            partnerName: 'TechWave Solutions',
-            partnerTier: 'Bronze',
-            partnerInitials: 'TW',
-            customerName: 'Vikram Singh',
-            customerPhone: '+91-98765-00005',
-            customerEmail: 'vikram.singh@example.com',
-            service: 'TaxQue Professional',
-            serviceCategory: 'SaaS',
-            value: 12000,
-            commission: 3000,
-            commissionRate: 'Not eligible',
-            status: 'Rejected'
-        },
-        {
-            id: 'REF-006',
-            date: '13 Dec 2025',
-            time: '2:45 PM',
-            partnerName: 'Elara Alliance',
-            partnerTier: 'Silver',
-            partnerInitials: 'EA',
-            customerName: 'Priya Deshmukh',
-            customerPhone: '+91-98765-00006',
-            customerEmail: 'priya.d@example.com',
-            service: 'Brake Systems',
-            serviceCategory: 'Elara Spares',
-            value: 15000,
-            commission: 1650,
-            commissionRate: '11%',
-            status: 'Converted'
-        },
-        {
-            id: 'REF-007',
-            date: '12 Dec 2025',
-            time: '5:20 PM',
-            partnerName: 'PrimeSoft Solutions',
-            partnerTier: 'Platinum',
-            partnerInitials: 'PS',
-            customerName: 'Ankit Gupta',
-            customerPhone: '+91-98765-00007',
-            customerEmail: 'ankit.g@example.com',
-            service: 'GST Registration',
-            serviceCategory: 'Tax Services',
-            value: 5000,
-            commission: 1500,
-            commissionRate: '30%',
-            status: 'Qualified'
-        }
-    ]);
-
-    const [activeModal, setActiveModal] = useState<string | null>(null);
-    const [selectedReferral, setSelectedReferral] = useState<Referral | null>(null);
-
-    // Filters
     const [search, setSearch] = useState('');
-    const [statusFilter, setStatusFilter] = useState('');
-    const [partnerFilter, setPartnerFilter] = useState('');
-    const [serviceFilter, setServiceFilter] = useState('');
-    const [dateFilter, setDateFilter] = useState('month');
+    const [statusFilter, setStatusFilter] = useState('all');
+    const [programFilter, setProgramFilter] = useState('all');
+    const [activeModal, setActiveModal] = useState<'viewDetails' | 'updateStatus' | null>(null);
+    const [selectedReferral, setSelectedReferral] = useState<Referral | null>(null);
+    const [newStatus, setNewStatus] = useState<Referral['status']>('pending');
 
-    // Filter Logic
-    const filteredReferrals = referrals.filter(ref => {
-        const matchesSearch = search === '' ||
-            ref.customerName.toLowerCase().includes(search.toLowerCase()) ||
-            ref.partnerName.toLowerCase().includes(search.toLowerCase()) ||
-            ref.id.toLowerCase().includes(search.toLowerCase());
-        const matchesStatus = statusFilter === '' || ref.status === statusFilter;
-        const matchesPartner = partnerFilter === '' || ref.partnerName === partnerFilter; // Simplified
-        const matchesService = serviceFilter === '' || ref.serviceCategory === serviceFilter || ref.service === serviceFilter; // Simplified
-
-        return matchesSearch && matchesStatus && matchesPartner && matchesService;
+    const filtered = REFERRALS.filter(r => {
+        const matchSearch = r.referrer.name.toLowerCase().includes(search.toLowerCase()) ||
+            r.referee.name.toLowerCase().includes(search.toLowerCase()) ||
+            r.id.toLowerCase().includes(search.toLowerCase());
+        const matchStatus = statusFilter === 'all' || r.status === statusFilter;
+        const matchProgram = programFilter === 'all' || r.program === programFilter;
+        return matchSearch && matchStatus && matchProgram;
     });
 
-    const getStatusColor = (status: string) => {
-        switch (status) {
-            case 'New lead': return 'bg-amber-100 text-amber-700';
-            case 'Contacted': return 'bg-sky-100 text-sky-700';
-            case 'Qualified': return 'bg-blue-100 text-blue-700';
-            case 'Converted': return 'bg-emerald-100 text-emerald-700';
-            case 'Rejected': return 'bg-red-100 text-red-700';
-            default: return 'bg-gray-100 text-gray-700';
-        }
-    };
-
-    const closeModal = () => {
-        setActiveModal(null);
-        setSelectedReferral(null);
-    };
-
-    const handleUpdateStatus = (newStatus: string) => {
-        if (selectedReferral) {
-            setReferrals(referrals.map(r => r.id === selectedReferral.id ? { ...r, status: newStatus as any } : r));
-            closeModal();
-        }
-    };
+    const openView = (r: Referral) => { setSelectedReferral(r); setActiveModal('viewDetails'); };
+    const openUpdate = (r: Referral) => { setSelectedReferral(r); setNewStatus(r.status); setActiveModal('updateStatus'); };
+    const closeModal = () => { setActiveModal(null); setSelectedReferral(null); };
 
     return (
-        <div className="min-h-screen bg-slate-50 p-6">
+        <div className="min-h-screen bg-slate-50 dark:bg-gray-950 p-6 transition-colors duration-300">
+
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-900">Referral Tracking</h1>
-                    <p className="mt-1 text-sm text-slate-500">Monitor all partner referrals, track conversion status, and manage commission payouts in real-time.</p>
+                    <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Referral Tracking</h1>
+                    <p className="mt-1 text-sm text-slate-500 dark:text-gray-400">
+                        Monitor individual referral records, review status and manage rewards.
+                    </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
-                    <button className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg border bg-white hover:bg-slate-50 shadow-sm text-slate-700">
-                        <DownloadSimple size={16} /> Export report
-                    </button>
-                    <button className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg bg-teal-700 text-white hover:bg-teal-800 shadow-sm" onClick={() => setActiveModal('addReferral')}>
-                        <Plus size={16} /> Add referral
+                    <button className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-slate-50 dark:hover:bg-gray-700 shadow-sm text-slate-700 dark:text-gray-200 transition-colors">
+                        <DownloadSimple size={16} /> Export CSV
                     </button>
                 </div>
             </div>
 
             {/* Summary Cards */}
             <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
-                <div className="bg-white rounded-xl border shadow-sm p-5">
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wide">Total referrals</p>
-                    <p className="mt-2 text-2xl font-bold text-slate-900">{referrals.length}</p>
-                    <p className="mt-1 text-xs text-emerald-600 flex items-center gap-1"><TrendUp size={12} weight="bold" /> 34 this month</p>
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 transition-colors">
+                    <div className="flex items-start justify-between">
+                        <div>
+                            <p className="text-xs font-medium text-slate-500 dark:text-gray-400 uppercase tracking-wide">Total referrals</p>
+                            <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">3,482</p>
+                        </div>
+                        <div className="h-10 w-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/40 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                            <LinkSimple size={24} weight="bold" />
+                        </div>
+                    </div>
+                    <p className="mt-2 text-xs text-green-600 font-medium">▲ 18.6% vs last month</p>
                 </div>
-                <div className="bg-white rounded-xl border shadow-sm p-5">
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wide">Conversion rate</p>
-                    <p className="mt-2 text-2xl font-bold text-slate-900">62%</p>
-                    <p className="mt-1 text-xs text-emerald-600 flex items-center gap-1"><TrendUp size={12} weight="bold" /> 8% vs last month</p>
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 transition-colors">
+                    <div className="flex items-start justify-between">
+                        <div>
+                            <p className="text-xs font-medium text-slate-500 dark:text-gray-400 uppercase tracking-wide">Converted</p>
+                            <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">1,204</p>
+                        </div>
+                        <div className="h-10 w-10 rounded-lg bg-emerald-50 dark:bg-emerald-900/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                            <CheckCircle size={24} weight="bold" />
+                        </div>
+                    </div>
+                    <p className="mt-2 text-xs text-slate-500 dark:text-gray-400">23.7% conversion rate</p>
                 </div>
-                <div className="bg-white rounded-xl border shadow-sm p-5">
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wide">Total commission</p>
-                    <p className="mt-2 text-2xl font-bold text-slate-900">₹ 4.8L</p>
-                    <p className="mt-1 text-xs text-slate-500">Earned by partners</p>
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 transition-colors">
+                    <div className="flex items-start justify-between">
+                        <div>
+                            <p className="text-xs font-medium text-slate-500 dark:text-gray-400 uppercase tracking-wide">Pending review</p>
+                            <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">284</p>
+                        </div>
+                        <div className="h-10 w-10 rounded-lg bg-amber-50 dark:bg-amber-900/40 flex items-center justify-center text-amber-500">
+                            <Clock size={24} weight="bold" />
+                        </div>
+                    </div>
+                    <p className="mt-2 text-xs text-amber-600 font-medium">Awaiting action</p>
                 </div>
-                <div className="bg-white rounded-xl border shadow-sm p-5">
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wide">Active leads</p>
-                    <p className="mt-2 text-2xl font-bold text-slate-900">{referrals.filter(r => r.status !== 'Converted' && r.status !== 'Rejected').length}</p>
-                    <p className="mt-1 text-xs text-amber-600">In pipeline</p>
+                <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-5 transition-colors">
+                    <div className="flex items-start justify-between">
+                        <div>
+                            <p className="text-xs font-medium text-slate-500 dark:text-gray-400 uppercase tracking-wide">Rewards paid</p>
+                            <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">₹ 6.2L</p>
+                        </div>
+                        <div className="h-10 w-10 rounded-lg bg-sky-50 dark:bg-sky-900/40 flex items-center justify-center text-sky-500">
+                            <CurrencyDollar size={24} weight="bold" />
+                        </div>
+                    </div>
+                    <p className="mt-2 text-xs text-green-600 font-medium">▲ 26.4% growth</p>
                 </div>
             </section>
 
             {/* Filters */}
-            <section className="bg-white rounded-xl border shadow-sm p-4 mb-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-                    <div>
-                        <label className="block text-xs font-medium mb-1">Search</label>
-                        <div className="relative">
-                            <input type="text" placeholder="Customer, partner, email..." className="w-full pl-8 pr-3 py-2 text-xs border rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-teal-500" value={search} onChange={(e) => setSearch(e.target.value)} />
-                            <MagnifyingGlass className="absolute left-2.5 top-2.5 text-slate-400" size={14} />
-                        </div>
+            <section className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm p-4 mb-6 transition-colors">
+                <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex items-center gap-2 flex-1 min-w-[200px] bg-slate-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2">
+                        <MagnifyingGlass size={16} className="text-slate-400 dark:text-gray-400 shrink-0" />
+                        <input
+                            type="text"
+                            placeholder="Search by referrer, referee or ID..."
+                            value={search}
+                            onChange={e => setSearch(e.target.value)}
+                            className="flex-1 bg-transparent border-none outline-none text-sm text-slate-700 dark:text-gray-200 placeholder:text-slate-400 dark:placeholder:text-gray-500"
+                        />
                     </div>
-                    <div>
-                        <label className="block text-xs font-medium mb-1">Status</label>
-                        <select className="w-full px-3 py-2 text-xs border rounded-lg bg-white outline-none" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
-                            <option value="">All statuses</option>
-                            <option value="New lead">New lead</option>
-                            <option value="Contacted">Contacted</option>
-                            <option value="Qualified">Qualified</option>
-                            <option value="Converted">Converted</option>
-                            <option value="Rejected">Rejected</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="block text-xs font-medium mb-1">Partner</label>
-                        <select className="w-full px-3 py-2 text-xs border rounded-lg bg-white outline-none" value={partnerFilter} onChange={(e) => setPartnerFilter(e.target.value)}>
-                            <option value="">All partners</option>
-                            <option value="PrimeSoft Solutions">PrimeSoft Solutions</option>
-                            <option value="NorthGate Tech">NorthGate Tech</option>
-                            <option value="Elara Alliance">Elara Alliance</option>
-                            <option value="TechWave Solutions">TechWave Solutions</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="block text-xs font-medium mb-1">Service</label>
-                        <select className="w-full px-3 py-2 text-xs border rounded-lg bg-white outline-none" value={serviceFilter} onChange={(e) => setServiceFilter(e.target.value)}>
-                            <option value="">All services</option>
-                            <option value="GST Registration">GST Registration</option>
-                            <option value="Income Tax Filing">Income Tax Filing</option>
-                            <option value="Business Incorporation">Business Incorporation</option>
-                            <option value="Elara Spares">Elara Spares</option>
-                            <option value="SaaS">TaxQue Subscription</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label className="block text-xs font-medium mb-1">Date range</label>
-                        <select className="w-full px-3 py-2 text-xs border rounded-lg bg-white outline-none" value={dateFilter} onChange={(e) => setDateFilter(e.target.value)}>
-                            <option value="all">All time</option>
-                            <option value="today">Today</option>
-                            <option value="week">Last 7 days</option>
-                            <option value="month">This month</option>
-                            <option value="quarter">This quarter</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="mt-3 flex items-center justify-between">
-                    <button className="text-xs text-slate-500 hover:text-teal-600 flex items-center gap-1" onClick={() => { setSearch(''); setStatusFilter(''); setPartnerFilter(''); setServiceFilter(''); setDateFilter('month'); }}>
-                        <X size={12} /> Clear all filters
-                    </button>
-                    <span className="text-xs text-slate-500">
-                        Showing <span className="font-semibold">{filteredReferrals.length}</span> of <span className="font-semibold">{referrals.length}</span> referrals
-                    </span>
+                    <select
+                        value={statusFilter}
+                        onChange={e => setStatusFilter(e.target.value)}
+                        className="text-sm border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+                    >
+                        <option value="all">All Status</option>
+                        <option value="converted">Converted</option>
+                        <option value="pending">Pending</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="expired">Expired</option>
+                    </select>
+                    <select
+                        value={programFilter}
+                        onChange={e => setProgramFilter(e.target.value)}
+                        className="text-sm border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+                    >
+                        <option value="all">All Programs</option>
+                        <option value="Public Campaign">Public Campaign</option>
+                        <option value="VIP Partners">VIP Partners</option>
+                    </select>
                 </div>
             </section>
 
             {/* Referral Table */}
-            <section className="bg-white rounded-xl border shadow-sm overflow-hidden">
-                <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 bg-white">
-                    <div>
-                        <p className="text-sm font-semibold text-slate-900">All Referrals</p>
-                        <p className="text-xs text-slate-500">Complete list of partner referrals with status and commission tracking</p>
-                    </div>
-                    <button className="px-3 py-1.5 rounded-lg border bg-white hover:bg-slate-50 text-xs flex items-center gap-1">
-                        <ArrowsClockwise size={14} /> Refresh
-                    </button>
-                </div>
-
+            <section className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm overflow-hidden transition-colors">
                 <div className="overflow-x-auto">
-                    <table className="min-w-full text-xs sm:text-sm text-left">
-                        <thead className="bg-slate-50 text-[11px] uppercase text-slate-500 font-semibold border-b border-slate-100">
+                    <table className="min-w-full text-sm">
+                        <thead className="bg-slate-50 dark:bg-gray-700/50 text-xs uppercase text-slate-500 dark:text-gray-400 font-semibold">
                             <tr>
-                                <th className="px-4 py-3">Ref ID</th>
-                                <th className="px-4 py-3">Date & time</th>
-                                <th className="px-4 py-3">Partner</th>
-                                <th className="px-4 py-3">Customer details</th>
-                                <th className="px-4 py-3">Service</th>
-                                <th className="px-4 py-3">Value (₹)</th>
-                                <th className="px-4 py-3">Commission (₹)</th>
-                                <th className="px-4 py-3">Status</th>
+                                <th className="px-4 py-3 text-left">ID</th>
+                                <th className="px-4 py-3 text-left">Referrer</th>
+                                <th className="px-4 py-3 text-left">Referee</th>
+                                <th className="px-4 py-3 text-left">Program</th>
+                                <th className="px-4 py-3 text-left">Status</th>
+                                <th className="px-4 py-3 text-left">Reward</th>
+                                <th className="px-4 py-3 text-left">Date</th>
                                 <th className="px-4 py-3 text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-100">
-                            {filteredReferrals.map((ref) => (
-                                <tr key={ref.id} className="hover:bg-slate-50 transition-colors">
-                                    <td className="px-4 py-3">
-                                        <span className="font-mono text-xs font-semibold text-teal-700">{ref.id}</span>
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <p className="text-xs font-medium text-slate-900">{ref.date}</p>
-                                        <p className="text-[11px] text-slate-500">{ref.time}</p>
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <div className="flex items-center gap-2">
-                                            <span className="h-6 w-6 rounded-full bg-teal-50 text-teal-700 flex items-center justify-center text-[10px] font-bold">
-                                                {ref.partnerInitials}
-                                            </span>
-                                            <div>
-                                                <p className="text-xs font-medium text-slate-900">{ref.partnerName}</p>
-                                                <p className="text-[11px] text-slate-500">{ref.partnerTier}</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <p className="text-xs font-medium text-slate-900">{ref.customerName}</p>
-                                        <p className="text-[11px] text-slate-500">{ref.customerPhone}</p>
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <p className="text-xs font-medium text-slate-900">{ref.service}</p>
-                                        <p className="text-[11px] text-slate-500">{ref.serviceCategory}</p>
-                                    </td>
-                                    <td className="px-4 py-3 font-medium text-slate-900">
-                                        ₹ {ref.value.toLocaleString()}
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <span className={`font-medium ${ref.commissionRate === 'Not eligible' ? 'text-slate-400 line-through' : 'text-emerald-600'}`}>
-                                            ₹ {ref.commission.toLocaleString()}
-                                        </span>
-                                        <p className="text-[11px] text-slate-500">{ref.commissionRate} {ref.commissionRate !== 'Not eligible' && `(${ref.partnerTier})`}</p>
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <span className={`inline-flex px-2 py-0.5 text-[11px] rounded-full font-medium ${getStatusColor(ref.status)}`}>
-                                            {ref.status}
-                                        </span>
-                                    </td>
-                                    <td className="px-4 py-3 text-right">
-                                        <div className="flex items-center justify-end gap-2">
-                                            <button className="text-slate-400 hover:text-teal-600" onClick={() => { setSelectedReferral(ref); setActiveModal('viewDetails'); }} title="View">
-                                                <Eye size={18} />
-                                            </button>
-                                            <button className="text-slate-400 hover:text-teal-600" onClick={() => { setSelectedReferral(ref); setActiveModal('updateStatus'); }} title="Update">
-                                                <Pencil size={18} />
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                            {filteredReferrals.length === 0 && (
+                        <tbody className="divide-y divide-slate-100 dark:divide-gray-700">
+                            {filtered.length === 0 ? (
                                 <tr>
-                                    <td colSpan={9} className="px-4 py-8 text-center text-slate-500">
+                                    <td colSpan={8} className="py-16 text-center text-slate-500 dark:text-gray-400 text-sm">
                                         No referrals found matching your filters.
                                     </td>
                                 </tr>
-                            )}
+                            ) : filtered.map(r => {
+                                const StatusIcon = STATUS_ICONS[r.status];
+                                return (
+                                    <tr key={r.id} className="hover:bg-slate-50 dark:hover:bg-gray-700/50 transition-colors">
+                                        <td className="px-4 py-3 font-mono text-xs font-semibold text-slate-700 dark:text-gray-300">{r.id}</td>
+                                        <td className="px-4 py-3">
+                                            <div className="flex items-center gap-2">
+                                                <span className="h-8 w-8 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-400 flex items-center justify-center text-xs font-bold shrink-0">{r.referrer.initials}</span>
+                                                <div>
+                                                    <p className="text-sm font-medium text-slate-900 dark:text-white">{r.referrer.name}</p>
+                                                    <p className="text-xs text-slate-500 dark:text-gray-400">{r.referrer.email}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-4 py-3">
+                                            <div className="flex items-center gap-2">
+                                                <span className="h-8 w-8 rounded-full bg-slate-100 dark:bg-gray-700 text-slate-600 dark:text-gray-300 flex items-center justify-center text-xs font-bold shrink-0">{r.referee.initials}</span>
+                                                <div>
+                                                    <p className="text-sm font-medium text-slate-900 dark:text-white">{r.referee.name}</p>
+                                                    <p className="text-xs text-slate-500 dark:text-gray-400">{r.referee.email}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-4 py-3 text-xs text-slate-600 dark:text-gray-300">{r.program}</td>
+                                        <td className="px-4 py-3">
+                                            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold capitalize ${STATUS_STYLES[r.status]}`}>
+                                                <StatusIcon size={12} weight="bold" /> {r.status}
+                                            </span>
+                                        </td>
+                                        <td className="px-4 py-3 text-sm font-semibold text-emerald-600">{r.reward}</td>
+                                        <td className="px-4 py-3 text-xs text-slate-500 dark:text-gray-400">{r.date}</td>
+                                        <td className="px-4 py-3">
+                                            <div className="flex items-center justify-end gap-2">
+                                                <button onClick={() => openView(r)} className="p-1.5 rounded-lg text-slate-400 dark:text-gray-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/40 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" title="View details">
+                                                    <Eye size={16} />
+                                                </button>
+                                                <button onClick={() => openUpdate(r)} className="p-1.5 rounded-lg text-slate-400 dark:text-gray-500 hover:bg-amber-50 dark:hover:bg-amber-900/40 hover:text-amber-600 dark:hover:text-amber-400 transition-colors" title="Update status">
+                                                    <ArrowsClockwise size={16} />
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
+                </div>
+
+                {/* Pagination */}
+                <div className="flex items-center justify-between px-4 py-3 border-t border-slate-200 dark:border-gray-700 text-xs text-slate-500 dark:text-gray-400">
+                    <span>Showing {filtered.length} of {REFERRALS.length} referrals</span>
+                    <div className="flex items-center gap-1">
+                        <button className="p-1.5 rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600 transition-colors">
+                            <CaretLeft size={14} />
+                        </button>
+                        <button className="px-2.5 py-1 rounded bg-indigo-600 text-white text-xs">1</button>
+                        <button className="px-2.5 py-1 rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600 transition-colors">2</button>
+                        <button className="p-1.5 rounded border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600 transition-colors">
+                            <CaretRight size={14} />
+                        </button>
+                    </div>
                 </div>
             </section>
 
             {/* MODAL: View Referral Details */}
             {activeModal === 'viewDetails' && selectedReferral && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
-                    <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-                        <div className="flex items-center justify-between px-6 py-4 border-b">
+                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transition-colors">
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-gray-700">
                             <div>
-                                <h3 className="text-lg font-bold text-slate-900">Referral Details</h3>
-                                <p className="text-sm text-slate-500">{selectedReferral.id}</p>
+                                <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Referral Details</h2>
+                                <p className="text-xs text-slate-500 dark:text-gray-400 mt-0.5">{selectedReferral.id}</p>
                             </div>
-                            <button onClick={closeModal} className="text-slate-400 hover:text-slate-600"><X size={24} /></button>
+                            <button onClick={closeModal} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-gray-700 text-slate-500 dark:text-gray-400 transition-colors">
+                                <X size={20} />
+                            </button>
                         </div>
                         <div className="p-6 space-y-6">
-                            {/* Partner & Customer Info */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="rounded-xl bg-slate-50 p-4 border border-slate-100">
-                                    <p className="text-xs font-bold text-slate-500 uppercase mb-3 flex items-center gap-2"><Buildings size={14} /> Partner Information</p>
-                                    <div className="space-y-2 text-sm">
-                                        <p className="flex justify-between"><span className="text-slate-500">Name:</span> <span className="font-medium text-slate-900">{selectedReferral.partnerName}</span></p>
-                                        <p className="flex justify-between"><span className="text-slate-500">Tier:</span> <span className="font-medium text-slate-900">{selectedReferral.partnerTier}</span></p>
-                                        <p className="flex justify-between"><span className="text-slate-500">ID:</span> <span className="font-medium text-slate-900">PART-8892</span></p>
+                            <div className="grid grid-cols-2 gap-6">
+                                <div className="bg-slate-50 dark:bg-gray-700 rounded-lg p-4 transition-colors">
+                                    <h3 className="text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wide mb-3">Referrer</h3>
+                                    <div className="flex items-center gap-3">
+                                        <span className="h-10 w-10 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-400 flex items-center justify-center text-sm font-bold">{selectedReferral.referrer.initials}</span>
+                                        <div>
+                                            <p className="font-semibold text-slate-900 dark:text-white">{selectedReferral.referrer.name}</p>
+                                            <p className="text-xs text-slate-500 dark:text-gray-400">{selectedReferral.referrer.email}</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="rounded-xl bg-slate-50 p-4 border border-slate-100">
-                                    <p className="text-xs font-bold text-slate-500 uppercase mb-3 flex items-center gap-2"><UserList size={14} /> Customer Information</p>
-                                    <div className="space-y-2 text-sm">
-                                        <p className="flex justify-between"><span className="text-slate-500">Name:</span> <span className="font-medium text-slate-900">{selectedReferral.customerName}</span></p>
-                                        <p className="flex justify-between"><span className="text-slate-500">Phone:</span> <span className="font-medium text-slate-900">{selectedReferral.customerPhone}</span></p>
-                                        <p className="flex justify-between"><span className="text-slate-500">Email:</span> <span className="font-medium text-slate-900">{selectedReferral.customerEmail}</span></p>
+                                <div className="bg-slate-50 dark:bg-gray-700 rounded-lg p-4 transition-colors">
+                                    <h3 className="text-xs font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wide mb-3">Referee</h3>
+                                    <div className="flex items-center gap-3">
+                                        <span className="h-10 w-10 rounded-full bg-slate-100 dark:bg-gray-600 text-slate-700 dark:text-gray-300 flex items-center justify-center text-sm font-bold">{selectedReferral.referee.initials}</span>
+                                        <div>
+                                            <p className="font-semibold text-slate-900 dark:text-white">{selectedReferral.referee.name}</p>
+                                            <p className="text-xs text-slate-500 dark:text-gray-400">{selectedReferral.referee.email}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Service & Commission */}
-                            <div className="rounded-xl bg-teal-50 border border-teal-100 p-4">
-                                <div className="grid grid-cols-3 gap-4 text-center divide-x divide-teal-200/50">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                {[
+                                    { label: 'Status', value: selectedReferral.status },
+                                    { label: 'Program', value: selectedReferral.program },
+                                    { label: 'Reward', value: selectedReferral.reward },
+                                    { label: 'Date', value: selectedReferral.date },
+                                ].map((item, i) => (
+                                    <div key={i} className="bg-slate-50 dark:bg-gray-700 rounded-lg p-3 transition-colors">
+                                        <p className="text-xs text-slate-500 dark:text-gray-400 font-medium uppercase tracking-wide mb-1">{item.label}</p>
+                                        <p className="font-semibold text-slate-900 dark:text-white capitalize">{item.value}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            {selectedReferral.orderId && (
+                                <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-lg p-4 flex items-center gap-3 transition-colors">
+                                    <CheckCircle size={20} className="text-emerald-600 dark:text-emerald-400 shrink-0" weight="fill" />
                                     <div>
-                                        <p className="text-xs text-teal-600 mb-1">Service</p>
-                                        <p className="font-semibold text-teal-900">{selectedReferral.service}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs text-teal-600 mb-1">Value</p>
-                                        <p className="font-semibold text-teal-900">₹ {selectedReferral.value.toLocaleString()}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-xs text-teal-600 mb-1">Commission</p>
-                                        <p className="font-bold text-emerald-600 text-lg">₹ {selectedReferral.commission.toLocaleString()}</p>
+                                        <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-300">Order Linked</p>
+                                        <p className="text-xs text-emerald-600 dark:text-emerald-400">{selectedReferral.orderId}</p>
                                     </div>
                                 </div>
-                            </div>
-
-                            {/* Timeline */}
-                            <div>
-                                <p className="text-sm font-bold text-slate-900 mb-4">Activity Timeline</p>
-                                <div className="space-y-0 relative">
-                                    {/* Timeline items (mocked for demo based on status) */}
-                                    <div className="flex gap-4 group">
-                                        <div className="flex flex-col items-center">
-                                            <div className="w-3 h-3 rounded-full bg-emerald-500 ring-4 ring-emerald-50"></div>
-                                            <div className="w-0.5 h-full bg-slate-100 group-last:hidden min-h-[40px]"></div>
-                                        </div>
-                                        <div className="pb-6">
-                                            <p className="text-sm font-medium text-slate-900">Referral converted</p>
-                                            <p className="text-xs text-slate-500">{selectedReferral.date}, {selectedReferral.time}</p>
-                                            <p className="text-xs text-slate-600 mt-1">Customer purchased service. Commission approved.</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-4 group">
-                                        <div className="flex flex-col items-center">
-                                            <div className="w-3 h-3 rounded-full bg-blue-500 ring-4 ring-blue-50"></div>
-                                            <div className="w-0.5 h-full bg-slate-100 group-last:hidden min-h-[40px]"></div>
-                                        </div>
-                                        <div className="pb-6">
-                                            <p className="text-sm font-medium text-slate-900">Lead qualified</p>
-                                            <p className="text-xs text-slate-500">17 Dec 2025, 2:30 PM</p>
-                                            <p className="text-xs text-slate-600 mt-1">Customer expressed interest. Quote sent.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <p className="text-sm font-bold text-slate-900 mb-2">Notes</p>
-                                <textarea className="w-full border rounded-lg p-3 text-sm focus:ring-2 focus:ring-teal-500 outline-none" rows={3} placeholder="Add internal notes..."></textarea>
-                            </div>
+                            )}
                         </div>
-                        <div className="px-6 py-4 border-t bg-gray-50 rounded-b-xl flex justify-end gap-3">
-                            <button onClick={closeModal} className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm font-medium">Close</button>
-                            <button className="px-4 py-2 bg-teal-700 text-white rounded-lg hover:bg-teal-800 text-sm font-medium">Save Notes</button>
+                        <div className="px-6 py-4 border-t border-slate-200 dark:border-gray-700 flex justify-end">
+                            <button onClick={closeModal} className="px-5 py-2 rounded-lg bg-slate-100 dark:bg-gray-700 text-slate-700 dark:text-gray-200 hover:bg-slate-200 dark:hover:bg-gray-600 text-sm font-medium transition-colors">
+                                Close
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -505,60 +337,38 @@ export default function ReferralTrackingPage() {
             {/* MODAL: Update Status */}
             {activeModal === 'updateStatus' && selectedReferral && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
-                    <div className="bg-white rounded-xl shadow-xl w-full max-w-md">
-                        <div className="flex items-center justify-between px-6 py-4 border-b">
-                            <div>
-                                <h3 className="text-lg font-bold text-slate-900">Update Status</h3>
-                                <p className="text-sm text-slate-500">{selectedReferral.id}</p>
-                            </div>
-                            <button onClick={closeModal} className="text-slate-400 hover:text-slate-600"><X size={24} /></button>
+                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md transition-colors">
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-gray-700">
+                            <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Update Status</h2>
+                            <button onClick={closeModal} className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-gray-700 text-slate-500 dark:text-gray-400 transition-colors">
+                                <X size={20} />
+                            </button>
                         </div>
                         <div className="p-6 space-y-4">
+                            <p className="text-sm text-slate-600 dark:text-gray-300">
+                                Update status for referral <span className="font-semibold text-slate-900 dark:text-white">{selectedReferral.id}</span>.
+                            </p>
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Current Status</label>
-                                <div className="px-3 py-2 bg-slate-100 rounded-lg text-sm text-slate-700">{selectedReferral.status}</div>
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">New Status</label>
-                                <select className="w-full px-3 py-2 border rounded-lg text-sm bg-white outline-none focus:ring-2 focus:ring-teal-500" onChange={(e) => handleUpdateStatus(e.target.value)}>
-                                    <option>New lead</option>
-                                    <option>Contacted</option>
-                                    <option>Qualified</option>
-                                    <option>Converted</option>
-                                    <option>Rejected</option>
+                                <label className="block text-xs font-bold text-slate-500 dark:text-gray-400 uppercase mb-2">New Status</label>
+                                <select
+                                    value={newStatus}
+                                    onChange={e => setNewStatus(e.target.value as Referral['status'])}
+                                    className="w-full text-sm border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 dark:text-gray-200 outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+                                >
+                                    <option value="pending">Pending</option>
+                                    <option value="converted">Converted</option>
+                                    <option value="rejected">Rejected</option>
+                                    <option value="expired">Expired</option>
                                 </select>
                             </div>
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Comments</label>
-                                <textarea className="w-full border rounded-lg p-3 text-sm focus:ring-2 focus:ring-teal-500 outline-none" rows={3} placeholder="Reason for status change..."></textarea>
-                            </div>
-                            <div className="bg-amber-50 rounded-lg p-3 flex gap-3 text-xs text-amber-800">
-                                <WarningCircle size={20} className="shrink-0" />
-                                <p>Marking as "Converted" will approve commission payout. Marking as "Rejected" will cancel commission eligibility.</p>
-                            </div>
                         </div>
-                        <div className="px-6 py-4 border-t bg-gray-50 rounded-b-xl flex justify-end gap-3">
-                            <button onClick={closeModal} className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm font-medium">Cancel</button>
-                            <button className="px-4 py-2 bg-teal-700 text-white rounded-lg hover:bg-teal-800 text-sm font-medium">Update Status</button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* MODAL: Add Referral (Placeholder) */}
-            {activeModal === 'addReferral' && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
-                    <div className="bg-white rounded-xl shadow-xl w-full max-w-lg">
-                        <div className="flex items-center justify-between px-6 py-4 border-b">
-                            <h3 className="text-lg font-bold text-slate-900">Add New Referral</h3>
-                            <button onClick={closeModal} className="text-slate-400 hover:text-slate-600"><X size={24} /></button>
-                        </div>
-                        <div className="p-6">
-                            <p className="text-sm text-slate-500">Form implementation placeholder...</p>
-                        </div>
-                        <div className="px-6 py-4 border-t bg-gray-50 rounded-b-xl flex justify-end gap-3">
-                            <button onClick={closeModal} className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm font-medium">Cancel</button>
-                            <button onClick={closeModal} className="px-4 py-2 bg-teal-700 text-white rounded-lg hover:bg-teal-800 text-sm font-medium">Add</button>
+                        <div className="px-6 py-4 border-t border-slate-200 dark:border-gray-700 flex gap-3 justify-end">
+                            <button onClick={closeModal} className="px-5 py-2 rounded-lg bg-slate-100 dark:bg-gray-700 text-slate-700 dark:text-gray-200 hover:bg-slate-200 dark:hover:bg-gray-600 text-sm font-medium transition-colors">
+                                Cancel
+                            </button>
+                            <button onClick={closeModal} className="px-5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium transition-colors">
+                                Save Changes
+                            </button>
                         </div>
                     </div>
                 </div>

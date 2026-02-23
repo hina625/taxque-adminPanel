@@ -58,22 +58,22 @@ export default function CreateBlogPostPage() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 p-4 lg:p-8">
+        <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-4 lg:p-8 transition-colors duration-300">
             <div className="max-w-7xl mx-auto">
 
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                     <div>
-                        <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                        <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                             <FileEdit className="w-6 h-6 text-indigo-600" /> Create New Blog Post
                         </h1>
-                        <p className="text-slate-500 mt-1">Create and publish engaging blog content with SEO optimization</p>
+                        <p className="text-slate-500 dark:text-gray-400 mt-1">Create and publish engaging blog content with SEO optimization</p>
                     </div>
                     <div className="flex gap-3">
-                        <button className="px-4 py-2 border border-slate-300 rounded-lg text-slate-700 font-medium hover:bg-white transition-colors">
+                        <button className="px-4 py-2 border border-slate-300 dark:border-gray-700 rounded-lg text-slate-700 dark:text-gray-300 font-medium bg-white dark:bg-gray-800 hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors">
                             <Eye className="w-4 h-4 inline-block mr-2" /> Preview
                         </button>
-                        <button className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors shadow-sm">
+                        <button className="px-6 py-2 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg font-medium hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors shadow-sm">
                             <Save className="w-4 h-4 inline-block mr-2" /> Publish
                         </button>
                     </div>
@@ -84,68 +84,68 @@ export default function CreateBlogPostPage() {
                     {/* Left Column: Main Content */}
                     <div className="lg:col-span-2 space-y-8">
                         {/* Post Information */}
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                            <div className="px-6 py-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+                        <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm overflow-hidden transition-colors">
+                            <div className="px-6 py-4 border-b border-slate-200 dark:border-gray-700 bg-slate-50 dark:bg-gray-800/50 flex items-center justify-between">
                                 <div className="flex items-center gap-2">
                                     <Info className="w-5 h-5 text-indigo-600" />
-                                    <h3 className="font-semibold text-slate-800">Post Information</h3>
+                                    <h3 className="font-semibold text-slate-800 dark:text-white">Post Information</h3>
                                 </div>
-                                <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 text-slate-600">Draft</span>
+                                <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 dark:bg-gray-700 text-slate-600 dark:text-gray-300">Draft</span>
                             </div>
                             <div className="p-6 space-y-6">
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-semibold text-slate-700">Post Title *</label>
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300">Post Title *</label>
                                     <input
                                         type="text"
                                         name="title"
                                         value={formData.title}
                                         onChange={handleInputChange}
                                         placeholder="Enter a compelling blog post title"
-                                        className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+                                        className="w-full px-4 py-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                                     />
-                                    <div className="text-right text-xs text-slate-400">{formData.title.length}/100 characters</div>
+                                    <div className="text-right text-xs text-slate-400 dark:text-gray-500">{formData.title.length}/100 characters</div>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-semibold text-slate-700">URL Slug *</label>
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300">URL Slug *</label>
                                     <div className="flex items-center">
-                                        <span className="bg-slate-100 border border-r-0 border-slate-300 text-slate-500 px-3 py-2 rounded-l-lg text-sm">/blog/</span>
+                                        <span className="bg-slate-100 dark:bg-gray-800 border border-r-0 border-slate-300 dark:border-gray-700 text-slate-500 dark:text-gray-400 px-3 py-2 rounded-l-lg text-sm transition-colors">/blog/</span>
                                         <input
                                             type="text"
                                             name="slug"
                                             value={formData.slug}
                                             onChange={handleInputChange}
                                             placeholder="auto-generated-slug"
-                                            className="flex-1 px-4 py-2 border border-slate-300 rounded-r-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+                                            className="flex-1 px-4 py-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-r-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-semibold text-slate-700">Excerpt / Short Description</label>
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300">Excerpt / Short Description</label>
                                     <textarea
                                         name="excerpt"
                                         value={formData.excerpt}
                                         onChange={handleInputChange}
                                         rows={3}
                                         placeholder="Brief summary of your blog post (displayed in listings)"
-                                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all resize-none"
+                                        className="w-full px-4 py-3 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all resize-none"
                                     ></textarea>
-                                    <div className="text-right text-xs text-slate-400">{formData.excerpt.length}/200 characters</div>
+                                    <div className="text-right text-xs text-slate-400 dark:text-gray-500">{formData.excerpt.length}/200 characters</div>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-semibold text-slate-700">Content *</label>
-                                    <div className="border border-slate-300 rounded-lg overflow-hidden">
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300">Content *</label>
+                                    <div className="border border-slate-300 dark:border-gray-700 rounded-lg overflow-hidden transition-colors">
                                         {/* Mock Toolbar */}
-                                        <div className="bg-slate-50 border-b border-slate-300 px-3 py-2 flex items-center gap-2 text-slate-600">
-                                            <button className="p-1.5 hover:bg-slate-200 rounded font-bold">B</button>
-                                            <button className="p-1.5 hover:bg-slate-200 rounded italic">I</button>
-                                            <button className="p-1.5 hover:bg-slate-200 rounded underline">U</button>
-                                            <div className="h-4 w-px bg-slate-300 mx-1"></div>
-                                            <button className="p-1.5 hover:bg-slate-200 rounded">H1</button>
-                                            <button className="p-1.5 hover:bg-slate-200 rounded">H2</button>
-                                            <button className="p-1.5 hover:bg-slate-200 rounded">List</button>
+                                        <div className="bg-slate-50 dark:bg-gray-800 border-b border-slate-300 dark:border-gray-700 px-3 py-2 flex items-center gap-2 text-slate-600 dark:text-gray-300">
+                                            <button className="p-1.5 hover:bg-slate-200 dark:hover:bg-gray-700 rounded font-bold">B</button>
+                                            <button className="p-1.5 hover:bg-slate-200 dark:hover:bg-gray-700 rounded italic">I</button>
+                                            <button className="p-1.5 hover:bg-slate-200 dark:hover:bg-gray-700 rounded underline">U</button>
+                                            <div className="h-4 w-px bg-slate-300 dark:bg-gray-700 mx-1"></div>
+                                            <button className="p-1.5 hover:bg-slate-200 dark:hover:bg-gray-700 rounded transition-colors">H1</button>
+                                            <button className="p-1.5 hover:bg-slate-200 dark:hover:bg-gray-700 rounded transition-colors">H2</button>
+                                            <button className="p-1.5 hover:bg-slate-200 dark:hover:bg-gray-700 rounded transition-colors">List</button>
                                         </div>
                                         <textarea
                                             name="content"
@@ -153,49 +153,49 @@ export default function CreateBlogPostPage() {
                                             onChange={handleInputChange}
                                             rows={15}
                                             placeholder="Write your blog post content here..."
-                                            className="w-full px-4 py-4 border-none focus:ring-0 outline-none resize-vertical min-h-[300px]"
+                                            className="w-full px-4 py-4 border-none bg-white dark:bg-gray-900 text-slate-900 dark:text-white focus:ring-0 outline-none resize-vertical min-h-[300px] transition-colors"
                                         ></textarea>
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-semibold text-slate-700">Featured Image</label>
-                                    <div className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center bg-slate-50 cursor-pointer hover:border-indigo-500 hover:bg-indigo-50 transition-all group">
-                                        <ImageIcon className="w-10 h-10 text-slate-400 mx-auto mb-3 group-hover:text-indigo-500" />
-                                        <p className="text-sm font-medium text-slate-700">Click to upload image</p>
-                                        <p className="text-xs text-slate-500 mt-1">SVG, PNG, JPG or GIF (max. 3MB)</p>
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300">Featured Image</label>
+                                    <div className="border-2 border-dashed border-slate-300 dark:border-gray-700 rounded-lg p-8 text-center bg-slate-50 dark:bg-gray-800/50 cursor-pointer hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/10 transition-all group">
+                                        <ImageIcon className="w-10 h-10 text-slate-400 dark:text-gray-500 mx-auto mb-3 group-hover:text-indigo-500 transition-colors" />
+                                        <p className="text-sm font-medium text-slate-700 dark:text-gray-300">Click to upload image</p>
+                                        <p className="text-xs text-slate-500 dark:text-gray-400 mt-1">SVG, PNG, JPG or GIF (max. 3MB)</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* SEO Settings */}
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden border-l-4 border-l-indigo-600">
-                            <div className="px-6 py-4 border-b border-slate-200 bg-slate-50 flex items-center gap-2">
+                        <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm overflow-hidden border-l-4 border-l-indigo-600 transition-colors">
+                            <div className="px-6 py-4 border-b border-slate-200 dark:border-gray-700 bg-slate-50 dark:bg-gray-800/50 flex items-center gap-2">
                                 <Search className="w-5 h-5 text-indigo-600" />
-                                <h3 className="font-semibold text-slate-800">SEO Optimization</h3>
+                                <h3 className="font-semibold text-slate-800 dark:text-white">SEO Optimization</h3>
                             </div>
                             <div className="p-6 space-y-6">
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-semibold text-slate-700">Meta Title</label>
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300">Meta Title</label>
                                     <input
                                         type="text"
                                         name="metaTitle"
                                         value={formData.metaTitle}
                                         onChange={handleInputChange}
                                         placeholder="Title for search engines"
-                                        className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
+                                        className="w-full px-4 py-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-semibold text-slate-700">Meta Description</label>
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300">Meta Description</label>
                                     <textarea
                                         name="metaDescription"
                                         value={formData.metaDescription}
                                         onChange={handleInputChange}
                                         rows={3}
                                         placeholder="Description for search engines"
-                                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all resize-none"
+                                        className="w-full px-4 py-3 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all resize-none"
                                     ></textarea>
                                 </div>
                             </div>
@@ -205,18 +205,18 @@ export default function CreateBlogPostPage() {
                     {/* Right Column: Settings */}
                     <div className="space-y-8">
                         {/* Publish Settings */}
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                            <div className="px-6 py-4 border-b border-slate-200 bg-slate-50">
-                                <h3 className="font-semibold text-slate-800">Publish Settings</h3>
+                        <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm overflow-hidden transition-colors">
+                            <div className="px-6 py-4 border-b border-slate-200 dark:border-gray-700 bg-slate-50 dark:bg-gray-800/50">
+                                <h3 className="font-semibold text-slate-800 dark:text-white">Publish Settings</h3>
                             </div>
                             <div className="p-6 space-y-4">
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-semibold text-slate-700">Status</label>
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300">Status</label>
                                     <select
                                         name="status"
                                         value={formData.status}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                                        className="w-full px-3 py-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-colors"
                                     >
                                         <option value="draft">Draft</option>
                                         <option value="published">Published</option>
@@ -224,27 +224,27 @@ export default function CreateBlogPostPage() {
                                     </select>
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="block text-sm font-semibold text-slate-700">Visibility</label>
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300">Visibility</label>
                                     <select
                                         name="visibility"
                                         value={formData.visibility}
                                         onChange={handleInputChange}
-                                        className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                                        className="w-full px-3 py-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition-colors"
                                     >
                                         <option value="public">Public</option>
                                         <option value="private">Private</option>
                                         <option value="password">Password Protected</option>
                                     </select>
                                 </div>
-                                <div className="space-y-2 pt-2 border-t border-slate-100">
-                                    <label className="block text-sm font-semibold text-slate-700">Author</label>
-                                    <div className="flex items-center gap-3 p-2 bg-slate-50 rounded-lg border border-slate-200">
-                                        <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xs">
+                                <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-gray-700">
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300">Author</label>
+                                    <div className="flex items-center gap-3 p-2 bg-slate-50 dark:bg-gray-800/50 rounded-lg border border-slate-200 dark:border-gray-700 transition-colors">
+                                        <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center text-indigo-700 dark:text-indigo-400 font-bold text-xs transition-colors">
                                             JD
                                         </div>
                                         <div className="flex-1">
-                                            <p className="text-sm font-medium text-slate-900">John Doe</p>
-                                            <p className="text-xs text-slate-500">Administrator</p>
+                                            <p className="text-sm font-medium text-slate-900 dark:text-white">John Doe</p>
+                                            <p className="text-xs text-slate-500 dark:text-gray-400">Administrator</p>
                                         </div>
                                     </div>
                                 </div>
@@ -252,31 +252,31 @@ export default function CreateBlogPostPage() {
                         </div>
 
                         {/* Categories & Tags */}
-                        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                            <div className="px-6 py-4 border-b border-slate-200 bg-slate-50">
-                                <h3 className="font-semibold text-slate-800">Categories & Tags</h3>
+                        <div className="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm overflow-hidden transition-colors">
+                            <div className="px-6 py-4 border-b border-slate-200 dark:border-gray-700 bg-slate-50 dark:bg-gray-800/50">
+                                <h3 className="font-semibold text-slate-800 dark:text-white">Categories & Tags</h3>
                             </div>
                             <div className="p-6 space-y-6">
                                 <div className="space-y-3">
-                                    <label className="block text-sm font-semibold text-slate-700">Categories</label>
-                                    <div className="max-h-40 overflow-y-auto border border-slate-200 rounded-lg p-3 space-y-2 bg-slate-50">
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300">Categories</label>
+                                    <div className="max-h-40 overflow-y-auto border border-slate-200 dark:border-gray-700 rounded-lg p-3 space-y-2 bg-slate-50 dark:bg-gray-800/30 transition-colors">
                                         {['Technology', 'Business', 'Marketing', 'Design', 'Development'].map(cat => (
                                             <label key={cat} className="flex items-center gap-2 cursor-pointer">
-                                                <input type="checkbox" className="w-4 h-4 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500" />
-                                                <span className="text-sm text-slate-700">{cat}</span>
+                                                <input type="checkbox" className="w-4 h-4 text-indigo-600 dark:text-indigo-500 rounded border-slate-300 dark:border-gray-600 bg-white dark:bg-gray-900 focus:ring-indigo-500" />
+                                                <span className="text-sm text-slate-700 dark:text-gray-300">{cat}</span>
                                             </label>
                                         ))}
                                     </div>
                                 </div>
 
                                 <div className="space-y-3">
-                                    <label className="block text-sm font-semibold text-slate-700">Tags</label>
-                                    <div className="border border-slate-300 rounded-lg p-2 bg-white focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-500">
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-gray-300">Tags</label>
+                                    <div className="border border-slate-300 dark:border-gray-700 rounded-lg p-2 bg-white dark:bg-gray-900 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-500 transition-colors">
                                         <div className="flex flex-wrap gap-2 mb-2">
                                             {formData.tags.map(tag => (
-                                                <span key={tag} className="inline-flex items-center gap-1 px-2 py-1 bg-indigo-50 text-indigo-700 rounded-md text-xs font-medium">
+                                                <span key={tag} className="inline-flex items-center gap-1 px-2 py-1 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 rounded-md text-xs font-medium border border-indigo-100 dark:border-indigo-800/50 transition-colors">
                                                     {tag}
-                                                    <button onClick={() => removeTag(tag)} className="hover:text-indigo-900"><X className="w-3 h-3" /></button>
+                                                    <button onClick={() => removeTag(tag)} className="hover:text-indigo-900 dark:hover:text-indigo-200 transition-colors"><X className="w-3 h-3" /></button>
                                                 </span>
                                             ))}
                                         </div>
@@ -286,7 +286,7 @@ export default function CreateBlogPostPage() {
                                             onChange={(e) => setTagInput(e.target.value)}
                                             onKeyDown={handleTagKeyDown}
                                             placeholder="Add tag and press Enter"
-                                            className="w-full text-sm outline-none"
+                                            className="w-full text-sm outline-none bg-transparent text-slate-900 dark:text-white"
                                         />
                                     </div>
                                 </div>

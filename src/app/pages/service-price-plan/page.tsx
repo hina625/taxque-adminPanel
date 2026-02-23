@@ -135,11 +135,11 @@ export default function ServicePricePlanPage() {
 
     const getBillingBadgeClass = (code: string) => {
         switch (code) {
-            case "monthly": return "bg-indigo-50 text-indigo-700 border-indigo-100";
-            case "half_yearly": return "bg-sky-50 text-sky-700 border-sky-100";
-            case "yearly": return "bg-emerald-50 text-emerald-700 border-emerald-100";
-            case "one_time": return "bg-amber-50 text-amber-700 border-amber-100";
-            default: return "bg-slate-50 text-slate-600 border-slate-200";
+            case "monthly": return "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 border-indigo-100 dark:border-indigo-900/50";
+            case "half_yearly": return "bg-sky-50 dark:bg-sky-900/30 text-sky-700 dark:text-sky-400 border-sky-100 dark:border-sky-900/50";
+            case "yearly": return "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border-emerald-100 dark:border-emerald-900/50";
+            case "one_time": return "bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border-amber-100 dark:border-amber-900/50";
+            default: return "bg-slate-50 dark:bg-gray-800 text-slate-600 dark:text-gray-400 border-slate-200 dark:border-gray-700";
         }
     };
 
@@ -232,20 +232,20 @@ export default function ServicePricePlanPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#f1f5f9] text-slate-900 font-sans p-4 md:p-8">
+        <div className="min-h-screen bg-[#f1f5f9] dark:bg-gray-900 text-slate-900 dark:text-gray-100 font-sans p-4 md:p-8 transition-colors duration-300">
             <div className="max-w-7xl mx-auto space-y-6">
 
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold uppercase tracking-wider mb-2">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase tracking-wider mb-2">
                             <CurrencyInr weight="bold" />
                             Service ↔ Plans
                         </div>
-                        <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900">
+                        <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white">
                             Map Services to Plans
                         </h1>
-                        <p className="mt-1 text-sm text-slate-500">
+                        <p className="mt-1 text-sm text-slate-500 dark:text-gray-400">
                             Configure pricing and plans for each of your services.
                         </p>
                     </div>
@@ -262,10 +262,10 @@ export default function ServicePricePlanPage() {
                 <div className="grid md:grid-cols-[300px_1fr] gap-6 items-start">
 
                     {/* Sidebar: Services */}
-                    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sticky top-6">
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 dark:border-gray-700 shadow-sm p-4 sticky top-6 transition-colors">
                         <div className="flex items-center gap-2 mb-4 px-2">
-                            <ListBullets size={18} className="text-indigo-500" weight="bold" />
-                            <h2 className="text-xs font-bold text-slate-600 uppercase tracking-wider">Services</h2>
+                            <ListBullets size={18} className="text-indigo-500 dark:text-indigo-400" weight="bold" />
+                            <h2 className="text-xs font-bold text-slate-600 dark:text-gray-400 uppercase tracking-wider">Services</h2>
                         </div>
                         <div className="space-y-1">
                             {services.map(s => (
@@ -273,8 +273,8 @@ export default function ServicePricePlanPage() {
                                     key={s.id}
                                     onClick={() => setCurrentServiceId(s.id)}
                                     className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium flex items-center justify-between gap-2 transition-all ${s.id === currentServiceId
-                                            ? 'bg-indigo-50 text-indigo-700 shadow-sm ring-1 ring-indigo-200'
-                                            : 'text-slate-600 hover:bg-slate-50'
+                                        ? 'bg-indigo-50 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 shadow-sm ring-1 ring-indigo-200 dark:ring-indigo-800'
+                                        : 'text-slate-600 dark:text-gray-400 hover:bg-slate-50 dark:hover:bg-gray-700/50'
                                         }`}
                                 >
                                     <span className="truncate">{s.name}</span>
@@ -285,17 +285,17 @@ export default function ServicePricePlanPage() {
                     </div>
 
                     {/* Main: Mappings */}
-                    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden min-h-[500px]">
-                        <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-white">
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 dark:border-gray-700 shadow-sm overflow-hidden min-h-[500px] transition-colors">
+                        <div className="px-6 py-4 border-b border-slate-100 dark:border-gray-700 flex items-center justify-between bg-white dark:bg-gray-800 transition-colors">
                             <div>
-                                <h2 className="text-sm font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
-                                    <Table size={18} className="text-indigo-500" weight="bold" />
-                                    Plans for <span className="text-slate-900">{currentService?.name}</span>
+                                <h2 className="text-sm font-bold text-slate-700 dark:text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                                    <Table size={18} className="text-indigo-500 dark:text-indigo-400" weight="bold" />
+                                    Plans for <span className="text-slate-900 dark:text-white">{currentService?.name}</span>
                                 </h2>
                             </div>
                             <button
                                 onClick={handleAttachPlan}
-                                className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 px-4 py-2 text-xs font-bold text-white transition-colors"
+                                className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 px-4 py-2 text-xs font-bold text-white transition-colors"
                             >
                                 <LinkSimple size={16} weight="bold" />
                                 Attach Plan
@@ -304,7 +304,7 @@ export default function ServicePricePlanPage() {
 
                         <div className="overflow-x-auto">
                             <table className="min-w-full text-left text-sm">
-                                <thead className="bg-slate-50 text-xs text-slate-500 border-b border-slate-200">
+                                <thead className="bg-slate-50 dark:bg-gray-900/50 text-xs text-slate-500 dark:text-gray-400 border-b border-slate-200 dark:border-gray-700 transition-colors">
                                     <tr>
                                         <th className="px-6 py-3 font-semibold">Plan Name</th>
                                         <th className="px-6 py-3 font-semibold text-center">Billing</th>
@@ -316,14 +316,14 @@ export default function ServicePricePlanPage() {
                                         <th className="px-6 py-3 font-semibold text-center">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-slate-100">
+                                <tbody className="divide-y divide-slate-100 dark:divide-gray-700">
                                     {currentMappings.length === 0 ? (
                                         <tr>
-                                            <td colSpan={8} className="px-6 py-12 text-center text-slate-400">
+                                            <td colSpan={8} className="px-6 py-12 text-center text-slate-400 dark:text-gray-500">
                                                 <div className="flex flex-col items-center gap-3">
-                                                    <Tag size={48} className="text-slate-200" />
+                                                    <Tag size={48} className="text-slate-200 dark:text-gray-700" />
                                                     <p>No plans attached to this service yet.</p>
-                                                    <button onClick={handleAttachPlan} className="text-indigo-600 font-semibold text-xs hover:underline">
+                                                    <button onClick={handleAttachPlan} className="text-indigo-600 dark:text-indigo-400 font-semibold text-xs hover:underline">
                                                         Attach a plan now
                                                     </button>
                                                 </div>
@@ -335,10 +335,10 @@ export default function ServicePricePlanPage() {
                                             const total = (Number(m.salePrice) || 0) + (Number(m.govtFee) || 0);
 
                                             return (
-                                                <tr key={m.id} className="hover:bg-slate-50/50 transition-colors">
+                                                <tr key={m.id} className="hover:bg-slate-50/50 dark:hover:bg-gray-700/30 transition-colors">
                                                     <td className="px-6 py-4 align-top">
-                                                        <div className="font-bold text-slate-900">{plan?.name}</div>
-                                                        <div className="text-xs text-slate-500 capitalize">{plan?.status}</div>
+                                                        <div className="font-bold text-slate-900 dark:text-gray-100">{plan?.name}</div>
+                                                        <div className="text-xs text-slate-500 dark:text-gray-400 capitalize">{plan?.status}</div>
                                                     </td>
                                                     <td className="px-6 py-4 align-top text-center">
                                                         <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[10px] font-bold uppercase tracking-wide ${getBillingBadgeClass(m.billing)}`}>
@@ -346,17 +346,17 @@ export default function ServicePricePlanPage() {
                                                             {getBillingLabel(m.billing)}
                                                         </span>
                                                     </td>
-                                                    <td className="px-6 py-4 align-top text-right font-medium text-slate-600">{formatINR(m.salePrice)}</td>
-                                                    <td className="px-6 py-4 align-top text-right text-slate-400 line-through text-xs">{formatINR(m.marketPrice)}</td>
-                                                    <td className="px-6 py-4 align-top text-right text-xs text-slate-500">{formatINR(m.govtFee)}</td>
+                                                    <td className="px-6 py-4 align-top text-right font-medium text-slate-600 dark:text-gray-300">{formatINR(m.salePrice)}</td>
+                                                    <td className="px-6 py-4 align-top text-right text-slate-400 dark:text-gray-500 line-through text-xs">{formatINR(m.marketPrice)}</td>
+                                                    <td className="px-6 py-4 align-top text-right text-xs text-slate-500 dark:text-gray-400">{formatINR(m.govtFee)}</td>
                                                     <td className="px-6 py-4 align-top text-right">
-                                                        <div className="font-bold text-emerald-600">{formatINR(total)}</div>
-                                                        <div className="text-[10px] text-slate-400">Inc. Fees</div>
+                                                        <div className="font-bold text-emerald-600 dark:text-emerald-400">{formatINR(total)}</div>
+                                                        <div className="text-[10px] text-slate-400 dark:text-gray-500">Inc. Fees</div>
                                                     </td>
                                                     <td className="px-6 py-4 align-top">
                                                         <div className="flex flex-wrap gap-1">
                                                             {m.features.map((f, i) => (
-                                                                <span key={i} className="inline-flex items-center px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[10px] border border-slate-200">
+                                                                <span key={i} className="inline-flex items-center px-2 py-0.5 rounded bg-slate-100 dark:bg-gray-700 text-slate-600 dark:text-gray-300 text-[10px] border border-slate-200 dark:border-gray-600 transition-colors">
                                                                     {f}
                                                                 </span>
                                                             ))}
@@ -366,14 +366,14 @@ export default function ServicePricePlanPage() {
                                                         <div className="flex items-center justify-center gap-2">
                                                             <button
                                                                 onClick={() => handleEditMapping(m)}
-                                                                className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+                                                                className="p-2 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-lg transition-colors"
                                                                 title="Edit"
                                                             >
                                                                 <PencilSimple size={16} weight="bold" />
                                                             </button>
                                                             <button
                                                                 onClick={() => handleDeleteMapping(m.id)}
-                                                                className="p-2 text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                                                                className="p-2 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-900/30 rounded-lg transition-colors"
                                                                 title="Delete"
                                                             >
                                                                 <Trash size={16} weight="bold" />
@@ -395,39 +395,39 @@ export default function ServicePricePlanPage() {
             {/* Plan Modal */}
             {showPlanModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={() => setShowPlanModal(false)} />
-                    <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-scale-in">
-                        <div className="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-                            <h3 className="font-bold text-slate-900">Create New Plan</h3>
-                            <button onClick={() => setShowPlanModal(false)} className="text-slate-400 hover:text-slate-600 rounded-full p-1 hover:bg-slate-100">
+                    <div className="absolute inset-0 bg-slate-900/60 dark:bg-black/80 backdrop-blur-sm" onClick={() => setShowPlanModal(false)} />
+                    <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-scale-in transition-colors">
+                        <div className="px-6 py-4 border-b border-slate-100 dark:border-gray-700 flex justify-between items-center bg-slate-50/50 dark:bg-gray-900/50 transition-colors">
+                            <h3 className="font-bold text-slate-900 dark:text-white">Create New Plan</h3>
+                            <button onClick={() => setShowPlanModal(false)} className="text-slate-400 dark:text-gray-500 hover:text-slate-600 dark:hover:text-gray-300 rounded-full p-1 hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors">
                                 <X size={20} weight="bold" />
                             </button>
                         </div>
                         <form onSubmit={handleSavePlan} className="p-6 space-y-4">
                             <div>
-                                <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Plan Name <span className="text-red-500">*</span></label>
+                                <label className="block text-xs font-bold text-slate-600 dark:text-gray-400 uppercase tracking-wider mb-2">Plan Name <span className="text-red-500">*</span></label>
                                 <input
                                     autoFocus
-                                    className="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-indigo-500"
+                                    className="w-full px-4 py-2 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg text-sm focus:outline-none focus:border-indigo-500 dark:text-gray-100 transition-colors"
                                     placeholder="e.g. Enterprise Plan"
                                     value={planForm.name}
                                     onChange={(e) => setPlanForm({ ...planForm, name: e.target.value })}
                                 />
                             </div>
                             <div>
-                                <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Status</label>
+                                <label className="block text-xs font-bold text-slate-600 dark:text-gray-400 uppercase tracking-wider mb-2">Status</label>
                                 <select
-                                    className="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-indigo-500 bg-white"
+                                    className="w-full px-4 py-2 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg text-sm focus:outline-none focus:border-indigo-500 bg-white dark:text-gray-100 transition-colors"
                                     value={planForm.status}
                                     onChange={(e) => setPlanForm({ ...planForm, status: e.target.value as any })}
                                 >
-                                    <option value="published">Published</option>
-                                    <option value="draft">Draft</option>
+                                    <option value="published" className="dark:bg-gray-800">Published</option>
+                                    <option value="draft" className="dark:bg-gray-800">Draft</option>
                                 </select>
                             </div>
                             <div className="flex gap-3 pt-2">
-                                <button type="button" onClick={() => setShowPlanModal(false)} className="flex-1 py-2.5 bg-slate-100 text-slate-600 rounded-xl font-bold hover:bg-slate-200 transition-colors">Cancel</button>
-                                <button type="submit" className="flex-1 py-2.5 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors">Save Plan</button>
+                                <button type="button" onClick={() => setShowPlanModal(false)} className="flex-1 py-2.5 bg-slate-100 dark:bg-gray-700 text-slate-600 dark:text-gray-300 rounded-xl font-bold hover:bg-slate-200 dark:hover:bg-gray-600 transition-colors">Cancel</button>
+                                <button type="submit" className="flex-1 py-2.5 bg-indigo-600 dark:bg-indigo-500 text-white rounded-xl font-bold hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors">Save Plan</button>
                             </div>
                         </form>
                     </div>
@@ -437,14 +437,14 @@ export default function ServicePricePlanPage() {
             {/* Mapping Modal */}
             {showMappingModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={() => setShowMappingModal(false)} />
-                    <div className="relative bg-white rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden animate-scale-in">
-                        <div className="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                    <div className="absolute inset-0 bg-slate-900/60 dark:bg-black/80 backdrop-blur-sm" onClick={() => setShowMappingModal(false)} />
+                    <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden animate-scale-in transition-colors">
+                        <div className="px-6 py-4 border-b border-slate-100 dark:border-gray-700 flex justify-between items-center bg-slate-50/50 dark:bg-gray-900/50 transition-colors">
                             <div>
-                                <h3 className="font-bold text-slate-900">{mappingForm.id ? 'Edit Plan Mapping' : 'Attach Plan to Service'}</h3>
-                                <p className="text-xs text-slate-500 mt-0.5">Configure pricing and features for this plan</p>
+                                <h3 className="font-bold text-slate-900 dark:text-white">{mappingForm.id ? 'Edit Plan Mapping' : 'Attach Plan to Service'}</h3>
+                                <p className="text-xs text-slate-500 dark:text-gray-400 mt-0.5">Configure pricing and features for this plan</p>
                             </div>
-                            <button onClick={() => setShowMappingModal(false)} className="text-slate-400 hover:text-slate-600 rounded-full p-1 hover:bg-slate-100">
+                            <button onClick={() => setShowMappingModal(false)} className="text-slate-400 dark:text-gray-500 hover:text-slate-600 dark:hover:text-gray-300 rounded-full p-1 hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors">
                                 <X size={20} weight="bold" />
                             </button>
                         </div>
@@ -452,66 +452,66 @@ export default function ServicePricePlanPage() {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Plan <span className="text-red-500">*</span></label>
+                                    <label className="block text-xs font-bold text-slate-600 dark:text-gray-400 uppercase tracking-wider mb-2">Plan <span className="text-red-500">*</span></label>
                                     <select
-                                        className="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-indigo-500 bg-white"
+                                        className="w-full px-4 py-2 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg text-sm focus:outline-none focus:border-indigo-500 bg-white dark:text-gray-100 transition-colors"
                                         value={mappingForm.planId}
                                         onChange={(e) => setMappingForm({ ...mappingForm, planId: Number(e.target.value) })}
                                         disabled={!!mappingForm.id} // Disable plan change on edit
                                     >
-                                        <option value="">Select Plan</option>
+                                        <option value="" className="dark:bg-gray-800">Select Plan</option>
                                         {plans.map(p => (
-                                            <option key={p.id} value={p.id}>{p.name} ({p.status})</option>
+                                            <option key={p.id} value={p.id} className="dark:bg-gray-800">{p.name} ({p.status})</option>
                                         ))}
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Billing Cycle <span className="text-red-500">*</span></label>
+                                    <label className="block text-xs font-bold text-slate-600 dark:text-gray-400 uppercase tracking-wider mb-2">Billing Cycle <span className="text-red-500">*</span></label>
                                     <select
-                                        className="w-full px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-indigo-500 bg-white"
+                                        className="w-full px-4 py-2 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-lg text-sm focus:outline-none focus:border-indigo-500 bg-white dark:text-gray-100 transition-colors"
                                         value={mappingForm.billing}
                                         onChange={(e) => setMappingForm({ ...mappingForm, billing: e.target.value as any })}
                                     >
-                                        <option value="monthly">Monthly</option>
-                                        <option value="half_yearly">Half-Yearly</option>
-                                        <option value="yearly">Yearly</option>
-                                        <option value="one_time">One-Time</option>
+                                        <option value="monthly" className="dark:bg-gray-800">Monthly</option>
+                                        <option value="half_yearly" className="dark:bg-gray-800">Half-Yearly</option>
+                                        <option value="yearly" className="dark:bg-gray-800">Yearly</option>
+                                        <option value="one_time" className="dark:bg-gray-800">One-Time</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="p-4 bg-slate-50 dark:bg-gray-900/50 rounded-xl border border-slate-200 dark:border-gray-700 grid grid-cols-1 md:grid-cols-3 gap-4 transition-colors">
                                 <div>
-                                    <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Sale Price <span className="text-red-500">*</span></label>
+                                    <label className="block text-xs font-bold text-slate-600 dark:text-gray-400 uppercase tracking-wider mb-2">Sale Price <span className="text-red-500">*</span></label>
                                     <div className="relative">
-                                        <Money size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                                        <Money size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500" />
                                         <input
                                             type="number"
-                                            className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20"
+                                            className="w-full pl-9 pr-4 py-2 border border-slate-200 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm focus:outline-none focus:border-emerald-500 dark:focus:border-emerald-400 dark:text-gray-100 focus:ring-1 focus:ring-emerald-500/20 transition-colors"
                                             value={mappingForm.salePrice}
                                             onChange={(e) => setMappingForm({ ...mappingForm, salePrice: Number(e.target.value) })}
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Market Price</label>
+                                    <label className="block text-xs font-bold text-slate-600 dark:text-gray-400 uppercase tracking-wider mb-2">Market Price</label>
                                     <div className="relative">
-                                        <Money size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                                        <Money size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500" />
                                         <input
                                             type="number"
-                                            className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-indigo-500"
+                                            className="w-full pl-9 pr-4 py-2 border border-slate-200 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 dark:text-gray-100 transition-colors"
                                             value={mappingForm.marketPrice}
                                             onChange={(e) => setMappingForm({ ...mappingForm, marketPrice: Number(e.target.value) })}
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Govt Fee</label>
+                                    <label className="block text-xs font-bold text-slate-600 dark:text-gray-400 uppercase tracking-wider mb-2">Govt Fee</label>
                                     <div className="relative">
-                                        <Buildings size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                                        <Buildings size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500" />
                                         <input
                                             type="number"
-                                            className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-amber-500"
+                                            className="w-full pl-9 pr-4 py-2 border border-slate-200 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm focus:outline-none focus:border-amber-500 dark:focus:border-amber-400 dark:text-gray-100 transition-colors"
                                             value={mappingForm.govtFee}
                                             onChange={(e) => setMappingForm({ ...mappingForm, govtFee: Number(e.target.value) })}
                                         />
@@ -520,9 +520,9 @@ export default function ServicePricePlanPage() {
                             </div>
 
                             <div>
-                                <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Features (One per line)</label>
+                                <label className="block text-xs font-bold text-slate-600 dark:text-gray-400 uppercase tracking-wider mb-2">Features (One per line)</label>
                                 <textarea
-                                    className="w-full px-4 py-3 border border-slate-200 rounded-lg text-sm focus:outline-none focus:border-indigo-500 min-h-[100px]"
+                                    className="w-full px-4 py-3 border border-slate-200 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm focus:outline-none focus:border-indigo-500 dark:text-gray-100 transition-colors min-h-[100px]"
                                     placeholder="Feature 1&#10;Feature 2&#10;Feature 3"
                                     value={mappingForm.featuresText}
                                     onChange={(e) => setMappingForm({ ...mappingForm, featuresText: e.target.value })}
@@ -530,8 +530,8 @@ export default function ServicePricePlanPage() {
                             </div>
 
                             <div className="flex gap-3 pt-2">
-                                <button type="button" onClick={() => setShowMappingModal(false)} className="flex-1 py-3 bg-slate-100 text-slate-600 rounded-xl font-bold hover:bg-slate-200 transition-colors">Cancel</button>
-                                <button type="submit" className="flex-1 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors">Save Changes</button>
+                                <button type="button" onClick={() => setShowMappingModal(false)} className="flex-1 py-3 bg-slate-100 dark:bg-gray-700 text-slate-600 dark:text-gray-300 rounded-xl font-bold hover:bg-slate-200 dark:hover:bg-gray-600 transition-colors">Cancel</button>
+                                <button type="submit" className="flex-1 py-3 bg-indigo-600 dark:bg-indigo-500 text-white rounded-xl font-bold hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors">Save Changes</button>
                             </div>
                         </form>
                     </div>

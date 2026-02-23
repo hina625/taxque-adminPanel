@@ -50,15 +50,15 @@ export default function DiscountsPage() {
     });
 
     return (
-        <div className="w-full p-6 font-sans text-gray-900 bg-white min-h-screen">
+        <div className="w-full p-6 font-sans text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 min-h-screen transition-colors duration-300">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 animate-fade-in-down">
                 <div>
-                    <h1 className="text-3xl font-black text-slate-800 tracking-tight">Discounts & Offers</h1>
-                    <p className="text-slate-500 font-medium mt-1">Manage coupons, track redemptions, and boost sales.</p>
+                    <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight transition-colors">Discounts & Offers</h1>
+                    <p className="text-slate-500 dark:text-gray-400 font-medium mt-1 transition-colors">Manage coupons, track redemptions, and boost sales.</p>
                 </div>
                 <div className="flex gap-3">
-                    <button className="px-5 py-2.5 bg-white border-2 border-slate-200 text-slate-600 font-bold rounded-xl hover:border-slate-300 hover:bg-slate-50 transition flex items-center gap-2">
+                    <button className="px-5 py-2.5 bg-white dark:bg-gray-800 border-2 border-slate-200 dark:border-gray-700 text-slate-600 dark:text-gray-300 font-bold rounded-xl hover:border-slate-300 dark:hover:border-gray-600 hover:bg-slate-50 dark:hover:bg-gray-700 transition flex items-center gap-2">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                         </svg>
@@ -66,7 +66,7 @@ export default function DiscountsPage() {
                     </button>
                     <button
                         onClick={toggleModal}
-                        className="px-5 py-2.5 bg-gradient-to-r from-primary to-teal-400 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition flex items-center gap-2"
+                        className="px-5 py-2.5 bg-gradient-to-r from-primary to-teal-400 text-white font-bold rounded-xl shadow-lg dark:shadow-none hover:shadow-xl hover:scale-[1.02] transition flex items-center gap-2"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
@@ -78,17 +78,17 @@ export default function DiscountsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
 
-                <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 group">
+                <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:shadow-2xl transition-all duration-300 group">
                     <div className="flex justify-between items-start mb-4">
                         <div>
-                            <p className="text-slate-500 font-bold text-xs uppercase tracking-wider mb-1">Total Revenue Generated</p>
-                            <h2 className="text-3xl font-black text-slate-800">₹12.4L</h2>
+                            <p className="text-slate-500 dark:text-gray-400 font-bold text-xs uppercase tracking-wider mb-1 transition-colors">Total Revenue Generated</p>
+                            <h2 className="text-3xl font-black text-slate-800 dark:text-white transition-colors">₹12.4L</h2>
                         </div>
-                        <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                        <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
                             <span className="font-bold">₹</span>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2 text-emerald-600 bg-emerald-50 w-fit px-3 py-1 rounded-lg">
+                    <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/40 w-fit px-3 py-1 rounded-lg transition-colors">
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                         </svg>
@@ -97,19 +97,19 @@ export default function DiscountsPage() {
                 </div>
 
 
-                <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 group">
+                <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:shadow-2xl transition-all duration-300 group">
                     <div className="flex justify-between items-start mb-4">
                         <div>
-                            <p className="text-slate-500 font-bold text-xs uppercase tracking-wider mb-1">Total Discounts Given</p>
-                            <h2 className="text-3xl font-black text-slate-800">₹85,000</h2>
+                            <p className="text-slate-500 dark:text-gray-400 font-bold text-xs uppercase tracking-wider mb-1 transition-colors">Total Discounts Given</p>
+                            <h2 className="text-3xl font-black text-slate-800 dark:text-white transition-colors">₹85,000</h2>
                         </div>
-                        <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                        <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                             </svg>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2 text-amber-600 bg-amber-50 w-fit px-3 py-1 rounded-lg">
+                    <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/40 w-fit px-3 py-1 rounded-lg transition-colors">
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                         </svg>
@@ -118,19 +118,19 @@ export default function DiscountsPage() {
                 </div>
 
                 {/* Redemptions */}
-                <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 group">
+                <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:shadow-2xl transition-all duration-300 group">
                     <div className="flex justify-between items-start mb-4">
                         <div>
-                            <p className="text-slate-500 font-bold text-xs uppercase tracking-wider mb-1">Total Redemptions</p>
-                            <h2 className="text-3xl font-black text-slate-800">1,245</h2>
+                            <p className="text-slate-500 dark:text-gray-400 font-bold text-xs uppercase tracking-wider mb-1 transition-colors">Total Redemptions</p>
+                            <h2 className="text-3xl font-black text-slate-800 dark:text-white transition-colors">1,245</h2>
                         </div>
-                        <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                        <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                             </svg>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2 text-blue-600 bg-blue-50 w-fit px-3 py-1 rounded-lg">
+                    <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/40 w-fit px-3 py-1 rounded-lg transition-colors">
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                         </svg>
@@ -139,19 +139,19 @@ export default function DiscountsPage() {
                 </div>
 
                 {/* Conversion Rate */}
-                <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-300 group">
+                <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-xl dark:shadow-none hover:shadow-2xl transition-all duration-300 group">
                     <div className="flex justify-between items-start mb-4">
                         <div>
-                            <p className="text-slate-500 font-bold text-xs uppercase tracking-wider mb-1">Avg. Conversion Rate</p>
-                            <h2 className="text-3xl font-black text-slate-800">18.4%</h2>
+                            <p className="text-slate-500 dark:text-gray-400 font-bold text-xs uppercase tracking-wider mb-1 transition-colors">Avg. Conversion Rate</p>
+                            <h2 className="text-3xl font-black text-slate-800 dark:text-white transition-colors">18.4%</h2>
                         </div>
-                        <div className="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                        <div className="w-12 h-12 rounded-2xl bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                             </svg>
                         </div>
                     </div>
-                    <div className="flex items-center gap-2 text-violet-600 bg-violet-50 w-fit px-3 py-1 rounded-lg">
+                    <div className="flex items-center gap-2 text-violet-600 dark:text-violet-400 bg-violet-50 dark:bg-violet-900/40 w-fit px-3 py-1 rounded-lg transition-colors">
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                         </svg>
@@ -162,33 +162,33 @@ export default function DiscountsPage() {
 
             <div className="grid lg:grid-cols-3 gap-6 mb-8">
                 {/* Analytics Chart */}
-                <div className="lg:col-span-2 bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200 p-6">
+                <div className="lg:col-span-2 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl shadow-lg dark:shadow-none border border-gray-200 dark:border-gray-700 p-6 transition-colors">
                     <div className="flex items-center justify-between mb-6">
-                        <h3 className="text-xl font-black text-slate-800">Redemption Trends</h3>
-                        <select className="bg-slate-50 border-none text-slate-600 font-bold text-sm rounded-lg focus:ring-0 cursor-pointer hover:bg-slate-100 transition">
+                        <h3 className="text-xl font-black text-slate-800 dark:text-white transition-colors">Redemption Trends</h3>
+                        <select className="bg-slate-50 dark:bg-gray-900 border-none text-slate-600 dark:text-gray-300 font-bold text-sm rounded-lg focus:ring-0 cursor-pointer hover:bg-slate-100 dark:hover:bg-gray-800 transition">
                             <option>Last 30 Days</option>
                             <option>Last 3 Months</option>
                             <option>This Year</option>
                         </select>
                     </div>
                     {/* Custom CSS Bar Chart using Tailwind Grid */}
-                    <div className="h-64 flex items-end gap-2 md:gap-4 mt-8 pb-4 border-b border-gray-100 relative">
+                    <div className="h-64 flex items-end gap-2 md:gap-4 mt-8 pb-4 border-b border-gray-100 dark:border-gray-700 relative transition-colors">
                         {/* Y-axis grid lines (simplified) */}
                         <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
-                            <div className="border-t border-gray-50 h-0 w-full"></div>
-                            <div className="border-t border-gray-50 h-0 w-full"></div>
-                            <div className="border-t border-gray-50 h-0 w-full"></div>
-                            <div className="border-t border-gray-50 h-0 w-full"></div>
+                            <div className="border-t border-gray-50 dark:border-gray-800/50 h-0 w-full transition-colors"></div>
+                            <div className="border-t border-gray-50 dark:border-gray-800/50 h-0 w-full transition-colors"></div>
+                            <div className="border-t border-gray-50 dark:border-gray-800/50 h-0 w-full transition-colors"></div>
+                            <div className="border-t border-gray-50 dark:border-gray-800/50 h-0 w-full transition-colors"></div>
                         </div>
 
                         {/* Bars */}
                         {[35, 55, 40, 70, 60, 45, 80, 75, 50, 65, 85, 90].map((height, i) => (
                             <div key={i} className="flex-1 flex flex-col items-center gap-2 group relative z-10">
-                                <div className="text-xs font-bold text-slate-800 opacity-0 group-hover:opacity-100 transition-opacity absolute -top-6">
+                                <div className="text-xs font-bold text-slate-800 dark:text-gray-200 opacity-0 group-hover:opacity-100 transition-all absolute -top-6">
                                     {height}
                                 </div>
                                 <div
-                                    className="w-full bg-slate-100 rounded-t-lg relative overflow-hidden group-hover:bg-slate-200 transition-colors"
+                                    className="w-full bg-slate-100 dark:bg-gray-700 rounded-t-lg relative overflow-hidden group-hover:bg-slate-200 dark:group-hover:bg-gray-600 transition-colors"
                                     style={{ height: `${height}%` }}
                                 >
                                     <div
@@ -204,43 +204,43 @@ export default function DiscountsPage() {
                             </div>
                         ))}
                     </div>
-                    <div className="flex justify-between mt-2 text-xs font-bold text-slate-400">
+                    <div className="flex justify-between mt-2 text-xs font-bold text-slate-400 dark:text-gray-500 transition-colors">
                         <span>1</span><span>3</span><span>5</span><span>7</span><span>9</span><span>11</span><span>13</span><span>15</span><span>17</span><span>19</span><span>21</span><span>23</span>
                     </div>
                 </div>
 
                 {/* Popular Coupons / Feed */}
-                <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200 p-6">
-                    <h3 className="text-xl font-black text-slate-800 mb-6">Live Redemptions</h3>
+                <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl shadow-lg dark:shadow-none border border-gray-200 dark:border-gray-700 p-6 transition-colors">
+                    <h3 className="text-xl font-black text-slate-800 dark:text-white mb-6 transition-colors">Live Redemptions</h3>
                     <div className="space-y-4">
                         {[1, 2, 3, 4].map((item, i) => (
-                            <div key={i} className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
+                            <div key={i} className="flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-gray-700/50 transition border border-transparent hover:border-slate-100 dark:hover:border-gray-600">
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white shadow-md ${i % 2 === 0 ? 'bg-gradient-to-br from-purple-500 to-indigo-500' : 'bg-gradient-to-br from-pink-500 to-rose-500'}`}>
                                     {i % 2 === 0 ? 'JD' : 'AS'}
                                 </div>
                                 <div className="flex-1">
-                                    <p className="text-sm font-bold text-slate-800">{i % 2 === 0 ? 'John Doe' : 'Alice Smith'} <span className="text-slate-400 font-normal">used</span></p>
-                                    <p className="text-xs font-black text-primary bg-primary/10 w-fit px-2 py-0.5 rounded mt-1">WELCOME50</p>
+                                    <p className="text-sm font-bold text-slate-800 dark:text-gray-200 transition-colors">{i % 2 === 0 ? 'John Doe' : 'Alice Smith'} <span className="text-slate-400 dark:text-gray-500 font-normal">used</span></p>
+                                    <p className="text-xs font-black text-primary bg-primary/10 dark:bg-primary/20 w-fit px-2 py-0.5 rounded mt-1 transition-colors">WELCOME50</p>
                                 </div>
-                                <span className="text-xs font-bold text-slate-400">{i * 5 + 2}m ago</span>
+                                <span className="text-xs font-bold text-slate-400 dark:text-gray-500 transition-colors">{i * 5 + 2}m ago</span>
                             </div>
                         ))}
                     </div>
-                    <button className="w-full mt-6 py-3 border-2 border-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-50 transition">
+                    <button className="w-full mt-6 py-3 border-2 border-slate-100 dark:border-gray-700 text-slate-600 dark:text-gray-400 font-bold rounded-xl hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors">
                         View All Activity
                     </button>
                 </div>
             </div>
 
             {/* Coupons Table Section */}
-            <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+            <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-2xl shadow-lg dark:shadow-none border border-gray-200 dark:border-gray-700 overflow-hidden transition-colors">
                 {/* Tabs */}
-                <div className="border-b border-gray-100 flex overflow-x-auto">
+                <div className="border-b border-gray-100 dark:border-gray-700 flex overflow-x-auto transition-colors">
                     {(['active', 'scheduled', 'expired'] as const).map(tab => (
                         <button
                             key={tab}
                             onClick={() => setCurrentTab(tab)}
-                            className={`px-8 py-4 font-bold text-sm tracking-wide transition-colors relative whitespace-nowrap ${currentTab === tab ? 'text-primary' : 'text-slate-500 hover:text-slate-700 hover:bg-gray-50'}`}
+                            className={`px-8 py-4 font-bold text-sm tracking-wide transition-all relative whitespace-nowrap ${currentTab === tab ? 'text-primary' : 'text-slate-500 dark:text-gray-400 hover:text-slate-700 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50'}`}
                         >
                             {tab.charAt(0).toUpperCase() + tab.slice(1)} Coupons
                             {currentTab === tab && (
@@ -251,24 +251,24 @@ export default function DiscountsPage() {
                 </div>
 
                 {/* Toolbar */}
-                <div className="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50/50">
+                <div className="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50/50 dark:bg-gray-900/50 transition-colors">
                     <div className="relative w-full md:w-96">
                         <input
                             type="text"
                             placeholder="Search coupons..."
-                            className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none shadow-sm transition-all"
+                            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-slate-800 dark:text-gray-100 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none shadow-sm transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500"
                         />
-                        <svg className="w-5 h-5 text-gray-400 absolute left-4 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 text-gray-400 dark:text-gray-500 absolute left-4 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                     </div>
                     <div className="flex gap-3">
-                        <button className="p-3 bg-white border border-gray-200 rounded-xl text-slate-600 hover:bg-slate-50 shadow-sm transition">
+                        <button className="p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-slate-600 dark:text-gray-400 hover:bg-slate-50 dark:hover:bg-gray-700 shadow-sm transition-all">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
                             </svg>
                         </button>
-                        <button className="p-3 bg-white border border-gray-200 rounded-xl text-slate-600 hover:bg-slate-50 shadow-sm transition">
+                        <button className="p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-slate-600 dark:text-gray-400 hover:bg-slate-50 dark:hover:bg-gray-700 shadow-sm transition-all">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
                             </svg>
@@ -280,9 +280,9 @@ export default function DiscountsPage() {
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="bg-slate-100/50 text-slate-500 text-xs uppercase tracking-wider font-bold">
+                            <tr className="bg-slate-100/50 dark:bg-gray-900/50 text-slate-500 dark:text-gray-400 text-xs uppercase tracking-wider font-bold transition-colors">
                                 <th className="p-4 w-12 text-center">
-                                    <input type="checkbox" onChange={checkAll} className="rounded border-gray-300 text-primary focus:ring-primary cursor-pointer w-4 h-4" />
+                                    <input type="checkbox" onChange={checkAll} className="rounded border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-primary focus:ring-primary cursor-pointer w-4 h-4 transition-colors" />
                                 </th>
                                 <th className="p-4">Coupon Code</th>
                                 <th className="p-4">Discount</th>
@@ -292,33 +292,33 @@ export default function DiscountsPage() {
                                 <th className="p-4 text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-100">
+                        <tbody className="divide-y divide-gray-100 dark:divide-gray-700 transition-colors">
                             {filteredDiscounts.map((discount) => (
-                                <tr key={discount.id} className="hover:bg-slate-50/80 transition-colors group">
+                                <tr key={discount.id} className="hover:bg-slate-50/80 dark:hover:bg-gray-700/50 transition-colors group">
                                     <td className="p-4 text-center">
-                                        <input type="checkbox" className="rounded border-gray-300 text-primary focus:ring-primary cursor-pointer w-4 h-4" />
+                                        <input type="checkbox" className="rounded border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-primary focus:ring-primary cursor-pointer w-4 h-4 transition-colors" />
                                     </td>
                                     <td className="p-4">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-xl text-slate-600">
+                                            <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-gray-700 flex items-center justify-center text-xl text-slate-600 dark:text-gray-300 transition-colors">
                                                 🏷️
                                             </div>
                                             <div>
-                                                <p className="font-bold text-slate-800">{discount.code}</p>
-                                                <p className="text-xs text-slate-500 font-semibold">{discount.type}</p>
+                                                <p className="font-bold text-slate-800 dark:text-gray-100 transition-colors">{discount.code}</p>
+                                                <p className="text-xs text-slate-500 dark:text-gray-400 font-semibold transition-colors">{discount.type}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="p-4">
-                                        <span className="font-black text-slate-700 bg-slate-100 px-3 py-1 rounded-lg">{discount.value}</span>
+                                        <span className="font-black text-slate-700 dark:text-gray-200 bg-slate-100 dark:bg-gray-700 px-3 py-1 rounded-lg transition-colors">{discount.value}</span>
                                     </td>
                                     <td className="p-4">
                                         <div className="w-full max-w-[120px]">
-                                            <div className="flex justify-between text-xs font-bold text-slate-500 mb-1">
+                                            <div className="flex justify-between text-xs font-bold text-slate-500 dark:text-gray-400 mb-1 transition-colors">
                                                 <span>{discount.usage}</span>
                                                 <span>{Math.round((parseInt(discount.usage.split('/')[0]) / parseInt(discount.usage.split('/')[1])) * 100)}%</span>
                                             </div>
-                                            <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                                            <div className="h-1.5 w-full bg-slate-200 dark:bg-gray-700 rounded-full overflow-hidden transition-colors">
                                                 <div
                                                     className={`h-full rounded-full ${parseInt(discount.usage.split('/')[0]) / parseInt(discount.usage.split('/')[1]) > 0.8 ? 'bg-red-500' : 'bg-primary'}`}
                                                     style={{ width: `${(parseInt(discount.usage.split('/')[0]) / parseInt(discount.usage.split('/')[1])) * 100}%` }}
@@ -327,11 +327,11 @@ export default function DiscountsPage() {
                                         </div>
                                     </td>
                                     <td className="p-4">
-                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${discount.status === 'Active' ? 'bg-emerald-100 text-emerald-700' :
-                                            discount.status === 'Expired' ? 'bg-red-100 text-red-700' :
-                                                'bg-amber-100 text-amber-700'
+                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold transition-colors ${discount.status === 'Active' ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300' :
+                                            discount.status === 'Expired' ? 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300' :
+                                                'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300'
                                             }`}>
-                                            <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${discount.status === 'Active' ? 'bg-emerald-500' :
+                                            <span className={`w-1.5 h-1.5 rounded-full mr-1.5 transition-colors ${discount.status === 'Active' ? 'bg-emerald-500' :
                                                 discount.status === 'Expired' ? 'bg-red-500' :
                                                     'bg-amber-500'
                                                 }`}></span>
@@ -339,16 +339,16 @@ export default function DiscountsPage() {
                                         </span>
                                     </td>
                                     <td className="p-4">
-                                        <span className="text-sm font-semibold text-slate-600">{discount.expiry}</span>
+                                        <span className="text-sm font-semibold text-slate-600 dark:text-gray-400 transition-colors">{discount.expiry}</span>
                                     </td>
                                     <td className="p-4 text-right">
-                                        <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                            <button className="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition">
+                                        <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-all">
+                                            <button className="p-2 text-slate-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20 rounded-lg transition-all">
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                                                 </svg>
                                             </button>
-                                            <button className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition">
+                                            <button className="p-2 text-slate-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all">
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                                 </svg>
@@ -362,22 +362,22 @@ export default function DiscountsPage() {
                 </div>
 
                 {/* Pagination */}
-                <div className="p-4 border-t border-gray-100 flex items-center justify-between">
-                    <p className="text-sm text-slate-500 font-semibold">Showing <span className="text-slate-900 font-bold">1-10</span> of <span className="text-slate-900 font-bold">50</span></p>
+                <div className="p-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between transition-colors">
+                    <p className="text-sm text-slate-500 dark:text-gray-400 font-semibold transition-colors">Showing <span className="text-slate-900 dark:text-white font-bold transition-colors">1-10</span> of <span className="text-slate-900 dark:text-white font-bold transition-colors">50</span></p>
                     <div className="flex gap-2">
-                        <button className="px-4 py-2 border border-gray-200 rounded-lg text-slate-600 hover:bg-slate-50 font-bold text-sm disabled:opacity-50">Previous</button>
-                        <button className="px-4 py-2 bg-primary text-white rounded-lg font-bold text-sm hover:bg-primary-dark shadow-md shadow-primary/20">Next</button>
+                        <button className="px-4 py-2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-lg text-slate-600 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-700 font-bold text-sm disabled:opacity-50 transition-colors">Previous</button>
+                        <button className="px-4 py-2 bg-primary text-white rounded-lg font-bold text-sm hover:bg-primary-dark shadow-md dark:shadow-none shadow-primary/20 transition-all">Next</button>
                     </div>
                 </div>
             </div>
 
             {/* Create/Edit Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm animate-fade-in">
-                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto scrollbar-hide animate-scale-in">
-                        <div className="p-6 border-b border-gray-100 flex justify-between items-center sticky top-0 bg-white z-10">
-                            <h3 className="text-2xl font-black text-slate-800">Create New Discount</h3>
-                            <button onClick={toggleModal} className="text-slate-400 hover:text-red-500 transition">
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 dark:bg-black/60 backdrop-blur-sm animate-fade-in transition-colors">
+                    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto scrollbar-hide animate-scale-in border border-slate-200 dark:border-gray-700 transition-colors">
+                        <div className="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center sticky top-0 bg-white dark:bg-gray-800 z-10 transition-colors">
+                            <h3 className="text-2xl font-black text-slate-800 dark:text-white transition-colors">Create New Discount</h3>
+                            <button onClick={toggleModal} className="text-slate-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition-colors">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
@@ -387,80 +387,80 @@ export default function DiscountsPage() {
                         <div className="p-8 space-y-6">
                             {/* Code Generation */}
                             <div className="relative">
-                                <label className="block text-sm font-bold text-slate-700 mb-2">Coupon Code</label>
+                                <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">Coupon Code</label>
                                 <div className="flex gap-3">
                                     <input
                                         type="text"
                                         placeholder="e.g. SUMMER2024"
-                                        className="flex-1 px-4 py-3 bg-fuchsia-50/50 border-2 border-fuchsia-100 rounded-xl focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none font-bold text-slate-800 tracking-wider uppercase transition-all"
+                                        className="flex-1 px-4 py-3 bg-fuchsia-50/50 dark:bg-fuchsia-900/20 border-2 border-fuchsia-100 dark:border-fuchsia-900 rounded-xl focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none font-bold text-slate-800 dark:text-white tracking-wider uppercase transition-all"
                                     />
-                                    <button className="px-6 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-900 transition flex items-center gap-2">
+                                    <button className="px-6 py-3 bg-slate-800 dark:bg-gray-700 text-white font-bold rounded-xl hover:bg-slate-900 dark:hover:bg-gray-600 transition-all flex items-center gap-2">
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                                         </svg>
                                         Generate
                                     </button>
                                 </div>
-                                <p className="text-xs text-slate-500 mt-2 font-semibold">Customers will enter this code at checkout.</p>
+                                <p className="text-xs text-slate-500 dark:text-gray-400 mt-2 font-semibold transition-colors">Customers will enter this code at checkout.</p>
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Discount Type</label>
-                                    <select className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary outline-none font-semibold text-slate-600">
+                                    <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">Discount Type</label>
+                                    <select className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary outline-none font-semibold text-slate-600 dark:text-gray-300 transition-colors">
                                         <option>Percentage Off (%)</option>
                                         <option>Fixed Amount (₹)</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Discount Value</label>
+                                    <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">Discount Value</label>
                                     <div className="relative">
                                         <input
                                             type="number"
                                             placeholder="20"
-                                            className="w-full pl-4 pr-10 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary outline-none font-bold text-slate-800"
+                                            className="w-full pl-4 pr-10 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary outline-none font-bold text-slate-800 dark:text-white transition-colors"
                                         />
-                                        <span className="absolute right-4 top-3.5 font-bold text-slate-400">%</span>
+                                        <span className="absolute right-4 top-3.5 font-bold text-slate-400 dark:text-gray-500 transition-colors">%</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Start Date</label>
-                                    <input type="date" className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary outline-none font-semibold text-slate-600" />
+                                    <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">Start Date</label>
+                                    <input type="date" className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary outline-none font-semibold text-slate-600 dark:text-gray-300 transition-colors" />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">End Date (Optional)</label>
-                                    <input type="date" className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary outline-none font-semibold text-slate-600" />
+                                    <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">End Date (Optional)</label>
+                                    <input type="date" className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary outline-none font-semibold text-slate-600 dark:text-gray-300 transition-colors" />
                                 </div>
                             </div>
 
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">Usage Limit</label>
+                                <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">Usage Limit</label>
                                 <input
                                     type="number"
                                     placeholder="Total number of times this coupon can be used (e.g. 100)"
-                                    className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary outline-none font-semibold text-slate-600"
+                                    className="w-full px-4 py-3 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary outline-none font-semibold text-slate-600 dark:text-gray-300 transition-colors"
                                 />
                             </div>
 
-                            <div className="p-4 bg-amber-50 rounded-xl border border-amber-200 flex gap-3">
+                            <div className="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-200 dark:border-amber-900/50 flex gap-3 transition-colors">
                                 <svg className="w-6 h-6 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                                 <div>
-                                    <h4 className="font-bold text-amber-900 text-sm">Summary</h4>
-                                    <p className="text-xs text-amber-800 mt-1 font-semibold">
+                                    <h4 className="font-bold text-amber-900 dark:text-amber-100 text-sm transition-colors">Summary</h4>
+                                    <p className="text-xs text-amber-800 dark:text-amber-200 mt-1 font-semibold transition-colors">
                                         This code will give <span className="font-bold">20% OFF</span> to the first <span className="font-bold">100 customers</span>. Valid until <span className="font-bold">Dec 31, 2025</span>.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="p-6 border-t border-gray-100 flex justify-end gap-3 bg-gray-50 rounded-b-2xl">
-                            <button onClick={toggleModal} className="px-6 py-3 bg-white border border-gray-300 text-slate-700 font-bold rounded-xl hover:bg-gray-50 transition">Cancel</button>
-                            <button onClick={toggleModal} className="px-6 py-3 bg-gradient-to-r from-primary to-teal-400 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition">Create Discount</button>
+                        <div className="p-6 border-t border-gray-100 dark:border-gray-700 flex justify-end gap-3 bg-gray-50 dark:bg-gray-900/50 rounded-b-2xl transition-colors">
+                            <button onClick={toggleModal} className="px-6 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-slate-700 dark:text-gray-300 font-bold rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">Cancel</button>
+                            <button onClick={toggleModal} className="px-6 py-3 bg-gradient-to-r from-primary to-teal-400 text-white font-bold rounded-xl shadow-lg dark:shadow-none hover:shadow-xl hover:scale-[1.02] transition">Create Discount</button>
                         </div>
                     </div>
                 </div>

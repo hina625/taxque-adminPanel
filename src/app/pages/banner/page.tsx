@@ -136,14 +136,14 @@ export default function BannerPage() {
     }).sort((a, b) => (Number(b.active) - Number(a.active)) || new Date(b.date).getTime() - new Date(a.date).getTime());
 
     return (
-        <div className="w-full p-6 font-sans text-gray-900 bg-white min-h-screen">
+        <div className="w-full p-6 font-sans text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 min-h-screen transition-colors duration-300">
             {/* Page Header */}
             <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
+                    <h1 className="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-3">
                         <i className="fas fa-bullhorn"></i> Offer Banner Manager
                     </h1>
-                    <p className="text-gray-500 text-sm mt-1">Manage and deploy promotional offers across different display zones and target specific content categories.</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Manage and deploy promotional offers across different display zones and target specific content categories.</p>
                 </div>
                 <button className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-2" onClick={() => handleOpenModal()}>
                     <i className="fas fa-plus-circle"></i> Create Offer
@@ -152,10 +152,10 @@ export default function BannerPage() {
 
             <div className="mb-8">
                 <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
-                    <h2 className="text-xl font-semibold">Active/Draft Offers</h2>
+                    <h2 className="text-xl font-semibold text-gray-800 dark:text-white">Active/Draft Offers</h2>
                     <div className="flex flex-wrap gap-4 w-full md:w-auto">
                         <select
-                            className="w-full md:w-40 px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-primary outline-none"
+                            className="w-full md:w-40 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none transition-colors"
                             value={filterStatus}
                             onChange={(e) => setFilterStatus(e.target.value)}
                         >
@@ -167,7 +167,7 @@ export default function BannerPage() {
                         </select>
                         <input
                             type="text"
-                            className="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-primary outline-none"
+                            className="w-full md:w-64 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none transition-colors"
                             placeholder="Search title or link..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
@@ -178,56 +178,56 @@ export default function BannerPage() {
                 <div className="overflow-x-auto">
                     <table className="w-full border-separate border-spacing-0">
                         <thead>
-                            <tr className="bg-primary/10 text-primary-dark">
-                                <th className="p-4 text-left font-semibold border-b w-[30%]">Title / Content</th>
-                                <th className="p-4 text-left font-semibold border-b w-[20%]">Image</th>
-                                <th className="p-4 text-left font-semibold border-b w-[25%]">Targeting (Category/Page)</th>
-                                <th className="p-4 text-left font-semibold border-b w-[15%]">Status</th>
-                                <th className="p-4 text-left font-semibold border-b w-[10%]">Actions</th>
+                            <tr className="bg-primary/10 dark:bg-primary/20 text-primary-dark dark:text-primary-light">
+                                <th className="p-4 text-left font-semibold border-b border-gray-200 dark:border-gray-700 w-[30%]">Title / Content</th>
+                                <th className="p-4 text-left font-semibold border-b border-gray-200 dark:border-gray-700 w-[20%]">Image</th>
+                                <th className="p-4 text-left font-semibold border-b border-gray-200 dark:border-gray-700 w-[25%]">Targeting (Category/Page)</th>
+                                <th className="p-4 text-left font-semibold border-b border-gray-200 dark:border-gray-700 w-[15%]">Status</th>
+                                <th className="p-4 text-left font-semibold border-b border-gray-200 dark:border-gray-700 w-[10%]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredOffers.length > 0 ? (
                                 filteredOffers.map(offer => (
-                                    <tr key={offer.id} className="hover:bg-primary/5 transition-colors">
-                                        <td className="p-4 border-b">
-                                            <strong className="text-primary block">{offer.title}</strong>
-                                            <p className="text-gray-500 text-sm mt-1 truncate max-w-[200px]">{offer.content}</p>
+                                    <tr key={offer.id} className="hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors">
+                                        <td className="p-4 border-b border-gray-100 dark:border-gray-800">
+                                            <strong className="text-primary dark:text-primary-light block">{offer.title}</strong>
+                                            <p className="text-gray-500 dark:text-gray-400 text-sm mt-1 truncate max-w-[200px]">{offer.content}</p>
                                         </td>
-                                        <td className="p-4 border-b">
+                                        <td className="p-4 border-b border-gray-100 dark:border-gray-800">
                                             {offer.image ? (
                                                 <div className="flex items-center gap-2">
-                                                    <img src={offer.image} alt="Banner" className="w-[60px] h-[40px] object-cover rounded border" />
-                                                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full font-semibold flex items-center gap-1">
+                                                    <img src={offer.image} alt="Banner" className="w-[60px] h-[40px] object-cover rounded border border-gray-200 dark:border-gray-700" />
+                                                    <span className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs rounded-full font-semibold flex items-center gap-1">
                                                         <i className="fas fa-image"></i> Present
                                                     </span>
                                                 </div>
                                             ) : (
-                                                <span className="px-2 py-1 bg-red-100 text-red-700 text-xs rounded-full font-semibold flex items-center gap-1 w-fit">
+                                                <span className="px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-xs rounded-full font-semibold flex items-center gap-1 w-fit">
                                                     <i className="fas fa-times"></i> Missing
                                                 </span>
                                             )}
                                         </td>
-                                        <td className="p-4 border-b">
-                                            <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">
+                                        <td className="p-4 border-b border-gray-100 dark:border-gray-800">
+                                            <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-xs font-semibold">
                                                 {offer.target === 'specific-url' ? 'Specific URL' : formatTarget(offer.target)}
                                             </span>
-                                            <p className="text-xs text-gray-400 mt-1 truncate max-w-[200px]">{offer.specificUrl || offer.url}</p>
+                                            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1 truncate max-w-[200px]">{offer.specificUrl || offer.url}</p>
                                         </td>
-                                        <td className="p-4 border-b">
+                                        <td className="p-4 border-b border-gray-100 dark:border-gray-800">
                                             <div className="flex flex-col gap-1 items-start">
-                                                <span className="px-2 py-1 bg-blue-50 text-blue-600 text-xs rounded border border-blue-100">
+                                                <span className="px-2 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 text-xs rounded border border-blue-100 dark:border-blue-800/50">
                                                     {formatDisplayZone(offer.display)}
                                                 </span>
                                                 {offer.active ? (
-                                                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full font-semibold">Active</span>
+                                                    <span className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs rounded-full font-semibold">Active</span>
                                                 ) : (
-                                                    <span className="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs rounded-full font-semibold">Draft</span>
+                                                    <span className="px-2 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 text-xs rounded-full font-semibold">Draft</span>
                                                 )}
                                             </div>
                                         </td>
-                                        <td className="p-4 border-b">
-                                            <button className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded text-sm font-semibold transition-colors flex items-center gap-2" onClick={() => handleOpenModal(offer)}>
+                                        <td className="p-4 border-b border-gray-100 dark:border-gray-800">
+                                            <button className="bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-2 rounded text-sm font-semibold transition-colors flex items-center gap-2" onClick={() => handleOpenModal(offer)}>
                                                 <i className="fas fa-edit"></i> Edit
                                             </button>
                                         </td>
@@ -235,8 +235,8 @@ export default function BannerPage() {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={5} className="p-8 text-center text-gray-500">
-                                        <i className="fas fa-tags text-4xl mb-4 block text-gray-300"></i>
+                                    <td colSpan={5} className="p-8 text-center text-gray-500 dark:text-gray-400">
+                                        <i className="fas fa-tags text-4xl mb-4 block text-gray-300 dark:text-gray-600"></i>
                                         No offers or banners found. Click 'Create New Offer' to deploy one.
                                     </td>
                                 </tr>
@@ -248,21 +248,21 @@ export default function BannerPage() {
 
             {/* Modal */}
             {isCreateModalOpen && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border">
-                        <div className="flex justify-between items-center p-6 border-b">
-                            <h3 className="text-xl font-bold flex items-center gap-2">
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
+                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-gray-700 transition-colors">
+                        <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-gray-700">
+                            <h3 className="text-xl font-bold flex items-center gap-2 text-gray-900 dark:text-white">
                                 {isEditing ? <><i className="fas fa-edit"></i> Edit Offer Banner (#{currentOffer.id})</> : <><i className="fas fa-plus-circle"></i> Create New Offer Banner</>}
                             </h3>
-                            <button onClick={handleCloseModal} className="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                            <button onClick={handleCloseModal} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-2xl transition-colors">&times;</button>
                         </div>
                         <div className="p-6">
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-4">
-                                    <label className="block font-semibold mb-2">Offer Title (Internal/Display)</label>
+                                    <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300">Offer Title (Internal/Display)</label>
                                     <input
                                         type="text"
-                                        className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none transition-colors"
                                         required
                                         placeholder="e.g., 20% Off Tax Filing Service"
                                         value={currentOffer.title}
@@ -271,9 +271,9 @@ export default function BannerPage() {
                                 </div>
 
                                 <div className="mb-4">
-                                    <label className="block font-semibold mb-2">Banner Content / Text</label>
+                                    <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300">Banner Content / Text</label>
                                     <textarea
-                                        className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none transition-colors"
                                         rows={3}
                                         required
                                         placeholder="Short, compelling text for the banner or popup..."
@@ -283,19 +283,19 @@ export default function BannerPage() {
                                 </div>
 
                                 <div className="mb-4">
-                                    <label className="block font-semibold mb-2">Banner Image URL</label>
+                                    <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300">Banner Image URL</label>
                                     <input
                                         type="url"
-                                        className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none transition-colors"
                                         placeholder="e.g., https://yourdomain.com/banner.jpg"
                                         value={currentOffer.image || ''}
                                         onChange={(e) => setCurrentOffer({ ...currentOffer, image: e.target.value || null })}
                                     />
-                                    <div className="mt-2 p-4 border-2 border-dashed border-gray-300 rounded-lg text-center">
+                                    <div className="mt-2 p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg text-center bg-gray-50 dark:bg-gray-900/50">
                                         {currentOffer.image ? (
-                                            <img src={currentOffer.image} alt="Preview" className="max-h-40 mx-auto rounded" />
+                                            <img src={currentOffer.image} alt="Preview" className="max-h-40 mx-auto rounded shadow-sm" />
                                         ) : (
-                                            <div className="text-gray-400">
+                                            <div className="text-gray-400 dark:text-gray-500">
                                                 <i className="fas fa-image text-2xl mb-2"></i>
                                                 <p className="text-xs">Paste a URL above to see preview</p>
                                             </div>
@@ -305,9 +305,9 @@ export default function BannerPage() {
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                                     <div>
-                                        <label className="block font-semibold mb-2">Targeting Category</label>
+                                        <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300">Targeting Category</label>
                                         <select
-                                            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                                            className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none transition-colors"
                                             value={currentOffer.target}
                                             onChange={(e) => setCurrentOffer({ ...currentOffer, target: e.target.value })}
                                         >
@@ -319,9 +319,9 @@ export default function BannerPage() {
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block font-semibold mb-2">Display Zone</label>
+                                        <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300">Display Zone</label>
                                         <select
-                                            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                                            className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none transition-colors"
                                             value={currentOffer.display}
                                             onChange={(e) => setCurrentOffer({ ...currentOffer, display: e.target.value })}
                                         >
@@ -334,10 +334,10 @@ export default function BannerPage() {
 
                                 {currentOffer.target === 'specific-url' && (
                                     <div className="mb-4">
-                                        <label className="block font-semibold mb-2">Specific Target URL/Path</label>
+                                        <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300">Specific Target URL/Path</label>
                                         <input
                                             type="text"
-                                            className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                                            className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none transition-colors"
                                             placeholder="/blog/specific-post-slug or full URL"
                                             value={currentOffer.specificUrl || ''}
                                             onChange={(e) => setCurrentOffer({ ...currentOffer, specificUrl: e.target.value })}
@@ -346,10 +346,10 @@ export default function BannerPage() {
                                 )}
 
                                 <div className="mb-6">
-                                    <label className="block font-semibold mb-2">Call-to-Action Link</label>
+                                    <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300">Call-to-Action Link</label>
                                     <input
                                         type="url"
-                                        className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary outline-none"
+                                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary outline-none transition-colors"
                                         required
                                         placeholder="https://yourdomain.com/checkout"
                                         value={currentOffer.url}
@@ -358,19 +358,19 @@ export default function BannerPage() {
                                 </div>
 
                                 <div className="flex gap-6 mb-6">
-                                    <label className="flex items-center gap-2 font-semibold cursor-pointer">
+                                    <label className="flex items-center gap-2 font-semibold cursor-pointer text-gray-700 dark:text-gray-300">
                                         <input
                                             type="checkbox"
-                                            className="w-4 h-4 text-primary rounded focus:ring-primary"
+                                            className="w-4 h-4 text-primary rounded focus:ring-primary bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600"
                                             checked={currentOffer.active}
                                             onChange={(e) => setCurrentOffer({ ...currentOffer, active: e.target.checked })}
                                         />
                                         Activate Offer Now
                                     </label>
-                                    <label className="flex items-center gap-2 font-semibold cursor-pointer">
+                                    <label className="flex items-center gap-2 font-semibold cursor-pointer text-gray-700 dark:text-gray-300">
                                         <input
                                             type="checkbox"
-                                            className="w-4 h-4 text-primary rounded focus:ring-primary"
+                                            className="w-4 h-4 text-primary rounded focus:ring-primary bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600"
                                             checked={currentOffer.dismissible}
                                             onChange={(e) => setCurrentOffer({ ...currentOffer, dismissible: e.target.checked })}
                                         />
@@ -378,9 +378,9 @@ export default function BannerPage() {
                                     </label>
                                 </div>
 
-                                <div className="flex justify-end gap-3 pt-4 border-t">
-                                    <button type="button" className="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-lg font-semibold transition-colors" onClick={handleCloseModal}>Cancel</button>
-                                    <button type="submit" className="px-6 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-colors flex items-center gap-2">
+                                <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
+                                    <button type="button" className="px-6 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg font-semibold transition-colors" onClick={handleCloseModal}>Cancel</button>
+                                    <button type="submit" className="px-6 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold transition-colors flex items-center gap-2 shadow-sm">
                                         {isEditing ? <><i className="fas fa-sync-alt"></i> Update Offer</> : <><i className="fas fa-save"></i> Save & Deploy</>}
                                     </button>
                                 </div>

@@ -75,24 +75,24 @@ const INITIAL_SERVICES: Service[] = [
 const ServiceIcon = ({ type }: { type: Service['type'] }) => {
     switch (type) {
         case 'tax':
-            return <div className="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-2xl"><FileText weight="bold" /></div>;
+            return <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 flex items-center justify-center text-2xl transition-colors"><FileText weight="bold" /></div>;
         case 'reg':
-            return <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl"><Buildings weight="bold" /></div>;
+            return <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 flex items-center justify-center text-2xl transition-colors"><Buildings weight="bold" /></div>;
         case 'dev':
-            return <div className="w-12 h-12 rounded-xl bg-pink-100 text-pink-700 flex items-center justify-center text-2xl"><Code weight="bold" /></div>;
+            return <div className="w-12 h-12 rounded-xl bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400 flex items-center justify-center text-2xl transition-colors"><Code weight="bold" /></div>;
         default:
-            return <div className="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-2xl"><TrademarkRegistered weight="bold" /></div>;
+            return <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-gray-700 text-slate-700 dark:text-gray-300 flex items-center justify-center text-2xl transition-colors"><TrademarkRegistered weight="bold" /></div>;
     }
 };
 
 const ModeBadge = ({ mode }: { mode: ServiceMode }) => {
     switch (mode) {
         case 'Online':
-            return <span className="px-2 py-0.5 rounded text-xs font-semibold bg-blue-100 text-blue-800">Online</span>;
+            return <span className="px-2 py-0.5 rounded text-xs font-semibold bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-400 transition-colors">Online</span>;
         case 'Offline':
-            return <span className="px-2 py-0.5 rounded text-xs font-semibold bg-red-100 text-red-800">Offline</span>;
+            return <span className="px-2 py-0.5 rounded text-xs font-semibold bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400 transition-colors">Offline</span>;
         case 'Hybrid':
-            return <span className="px-2 py-0.5 rounded text-xs font-semibold bg-amber-100 text-amber-800">Hybrid</span>;
+            return <span className="px-2 py-0.5 rounded text-xs font-semibold bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-400 transition-colors">Hybrid</span>;
     }
 };
 
@@ -146,19 +146,19 @@ export default function ServiceTimelinePage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#f1f5f9] text-slate-900 font-sans p-4 md:p-8">
+        <div className="min-h-screen bg-[#f1f5f9] dark:bg-gray-900 text-slate-900 dark:text-gray-100 font-sans p-4 md:p-8 transition-colors duration-300">
             <div className="max-w-[1200px] mx-auto">
 
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
                     <div>
-                        <h2 className="text-2xl font-bold text-slate-900 mb-1">Service Standards & Timeline</h2>
-                        <p className="text-slate-500 text-sm">Manage delivery estimates and execution modes for your catalog.</p>
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Service Standards & Timeline</h2>
+                        <p className="text-slate-500 dark:text-gray-400 text-sm">Manage delivery estimates and execution modes for your catalog.</p>
                     </div>
                     <button
                         onClick={handleSync}
                         disabled={isSyncing}
-                        className="bg-white border border-slate-200 px-4 py-2.5 rounded-xl font-semibold text-slate-700 flex items-center gap-2 hover:bg-slate-50 transition-all disabled:opacity-70 shadow-sm"
+                        className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 px-4 py-2.5 rounded-xl font-semibold text-slate-700 dark:text-gray-300 flex items-center gap-2 hover:bg-slate-50 dark:hover:bg-gray-700 transition-all disabled:opacity-70 shadow-sm"
                     >
                         <ArrowsClockwise size={18} weight="bold" className={isSyncing ? "animate-spin" : ""} />
                         {isSyncing ? 'Syncing...' : 'Sync Services'}
@@ -168,26 +168,26 @@ export default function ServiceTimelinePage() {
                 {/* Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {services.map(service => (
-                        <div key={service.id} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all group">
+                        <div key={service.id} className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-slate-200 dark:border-gray-700 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all group">
                             <ServiceIcon type={service.type} />
 
-                            <h3 className="text-lg font-bold text-slate-900 mt-4 mb-1">{service.name}</h3>
-                            <span className="text-xs font-mono text-slate-400 block mb-5">CODE: {service.code}</span>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-4 mb-1">{service.name}</h3>
+                            <span className="text-xs font-mono text-slate-400 dark:text-gray-500 block mb-5">CODE: {service.code}</span>
 
-                            <div className="bg-slate-50 rounded-lg p-3 border border-slate-100 flex justify-between items-center mb-5">
+                            <div className="bg-slate-50 dark:bg-gray-900/50 rounded-lg p-3 border border-slate-100 dark:border-gray-700 flex justify-between items-center mb-5 transition-colors">
                                 <div>
-                                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Est. Time</div>
-                                    <div className="text-sm font-semibold text-slate-800">{service.time}</div>
+                                    <div className="text-[10px] font-bold text-slate-400 dark:text-gray-500 uppercase tracking-wider mb-1">Est. Time</div>
+                                    <div className="text-sm font-semibold text-slate-800 dark:text-gray-200">{service.time}</div>
                                 </div>
                                 <div className="text-right">
-                                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Mode</div>
+                                    <div className="text-[10px] font-bold text-slate-400 dark:text-gray-500 uppercase tracking-wider mb-1">Mode</div>
                                     <ModeBadge mode={service.mode} />
                                 </div>
                             </div>
 
                             <button
                                 onClick={() => openEditModal(service)}
-                                className="w-full py-2.5 bg-slate-900 text-white rounded-xl font-semibold text-sm hover:bg-slate-800 transition-colors opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 duration-200"
+                                className="w-full py-2.5 bg-slate-900 dark:bg-indigo-600 text-white dark:text-white rounded-xl font-semibold text-sm hover:bg-slate-800 dark:hover:bg-indigo-700 transition-colors opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 duration-200"
                             >
                                 Update Standard
                             </button>
@@ -200,45 +200,45 @@ export default function ServiceTimelinePage() {
             {/* Edit Modal */}
             {showModal && editingService && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={() => setShowModal(false)} />
-                    <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-scale-in">
+                    <div className="absolute inset-0 bg-slate-900/60 dark:bg-black/80 backdrop-blur-sm" onClick={() => setShowModal(false)} />
+                    <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-scale-in transition-colors">
                         <div className="p-8">
-                            <h3 className="text-xl font-bold text-slate-900 mb-6">Update Service Standards</h3>
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Update Service Standards</h3>
 
                             <form onSubmit={handleSave} className="space-y-5">
                                 <div>
-                                    <label className="block text-sm font-semibold text-slate-900 mb-2">Service Name</label>
+                                    <label className="block text-sm font-semibold text-slate-900 dark:text-gray-300 mb-2">Service Name</label>
                                     <input
                                         type="text"
                                         disabled
                                         value={editingService.name}
-                                        className="w-full px-4 py-2.5 bg-slate-100 border border-slate-200 rounded-xl text-slate-500 text-sm"
+                                        className="w-full px-4 py-2.5 bg-slate-100 dark:bg-gray-900/50 border border-slate-200 dark:border-gray-700 rounded-xl text-slate-500 dark:text-gray-400 text-sm"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-semibold text-slate-900 mb-2">Estimated Delivery Timeline</label>
+                                    <label className="block text-sm font-semibold text-slate-900 dark:text-gray-300 mb-2">Estimated Delivery Timeline</label>
                                     <input
                                         type="text"
                                         required
                                         value={formData.time}
                                         onChange={(e) => setFormData(prev => ({ ...prev, time: e.target.value }))}
                                         placeholder="e.g. 3-5 Working Days"
-                                        className="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all"
+                                        className="w-full px-4 py-2.5 border border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-xl text-sm dark:text-gray-100 focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-500/10 transition-all"
                                     />
-                                    <p className="text-xs text-slate-400 mt-1.5">This will be shown to clients on checkout.</p>
+                                    <p className="text-xs text-slate-400 dark:text-gray-500 mt-1.5">This will be shown to clients on checkout.</p>
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-semibold text-slate-900 mb-2">Mode of Delivery</label>
+                                    <label className="block text-sm font-semibold text-slate-900 dark:text-gray-300 mb-2">Mode of Delivery</label>
                                     <select
                                         value={formData.mode}
                                         onChange={(e) => setFormData(prev => ({ ...prev, mode: e.target.value as ServiceMode }))}
-                                        className="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-indigo-500 bg-white"
+                                        className="w-full px-4 py-2.5 border border-slate-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 bg-white dark:bg-gray-900 dark:text-gray-100 transition-colors"
                                     >
-                                        <option value="Online">Online (Digital)</option>
-                                        <option value="Offline">Offline (Physical Visit)</option>
-                                        <option value="Hybrid">Hybrid (Mixed)</option>
+                                        <option value="Online" className="dark:bg-gray-800">Online (Digital)</option>
+                                        <option value="Offline" className="dark:bg-gray-800">Offline (Physical Visit)</option>
+                                        <option value="Hybrid" className="dark:bg-gray-800">Hybrid (Mixed)</option>
                                     </select>
                                 </div>
 
@@ -246,13 +246,13 @@ export default function ServiceTimelinePage() {
                                     <button
                                         type="button"
                                         onClick={() => setShowModal(false)}
-                                        className="px-5 py-2.5 bg-white border border-slate-200 text-slate-700 rounded-xl font-semibold hover:bg-slate-50 transition-colors"
+                                        className="px-5 py-2.5 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 text-slate-700 dark:text-gray-300 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors"
                                     >
                                         Cancel
                                     </button>
                                     <button
                                         type="submit"
-                                        className="px-5 py-2.5 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200"
+                                        className="px-5 py-2.5 bg-indigo-600 dark:bg-indigo-500 text-white rounded-xl font-semibold hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors shadow-lg shadow-indigo-200 dark:shadow-none"
                                     >
                                         Save Updates
                                     </button>

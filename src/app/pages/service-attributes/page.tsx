@@ -247,16 +247,16 @@ export default function ServiceAttributesPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#f1f5f9] text-slate-900 font-sans p-4 md:p-8">
+        <div className="min-h-screen bg-[#f1f5f9] dark:bg-gray-900 text-slate-900 dark:text-gray-100 font-sans p-4 md:p-8 transition-colors duration-300">
             <div className="max-w-[1400px] mx-auto">
 
                 {/* Header */}
-                <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-8 shadow-sm">
-                    <h1 className="text-2xl font-bold text-slate-900 mb-2 flex items-center gap-3">
+                <div className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-2xl p-6 mb-8 shadow-sm transition-colors">
+                    <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-3">
                         <Sliders size={32} weight="bold" />
                         Attribute Management
                     </h1>
-                    <p className="text-slate-500 text-sm">Select service and choose attributes to update content displayed to users</p>
+                    <p className="text-slate-500 dark:text-gray-400 text-sm">Select service and choose attributes to update content displayed to users</p>
                 </div>
 
                 {/* Service Selector */}
@@ -270,13 +270,13 @@ export default function ServiceAttributesPage() {
                     <select
                         value={currentService}
                         onChange={handleServiceChange}
-                        className="w-full p-4 border-2 border-white/30 rounded-xl text-lg font-semibold bg-white/15 text-white focus:outline-none focus:bg-white/25 focus:border-white transition-all cursor-pointer placeholder-white/50"
+                        className="w-full p-4 border-2 border-white/30 rounded-xl text-lg font-semibold bg-white/10 dark:bg-black/20 text-white focus:outline-none focus:bg-white/20 dark:focus:bg-black/40 focus:border-white transition-all cursor-pointer placeholder-white/50"
                     >
-                        <option value="" className="text-slate-900">-- Choose Service --</option>
+                        <option value="" className="text-slate-900 dark:bg-gray-800 dark:text-gray-100">-- Choose Service --</option>
                         {SERVICE_OPTIONS.map((group, idx) => (
-                            <optgroup key={idx} label={group.label} className="text-slate-900">
+                            <optgroup key={idx} label={group.label} className="text-slate-900 dark:bg-gray-800 dark:text-gray-400">
                                 {group.options.map(opt => (
-                                    <option key={opt.value} value={opt.value} className="text-slate-900">{opt.label}</option>
+                                    <option key={opt.value} value={opt.value} className="text-slate-900 dark:bg-gray-800 dark:text-gray-100">{opt.label}</option>
                                 ))}
                             </optgroup>
                         ))}
@@ -285,10 +285,10 @@ export default function ServiceAttributesPage() {
 
                 {/* Attributes Section */}
                 {currentService && viewState === 'selection' && (
-                    <div className="bg-white border border-slate-200 rounded-2xl p-8 mb-8 shadow-sm animate-fade-in">
-                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 pb-4 border-b-2 border-slate-100 gap-4">
+                    <div className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-2xl p-8 mb-8 shadow-sm animate-fade-in transition-colors">
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 pb-4 border-b-2 border-slate-100 dark:border-gray-700 gap-4">
                             <div className="flex items-center gap-3">
-                                <h2 className="text-xl font-bold text-slate-900">Select Attributes</h2>
+                                <h2 className="text-xl font-bold text-slate-900 dark:text-white">Select Attributes</h2>
                                 <span className="bg-indigo-600 text-white px-3 py-1 rounded-full text-xs font-bold">
                                     {filteredAttributes.length}
                                 </span>
@@ -313,13 +313,13 @@ export default function ServiceAttributesPage() {
 
                         {/* Search */}
                         <div className="relative mb-6">
-                            <MagnifyingGlass size={20} weight="bold" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                            <MagnifyingGlass size={20} weight="bold" className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-gray-500" />
                             <input
                                 type="text"
                                 placeholder="Search attributes..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-12 pr-4 py-3 border-2 border-slate-200 rounded-xl text-sm focus:outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-600/10 transition-all"
+                                className="w-full pl-12 pr-4 py-3 border-2 border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-xl text-sm focus:outline-none focus:border-indigo-600 dark:text-white focus:ring-4 focus:ring-indigo-600/10 transition-all"
                             />
                         </div>
 
@@ -334,18 +334,18 @@ export default function ServiceAttributesPage() {
                                         className={`
                                             p-4 rounded-xl border-2 cursor-pointer transition-all flex items-center gap-3
                                             ${isSelected
-                                                ? 'bg-[#ede9fe] border-indigo-600 shadow-md transform -translate-y-px'
-                                                : 'bg-slate-50 border-slate-200 hover:bg-white hover:border-indigo-400'
+                                                ? 'bg-[#ede9fe] dark:bg-indigo-900/30 border-indigo-600 shadow-md transform -translate-y-px'
+                                                : 'bg-slate-50 dark:bg-gray-900/50 border-slate-200 dark:border-gray-700 hover:bg-white dark:hover:bg-gray-800 hover:border-indigo-400'
                                             }
                                         `}
                                     >
                                         <div className={`
                                             w-6 h-6 rounded-md border-2 flex items-center justify-center flex-shrink-0 transition-colors
-                                            ${isSelected ? 'bg-indigo-600 border-indigo-600 text-white' : 'border-slate-300 bg-white'}
+                                            ${isSelected ? 'bg-indigo-600 border-indigo-600 text-white' : 'border-slate-300 dark:border-gray-600 bg-white dark:bg-gray-900'}
                                         `}>
                                             {isSelected && <Check size={14} weight="bold" />}
                                         </div>
-                                        <span className="font-semibold text-sm text-slate-900">{attr}</span>
+                                        <span className="font-semibold text-sm text-slate-900 dark:text-gray-200">{attr}</span>
                                     </div>
                                 );
                             })}
@@ -355,17 +355,17 @@ export default function ServiceAttributesPage() {
 
                 {/* Form Section */}
                 {currentService && viewState === 'form' && (
-                    <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm animate-fade-in">
+                    <div className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-2xl p-8 shadow-sm animate-fade-in transition-colors">
 
                         {/* Form Header */}
-                        <div className="flex justify-between items-center mb-8 pb-6 border-b-2 border-slate-100">
+                        <div className="flex justify-between items-center mb-8 pb-6 border-b-2 border-slate-100 dark:border-gray-700">
                             <div>
-                                <h2 className="text-2xl font-bold text-slate-900 mb-1">Update Attributes</h2>
-                                <p className="text-slate-500 text-sm">Configure content displayed to users</p>
+                                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Update Attributes</h2>
+                                <p className="text-slate-500 dark:text-gray-400 text-sm">Configure content displayed to users</p>
                             </div>
                             <button
                                 onClick={handleBack}
-                                className="flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-slate-200 hover:border-indigo-600 hover:text-indigo-600 text-slate-700 rounded-xl font-semibold transition-all"
+                                className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-gray-700 border-2 border-slate-200 dark:border-gray-600 hover:border-indigo-600 dark:hover:border-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-700 dark:text-gray-200 rounded-xl font-semibold transition-all"
                             >
                                 <ArrowLeft size={18} weight="bold" />
                                 Back
@@ -380,47 +380,47 @@ export default function ServiceAttributesPage() {
                                 if (!data) return null;
 
                                 return (
-                                    <div key={attr} className="bg-slate-50 border-2 border-slate-200 rounded-xl p-6">
-                                        <div className="flex items-center gap-3 mb-6 pb-4 border-b-2 border-slate-200">
+                                    <div key={attr} className="bg-slate-50 dark:bg-gray-900/50 border-2 border-slate-200 dark:border-gray-700 rounded-xl p-6 transition-colors">
+                                        <div className="flex items-center gap-3 mb-6 pb-4 border-b-2 border-slate-200 dark:border-gray-700">
                                             <div className="w-10 h-10 bg-gradient-to-br from-[#667eea] to-[#764ba2] rounded-lg flex items-center justify-center text-white shadow-sm">
                                                 <Icon size={20} weight="bold" />
                                             </div>
-                                            <h3 className="text-lg font-bold text-slate-900">{attr}</h3>
+                                            <h3 className="text-lg font-bold text-slate-900 dark:text-white">{attr}</h3>
                                         </div>
 
                                         <div className="grid gap-6">
                                             {/* User Heading */}
                                             <div>
-                                                <label className="block text-sm font-semibold text-slate-900 mb-2">
+                                                <label className="block text-sm font-semibold text-slate-900 dark:text-gray-200 mb-2">
                                                     User-Facing Heading <span className="text-red-500">*</span>
-                                                    <span className="text-slate-400 font-normal ml-2 text-xs">(Displayed to users on website)</span>
+                                                    <span className="text-slate-400 dark:text-gray-500 font-normal ml-2 text-xs">(Displayed to users on website)</span>
                                                 </label>
                                                 <input
                                                     type="text"
                                                     value={data.userHeading}
                                                     onChange={(e) => handleFormChange(attr, 'userHeading', e.target.value)}
                                                     placeholder="Enter heading"
-                                                    className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg text-sm focus:outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-600/10 transition-all"
+                                                    className="w-full px-4 py-2.5 border-2 border-slate-200 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm focus:outline-none focus:border-indigo-600 dark:text-white focus:ring-4 focus:ring-indigo-600/10 transition-colors"
                                                 />
                                             </div>
 
                                             {/* Description */}
                                             <div>
-                                                <label className="block text-sm font-semibold text-slate-900 mb-2">Description/Introduction</label>
+                                                <label className="block text-sm font-semibold text-slate-900 dark:text-gray-200 mb-2">Description/Introduction</label>
                                                 <textarea
                                                     value={data.description}
                                                     onChange={(e) => handleFormChange(attr, 'description', e.target.value)}
                                                     placeholder="Brief introduction or overview..."
-                                                    className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg text-sm min-h-[100px] focus:outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-600/10 transition-all resize-y"
+                                                    className="w-full px-4 py-2.5 border-2 border-slate-200 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm min-h-[100px] focus:outline-none focus:border-indigo-600 dark:text-white focus:ring-4 focus:ring-indigo-600/10 transition-colors resize-y"
                                                 />
                                             </div>
 
                                             {/* Points */}
                                             <div>
-                                                <label className="block text-sm font-semibold text-slate-900 mb-2">
+                                                <label className="block text-sm font-semibold text-slate-900 dark:text-gray-200 mb-2">
                                                     Content Points <span className="text-red-500">*</span>
                                                 </label>
-                                                <div className="border-2 border-slate-200 rounded-xl p-4 bg-white space-y-3">
+                                                <div className="border-2 border-slate-200 dark:border-gray-700 rounded-xl p-4 bg-white dark:bg-gray-800 space-y-3 transition-colors">
                                                     {data.points.map((point, idx) => (
                                                         <div key={idx} className="flex gap-3 items-center">
                                                             <div className="w-7 h-7 bg-indigo-600 text-white rounded-md flex items-center justify-center font-bold text-xs flex-shrink-0">
@@ -431,12 +431,12 @@ export default function ServiceAttributesPage() {
                                                                 value={point}
                                                                 onChange={(e) => handlePointChange(attr, idx, e.target.value)}
                                                                 placeholder="Enter point"
-                                                                className="flex-1 px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:border-indigo-600"
+                                                                className="flex-1 px-3 py-2 border border-slate-200 dark:border-gray-700 dark:bg-gray-900 rounded-md text-sm focus:outline-none focus:border-indigo-600 dark:text-gray-100 transition-colors"
                                                             />
                                                             <button
                                                                 onClick={() => removePoint(attr, idx)}
                                                                 disabled={data.points.length <= 1}
-                                                                className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${data.points.length <= 1 ? 'bg-slate-100 text-slate-300 cursor-not-allowed' : 'bg-red-50 text-red-600 hover:bg-red-500 hover:text-white'}`}
+                                                                className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${data.points.length <= 1 ? 'bg-slate-100 dark:bg-gray-700 text-slate-300 dark:text-gray-500 cursor-not-allowed' : 'bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-500 dark:hover:bg-red-600 hover:text-white'}`}
                                                             >
                                                                 <Trash size={16} weight="bold" />
                                                             </button>
@@ -454,12 +454,12 @@ export default function ServiceAttributesPage() {
 
                                             {/* Notes */}
                                             <div>
-                                                <label className="block text-sm font-semibold text-slate-900 mb-2">Additional Notes</label>
+                                                <label className="block text-sm font-semibold text-slate-900 dark:text-gray-200 mb-2">Additional Notes</label>
                                                 <textarea
                                                     value={data.notes}
                                                     onChange={(e) => handleFormChange(attr, 'notes', e.target.value)}
                                                     placeholder="Any additional information or notes..."
-                                                    className="w-full px-4 py-2.5 border-2 border-slate-200 rounded-lg text-sm min-h-[80px] focus:outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-600/10 transition-all resize-y"
+                                                    className="w-full px-4 py-2.5 border-2 border-slate-200 dark:border-gray-700 dark:bg-gray-800 rounded-lg text-sm min-h-[80px] focus:outline-none focus:border-indigo-600 dark:text-white focus:ring-4 focus:ring-indigo-600/10 transition-colors resize-y"
                                                 />
                                             </div>
                                         </div>
@@ -469,10 +469,10 @@ export default function ServiceAttributesPage() {
                         </div>
 
                         {/* Actions */}
-                        <div className="flex justify-end gap-4 mt-8 pt-8 border-t-2 border-slate-100">
+                        <div className="flex justify-end gap-4 mt-8 pt-8 border-t-2 border-slate-100 dark:border-gray-700 transition-colors">
                             <button
                                 onClick={handleReset}
-                                className="flex items-center gap-2 px-6 py-3.5 bg-white border-2 border-slate-200 hover:border-indigo-600 hover:text-indigo-600 text-slate-700 rounded-xl font-bold transition-all"
+                                className="flex items-center gap-2 px-6 py-3.5 bg-white dark:bg-gray-700 border-2 border-slate-200 dark:border-gray-600 hover:border-indigo-600 dark:hover:border-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-700 dark:text-gray-200 rounded-xl font-bold transition-all"
                             >
                                 <ArrowCounterClockwise size={20} weight="bold" />
                                 Reset

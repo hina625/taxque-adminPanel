@@ -334,23 +334,23 @@ export default function DocumentsPage() {
 
     if (view === 'client' && selectedClient) {
         return (
-            <div className="min-h-screen bg-slate-50 p-6 animate-fade-in font-sans text-slate-800">
+            <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-6 animate-fade-in font-sans text-slate-800 dark:text-gray-200 transition-colors duration-300">
                 {/* Crumb */}
-                <div className="flex items-center gap-2 mb-4 text-sm text-slate-500">
-                    <button onClick={() => { setSelectedClientId(null); setView('dashboard'); }} className="flex items-center gap-1 text-blue-600 hover:underline">
+                <div className="flex items-center gap-2 mb-4 text-sm text-slate-500 dark:text-gray-400">
+                    <button onClick={() => { setSelectedClientId(null); setView('dashboard'); }} className="flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline">
                         <ArrowLeft className="w-4 h-4" /> Back to Dashboard
                     </button>
                     <span>/ Client Document Window</span>
                 </div>
 
                 {/* Header */}
-                <div className="bg-gradient-to-br from-white to-slate-50 border border-slate-200 rounded-xl p-5 mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-sm">
+                <div className="bg-gradient-to-br from-white to-slate-50 dark:from-gray-800 dark:to-gray-800/80 border border-slate-200 dark:border-gray-700 rounded-xl p-5 mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-sm transition-colors">
                     <div>
                         <div className="flex items-center gap-3 mb-2">
-                            <h1 className="text-2xl font-bold text-slate-900">{selectedClient.name}</h1>
-                            <span className="bg-sky-100 text-sky-700 text-xs font-semibold px-2 py-0.5 rounded-full">{selectedClient.code}</span>
+                            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{selectedClient.name}</h1>
+                            <span className="bg-sky-100 dark:bg-sky-900/40 text-sky-700 dark:text-sky-300 text-xs font-semibold px-2 py-0.5 rounded-full transition-colors">{selectedClient.code}</span>
                         </div>
-                        <div className="flex flex-wrap gap-4 text-sm text-slate-500">
+                        <div className="flex flex-wrap gap-4 text-sm text-slate-500 dark:text-gray-400">
                             <span className="flex items-center gap-1.5"><Mail className="w-3.5 h-3.5" /> {selectedClient.email}</span>
                             <span className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5" /> {selectedClient.phone}</span>
                             <span className="flex items-center gap-1.5"><Tag className="w-3.5 h-3.5" /> {selectedClient.segment}</span>
@@ -360,15 +360,15 @@ export default function DocumentsPage() {
                 </div>
 
                 {/* Actions Card */}
-                <div className="bg-white border border-slate-200 rounded-xl shadow-sm mb-6 overflow-hidden">
-                    <div className="bg-white p-4 border-b border-slate-100 flex justify-between items-center">
+                <div className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl shadow-sm mb-6 overflow-hidden transition-colors">
+                    <div className="bg-white dark:bg-gray-800 p-4 border-b border-slate-100 dark:border-gray-700 flex justify-between items-center transition-colors">
                         <div>
-                            <h3 className="font-bold text-slate-800 flex items-center gap-2">
-                                <ArrowLeftRight className="w-5 h-5 text-slate-500" /> Document Actions
+                            <h3 className="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                <ArrowLeftRight className="w-5 h-5 text-slate-500 dark:text-gray-400" /> Document Actions
                             </h3>
-                            <p className="text-xs text-slate-500 mt-1">Request documents from clients or manage uploaded documents</p>
+                            <p className="text-xs text-slate-500 dark:text-gray-400 mt-1">Request documents from clients or manage uploaded documents</p>
                         </div>
-                        <button onClick={() => setShowForms(!showForms)} className="text-sm font-medium text-white bg-blue-600 px-3 py-1.5 rounded-lg hover:bg-blue-700 flex items-center gap-1 transition-colors">
+                        <button onClick={() => setShowForms(!showForms)} className="text-sm font-medium text-white bg-blue-600 dark:bg-blue-500 px-3 py-1.5 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 flex items-center gap-1 transition-colors">
                             {showForms ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />} {showForms ? 'Hide Forms' : 'Show Forms'}
                         </button>
                     </div>
@@ -388,8 +388,8 @@ export default function DocumentsPage() {
                                         key={tab.id}
                                         onClick={() => setDocFilter(tab.id as DocFilter)}
                                         className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${docFilter === tab.id
-                                            ? 'bg-slate-800 text-white shadow-sm'
-                                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                                            ? 'bg-slate-800 dark:bg-slate-700 text-white shadow-sm'
+                                            : 'bg-slate-100 dark:bg-gray-700 text-slate-600 dark:text-gray-300 hover:bg-slate-200 dark:hover:bg-gray-600'}`}
                                     >
                                         {tab.icon && <tab.icon className="w-4 h-4" />} {tab.label}
                                         <span className="bg-white/20 px-1.5 rounded text-xs ml-1">
@@ -407,37 +407,37 @@ export default function DocumentsPage() {
 
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                 {/* Admin Request Form */}
-                                <div className="border border-dashed border-slate-300 rounded-xl p-5 bg-slate-50/50">
+                                <div className="border border-dashed border-slate-300 dark:border-gray-600 rounded-xl p-5 bg-slate-50/50 dark:bg-gray-900/10 transition-colors">
                                     <div className="flex items-center justify-between mb-4">
-                                        <h4 className="font-semibold text-slate-800 flex items-center gap-2">
-                                            <Share className="w-4 h-4 text-blue-600" /> Request Document
+                                        <h4 className="font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                                            <Share className="w-4 h-4 text-blue-600 dark:text-blue-400" /> Request Document
                                         </h4>
-                                        <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">Outgoing Request</span>
+                                        <span className="text-xs bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-full font-medium transition-colors">Outgoing Request</span>
                                     </div>
                                     <form onSubmit={handleReqSubmit} className="grid grid-cols-2 gap-4">
                                         <div className="col-span-1">
-                                            <label className="block text-xs font-semibold text-slate-600 mb-1">Document Title</label>
-                                            <input value={reqForm.title} onChange={e => setReqForm({ ...reqForm, title: e.target.value })} className="w-full text-sm p-2 border border-slate-300 rounded-lg" placeholder="e.g. Bank Statement" required />
+                                            <label className="block text-xs font-semibold text-slate-600 dark:text-gray-400 mb-1">Document Title</label>
+                                            <input value={reqForm.title} onChange={e => setReqForm({ ...reqForm, title: e.target.value })} className="w-full text-sm p-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-slate-900 dark:text-white rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 outline-none" placeholder="e.g. Bank Statement" required />
                                         </div>
                                         <div className="col-span-1">
-                                            <label className="block text-xs font-semibold text-slate-600 mb-1">Category</label>
-                                            <select value={reqForm.category} onChange={e => setReqForm({ ...reqForm, category: e.target.value })} className="w-full text-sm p-2 border border-slate-300 rounded-lg">
+                                            <label className="block text-xs font-semibold text-slate-600 dark:text-gray-400 mb-1">Category</label>
+                                            <select value={reqForm.category} onChange={e => setReqForm({ ...reqForm, category: e.target.value })} className="w-full text-sm p-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-slate-900 dark:text-white rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 outline-none">
                                                 <option>ITR</option><option>GST</option><option>Audit</option><option>Other</option>
                                             </select>
                                         </div>
                                         <div className="col-span-1">
-                                            <label className="block text-xs font-semibold text-slate-600 mb-1">Due Date</label>
-                                            <input type="date" value={reqForm.due} onChange={e => setReqForm({ ...reqForm, due: e.target.value })} className="w-full text-sm p-2 border border-slate-300 rounded-lg" required />
+                                            <label className="block text-xs font-semibold text-slate-600 dark:text-gray-400 mb-1">Due Date</label>
+                                            <input type="date" value={reqForm.due} onChange={e => setReqForm({ ...reqForm, due: e.target.value })} className="w-full text-sm p-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-slate-900 dark:text-white rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 outline-none" required />
                                         </div>
                                         <div className="col-span-1">
-                                            <label className="block text-xs font-semibold text-slate-600 mb-1">Priority</label>
-                                            <select value={reqForm.priority} onChange={e => setReqForm({ ...reqForm, priority: e.target.value })} className="w-full text-sm p-2 border border-slate-300 rounded-lg">
+                                            <label className="block text-xs font-semibold text-slate-600 dark:text-gray-400 mb-1">Priority</label>
+                                            <select value={reqForm.priority} onChange={e => setReqForm({ ...reqForm, priority: e.target.value })} className="w-full text-sm p-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-slate-900 dark:text-white rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 outline-none">
                                                 <option>Normal</option><option>High</option><option>Urgent</option>
                                             </select>
                                         </div>
                                         <div className="col-span-2">
-                                            <label className="block text-xs font-semibold text-slate-600 mb-1">Instructions</label>
-                                            <textarea value={reqForm.notes} onChange={e => setReqForm({ ...reqForm, notes: e.target.value })} className="w-full text-sm p-2 border border-slate-300 rounded-lg" rows={2} placeholder="Optional instructions..."></textarea>
+                                            <label className="block text-xs font-semibold text-slate-600 dark:text-gray-400 mb-1">Instructions</label>
+                                            <textarea value={reqForm.notes} onChange={e => setReqForm({ ...reqForm, notes: e.target.value })} className="w-full text-sm p-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-slate-900 dark:text-white rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 outline-none" rows={2} placeholder="Optional instructions..."></textarea>
                                         </div>
                                         <div className="col-span-2 flex justify-end gap-2 mt-2">
                                             <button type="submit" className="bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2">
@@ -448,35 +448,35 @@ export default function DocumentsPage() {
                                 </div>
 
                                 {/* Client Upload Form */}
-                                <div className="border border-dashed border-slate-300 rounded-xl p-5 bg-slate-50/50">
+                                <div className="border border-dashed border-slate-300 dark:border-gray-600 rounded-xl p-5 bg-slate-50/50 dark:bg-gray-900/10 transition-colors">
                                     <div className="flex items-center justify-between mb-4">
-                                        <h4 className="font-semibold text-slate-800 flex items-center gap-2">
-                                            <Inbox className="w-4 h-4 text-emerald-600" /> Client Upload
+                                        <h4 className="font-semibold text-slate-800 dark:text-white flex items-center gap-2">
+                                            <Inbox className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> Client Upload
                                         </h4>
-                                        <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-medium">Incoming from Client</span>
+                                        <span className="text-xs bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-full font-medium transition-colors">Incoming from Client</span>
                                     </div>
                                     <form onSubmit={handleUploadSubmit} className="grid grid-cols-2 gap-4">
                                         <div className="col-span-1">
-                                            <label className="block text-xs font-semibold text-slate-600 mb-1">Document Title</label>
-                                            <input value={uploadForm.title} onChange={e => setUploadForm({ ...uploadForm, title: e.target.value })} className="w-full text-sm p-2 border border-slate-300 rounded-lg" placeholder="e.g. Ack Slip" required />
+                                            <label className="block text-xs font-semibold text-slate-600 dark:text-gray-400 mb-1">Document Title</label>
+                                            <input value={uploadForm.title} onChange={e => setUploadForm({ ...uploadForm, title: e.target.value })} className="w-full text-sm p-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-slate-900 dark:text-white rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 outline-none" placeholder="e.g. Ack Slip" required />
                                         </div>
                                         <div className="col-span-1">
-                                            <label className="block text-xs font-semibold text-slate-600 mb-1">Category</label>
-                                            <select value={uploadForm.category} onChange={e => setUploadForm({ ...uploadForm, category: e.target.value })} className="w-full text-sm p-2 border border-slate-300 rounded-lg">
+                                            <label className="block text-xs font-semibold text-slate-600 dark:text-gray-400 mb-1">Category</label>
+                                            <select value={uploadForm.category} onChange={e => setUploadForm({ ...uploadForm, category: e.target.value })} className="w-full text-sm p-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-slate-900 dark:text-white rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 outline-none">
                                                 <option>ITR</option><option>GST</option><option>Audit</option><option>Other</option>
                                             </select>
                                         </div>
                                         <div className="col-span-1">
-                                            <label className="block text-xs font-semibold text-slate-600 mb-1">File Name</label>
-                                            <input value={uploadForm.file} onChange={e => setUploadForm({ ...uploadForm, file: e.target.value })} className="w-full text-sm p-2 border border-slate-300 rounded-lg" placeholder="e.g. file.pdf" />
+                                            <label className="block text-xs font-semibold text-slate-600 dark:text-gray-400 mb-1">File Name</label>
+                                            <input value={uploadForm.file} onChange={e => setUploadForm({ ...uploadForm, file: e.target.value })} className="w-full text-sm p-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-slate-900 dark:text-white rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 outline-none" placeholder="e.g. file.pdf" />
                                         </div>
                                         <div className="col-span-1">
-                                            <label className="block text-xs font-semibold text-slate-600 mb-1">Upload Date</label>
-                                            <input type="date" value={uploadForm.date} onChange={e => setUploadForm({ ...uploadForm, date: e.target.value })} className="w-full text-sm p-2 border border-slate-300 rounded-lg" />
+                                            <label className="block text-xs font-semibold text-slate-600 dark:text-gray-400 mb-1">Upload Date</label>
+                                            <input type="date" value={uploadForm.date} onChange={e => setUploadForm({ ...uploadForm, date: e.target.value })} className="w-full text-sm p-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-slate-900 dark:text-white rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 outline-none" />
                                         </div>
                                         <div className="col-span-2">
-                                            <label className="block text-xs font-semibold text-slate-600 mb-1">Remarks</label>
-                                            <textarea value={uploadForm.notes} onChange={e => setUploadForm({ ...uploadForm, notes: e.target.value })} className="w-full text-sm p-2 border border-slate-300 rounded-lg" rows={2} placeholder="Optional remarks..."></textarea>
+                                            <label className="block text-xs font-semibold text-slate-600 dark:text-gray-400 mb-1">Remarks</label>
+                                            <textarea value={uploadForm.notes} onChange={e => setUploadForm({ ...uploadForm, notes: e.target.value })} className="w-full text-sm p-2 border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-slate-900 dark:text-white rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 outline-none" rows={2} placeholder="Optional remarks..."></textarea>
                                         </div>
                                         <div className="col-span-2 flex justify-end gap-2 mt-2">
                                             <button type="submit" className="bg-emerald-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-emerald-700 flex items-center gap-2">
@@ -491,15 +491,15 @@ export default function DocumentsPage() {
                 </div>
 
                 {/* Document List */}
-                <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-                    <div className="bg-white p-4 border-b border-slate-100 flex justify-between items-center">
+                <div className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl shadow-sm overflow-hidden transition-colors">
+                    <div className="bg-white dark:bg-gray-800 p-4 border-b border-slate-100 dark:border-gray-700 flex justify-between items-center transition-colors">
                         <div>
-                            <h3 className="font-bold text-slate-800 flex items-center gap-2">
-                                <FileText className="w-5 h-5 text-slate-500" /> Client Documents
+                            <h3 className="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                <FileText className="w-5 h-5 text-slate-500 dark:text-gray-400" /> Client Documents
                             </h3>
                         </div>
                         <div className="flex gap-2">
-                            <button onClick={() => showToast('Refreshed')} className="text-sm border border-slate-200 text-slate-600 px-3 py-1.5 rounded-lg hover:bg-slate-50 flex items-center gap-1 transition-colors">
+                            <button onClick={() => showToast('Refreshed')} className="text-sm border border-slate-200 dark:border-gray-700 text-slate-600 dark:text-gray-300 px-3 py-1.5 rounded-lg hover:bg-slate-50 dark:hover:bg-gray-700 flex items-center gap-1 transition-colors">
                                 <RefreshCw className="w-3.5 h-3.5" /> Refresh
                             </button>
                         </div>
@@ -508,7 +508,7 @@ export default function DocumentsPage() {
                     <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
-                                <tr className="bg-slate-50 border-b border-slate-100 text-xs uppercase text-slate-500 font-semibold tracking-wider">
+                                <tr className="bg-slate-50 dark:bg-gray-800/50 border-b border-slate-100 dark:border-gray-700 text-xs uppercase text-slate-500 dark:text-gray-400 font-semibold tracking-wider transition-colors">
                                     <th className="p-4">Title</th>
                                     <th className="p-4">Direction</th>
                                     <th className="p-4">Status / Quality</th>
@@ -517,56 +517,56 @@ export default function DocumentsPage() {
                                     <th className="p-4">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-100 text-sm">
+                            <tbody className="divide-y divide-slate-100 dark:divide-gray-700 text-sm">
                                 {filteredDocs.length === 0 ? (
                                     <tr>
-                                        <td colSpan={6} className="p-8 text-center text-slate-500 flex flex-col items-center">
+                                        <td colSpan={6} className="p-8 text-center text-slate-500 dark:text-gray-400 flex flex-col items-center">
                                             <File className="w-8 h-8 opacity-40 mb-2" />
                                             No documents found for this filter.
                                         </td>
                                     </tr>
                                 ) : (
                                     filteredDocs.map(doc => (
-                                        <tr key={doc.id} className="hover:bg-slate-50 transition-colors">
+                                        <tr key={doc.id} className="hover:bg-slate-50 dark:hover:bg-gray-800/30 transition-colors">
                                             <td className="p-4">
                                                 <div className="flex items-start gap-3">
-                                                    <div className="text-blue-600 mt-0.5">
+                                                    <div className="text-blue-600 dark:text-blue-400 mt-0.5 transition-colors">
                                                         {doc.category === 'ITR' ? <FileText className="w-4 h-4" /> :
                                                             doc.category === 'GST' ? <FileText className="w-4 h-4" /> :
                                                                 <File className="w-4 h-4" />}
                                                     </div>
                                                     <div>
-                                                        <div className="font-semibold text-slate-800">{doc.title}</div>
-                                                        <div className="text-xs text-slate-500 mt-0.5">{doc.category} • {doc.direction === 'toClient' ? 'Req. by Admin' : 'Up. by Client'}</div>
+                                                        <div className="font-semibold text-slate-800 dark:text-white transition-colors">{doc.title}</div>
+                                                        <div className="text-xs text-slate-500 dark:text-gray-400 mt-0.5 transition-colors">{doc.category} • {doc.direction === 'toClient' ? 'Req. by Admin' : 'Up. by Client'}</div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="p-4">
-                                                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-semibold ${doc.direction === 'toClient' ? 'bg-blue-100 text-blue-800' : 'bg-emerald-100 text-emerald-800'}`}>
+                                                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-semibold transition-colors ${doc.direction === 'toClient' ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300' : 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300'}`}>
                                                     {doc.direction === 'toClient' ? <Share className="w-3 h-3" /> : <Inbox className="w-3 h-3" />}
                                                     {doc.direction === 'toClient' ? 'Outgoing' : 'Incoming'}
                                                 </span>
                                             </td>
                                             <td className="p-4">
-                                                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold ${getStatusColor(doc.status)}`}>
+                                                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold transition-colors ${getStatusColor(doc.status)}`}>
                                                     <span className="w-1.5 h-1.5 rounded-full bg-current opacity-60"></span> {doc.status}
                                                 </span>
                                                 {doc.quality && doc.quality !== 'Pending' && doc.quality !== doc.status && (
-                                                    <div className="text-xs text-slate-500 mt-1">Quality: {doc.quality}</div>
+                                                    <div className="text-xs text-slate-500 dark:text-gray-400 mt-1 transition-colors">Quality: {doc.quality}</div>
                                                 )}
                                             </td>
                                             <td className="p-4">
-                                                <div className="font-medium text-slate-700">{doc.dueDate || "—"}</div>
-                                                <div className="text-xs text-slate-500 mt-0.5">{doc.lastDateLabel}</div>
+                                                <div className="font-medium text-slate-700 dark:text-gray-300 transition-colors">{doc.dueDate || "—"}</div>
+                                                <div className="text-xs text-slate-500 dark:text-gray-400 mt-0.5 transition-colors">{doc.lastDateLabel}</div>
                                             </td>
                                             <td className="p-4">
                                                 {doc.priority && doc.priority !== 'Normal' && (
-                                                    <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide mb-1 ${doc.priority === 'Urgent' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'}`}>
+                                                    <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] uppercase font-bold tracking-wide mb-1 transition-colors ${doc.priority === 'Urgent' ? 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300' : 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300'}`}>
                                                         <Flag className="w-3 h-3" /> {doc.priority}
                                                     </span>
                                                 )}
                                                 {doc.notes && (
-                                                    <div className="flex items-start gap-1 text-xs text-slate-500 max-w-[200px]">
+                                                    <div className="flex items-start gap-1 text-xs text-slate-500 dark:text-gray-400 max-w-[200px] transition-colors">
                                                         <StickyNote className="w-3 h-3 mt-0.5 flex-shrink-0" />
                                                         <span className="truncate" title={doc.notes}>{doc.notes}</span>
                                                     </div>
@@ -575,7 +575,7 @@ export default function DocumentsPage() {
                                             <td className="p-4">
                                                 <div className="flex items-center gap-1">
                                                     <select
-                                                        className="text-xs border border-slate-300 rounded px-1 py-1 bg-white focus:border-blue-500 outline-none w-28"
+                                                        className="text-xs border border-slate-300 dark:border-gray-700 rounded px-1 py-1 bg-white dark:bg-gray-800 text-slate-900 dark:text-white focus:border-blue-500 outline-none w-28 transition-colors"
                                                         value={doc.status}
                                                         onChange={(e) => updateDocStatus(doc.id, e.target.value)}
                                                     >
@@ -586,10 +586,10 @@ export default function DocumentsPage() {
                                                         <option>Incorrect</option>
                                                         <option>Expired</option>
                                                     </select>
-                                                    <button onClick={() => markDocCompleted(doc.id)} className="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded" title="Mark Completed (Good)">
+                                                    <button onClick={() => markDocCompleted(doc.id)} className="p-1.5 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 rounded transition-colors" title="Mark Completed (Good)">
                                                         <Check className="w-4 h-4" />
                                                     </button>
-                                                    <button onClick={() => requestDocReplacement(doc.id)} className="p-1.5 text-red-600 hover:bg-red-50 rounded" title="Request Replacement">
+                                                    <button onClick={() => requestDocReplacement(doc.id)} className="p-1.5 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 rounded transition-colors" title="Request Replacement">
                                                         <RotateCw className="w-4 h-4" />
                                                     </button>
                                                 </div>
@@ -607,43 +607,43 @@ export default function DocumentsPage() {
 
     if (view === 'analytics') {
         return (
-            <div className="min-h-screen bg-slate-50 p-6 animate-fade-in font-sans">
+            <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-6 animate-fade-in font-sans text-slate-800 dark:text-gray-200 transition-colors duration-300">
                 <div className="flex justify-between items-center mb-6">
                     <div>
-                        <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2"><TrendingUp className="w-6 h-6 text-blue-600" /> Analytics & Reports</h1>
-                        <p className="text-slate-500">Track document submission trends and compliance.</p>
+                        <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2 transition-colors"><TrendingUp className="w-6 h-6 text-blue-600 dark:text-blue-400" /> Analytics & Reports</h1>
+                        <p className="text-slate-500 dark:text-gray-400">Track document submission trends and compliance.</p>
                     </div>
                     <div className="flex gap-2">
-                        <select className="border border-slate-300 rounded-lg px-3 py-1.5 text-sm bg-white">
+                        <select className="border border-slate-300 dark:border-gray-700 rounded-lg px-3 py-1.5 text-sm bg-white dark:bg-gray-800 text-slate-900 dark:text-white transition-colors outline-none">
                             <option>Last 30 days</option>
                             <option>Last quarter</option>
                         </select>
-                        <button className="bg-blue-600 text-white px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-700 flex items-center gap-2">
+                        <button className="bg-blue-600 dark:bg-blue-500 text-white px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-700 dark:hover:bg-blue-600 flex items-center gap-2 transition-colors">
                             <Download className="w-4 h-4" /> Download Report
                         </button>
                     </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                        <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 mb-3"><BarChart className="w-5 h-5" /></div>
-                        <div className="text-2xl font-bold text-slate-900">2.4</div>
-                        <div className="text-sm text-slate-500 font-medium">Avg. Response Time (days)</div>
-                        <div className="text-xs text-emerald-600 font-bold mt-2 flex items-center gap-1"><ArrowUp className="w-3 h-3 rotate-180" /> Improved from 3.1 days</div>
+                    <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm transition-colors">
+                        <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-3 transition-colors"><BarChart className="w-5 h-5" /></div>
+                        <div className="text-2xl font-bold text-slate-900 dark:text-white transition-colors">2.4</div>
+                        <div className="text-sm text-slate-500 dark:text-gray-400 font-medium transition-colors">Avg. Response Time (days)</div>
+                        <div className="text-xs text-emerald-600 dark:text-emerald-400 font-bold mt-2 flex items-center gap-1 transition-colors"><ArrowUp className="w-3 h-3 rotate-180" /> Improved from 3.1 days</div>
                     </div>
-                    <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                        <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 mb-3"><Percent className="w-5 h-5" /></div>
-                        <div className="text-2xl font-bold text-slate-900">87%</div>
-                        <div className="text-sm text-slate-500 font-medium">Compliance Rate</div>
-                        <div className="text-xs text-emerald-600 font-bold mt-2 flex items-center gap-1"><ArrowUp className="w-3 h-3" /> Up 5% from last month</div>
+                    <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm transition-colors">
+                        <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-3 transition-colors"><Percent className="w-5 h-5" /></div>
+                        <div className="text-2xl font-bold text-slate-900 dark:text-white transition-colors">87%</div>
+                        <div className="text-sm text-slate-500 dark:text-gray-400 font-medium transition-colors">Compliance Rate</div>
+                        <div className="text-xs text-emerald-600 dark:text-emerald-400 font-bold mt-2 flex items-center gap-1 transition-colors"><ArrowUp className="w-3 h-3" /> Up 5% from last month</div>
                     </div>
-                    <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                        <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 mb-3"><Upload className="w-5 h-5" /></div>
-                        <div className="text-2xl font-bold text-slate-900">142</div>
-                        <div className="text-sm text-slate-500 font-medium">Total Uploads (30 days)</div>
-                        <div className="text-xs text-emerald-600 font-bold mt-2 flex items-center gap-1"><ArrowUp className="w-3 h-3" /> 24 more than last month</div>
+                    <div className="bg-white dark:bg-gray-800 p-5 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm transition-colors">
+                        <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-3 transition-colors"><Upload className="w-5 h-5" /></div>
+                        <div className="text-2xl font-bold text-slate-900 dark:text-white transition-colors">142</div>
+                        <div className="text-sm text-slate-500 dark:text-gray-400 font-medium transition-colors">Total Uploads (30 days)</div>
+                        <div className="text-xs text-emerald-600 dark:text-emerald-400 font-bold mt-2 flex items-center gap-1 transition-colors"><ArrowUp className="w-3 h-3" /> 24 more than last month</div>
                     </div>
                 </div>
-                <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm h-64 flex flex-col items-center justify-center text-slate-400">
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-slate-200 dark:border-gray-700 shadow-sm h-64 flex flex-col items-center justify-center text-slate-400 dark:text-gray-500 transition-colors">
                     <PieChart className="w-12 h-12 mb-2 opacity-50" />
                     <p className="italic">Chart visualization would appear here in a real application</p>
                 </div>
@@ -653,33 +653,33 @@ export default function DocumentsPage() {
 
     if (view === 'users') {
         return (
-            <div className="min-h-screen bg-slate-50 p-6 animate-fade-in font-sans">
+            <div className="min-h-screen bg-slate-50 dark:bg-gray-900 p-6 animate-fade-in font-sans text-slate-800 dark:text-gray-200 transition-colors duration-300">
                 <div className="flex justify-between items-center mb-6">
                     <div>
-                        <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2"><Users className="w-6 h-6 text-blue-600" /> User Management</h1>
-                        <p className="text-slate-500">Manage system users, roles, and permissions.</p>
+                        <h1 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2 transition-colors"><Users className="w-6 h-6 text-blue-600 dark:text-blue-400" /> User Management</h1>
+                        <p className="text-slate-500 dark:text-gray-400">Manage system users, roles, and permissions.</p>
                     </div>
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 flex items-center gap-2">
+                    <button className="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 dark:hover:bg-blue-600 flex items-center gap-2 transition-colors">
                         <UserPlus className="w-4 h-4" /> Add User
                     </button>
                 </div>
-                <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+                <div className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl shadow-sm overflow-hidden transition-colors">
                     <table className="w-full text-left">
-                        <thead className="bg-slate-50 border-b border-slate-100 text-xs uppercase text-slate-500 font-semibold">
+                        <thead className="bg-slate-50 dark:bg-gray-800/50 border-b border-slate-100 dark:border-gray-700 text-xs uppercase text-slate-500 dark:text-gray-400 font-semibold transition-colors">
                             <tr>
                                 <th className="p-4">User</th> <th className="p-4">Role</th> <th className="p-4">Email</th> <th className="p-4">Status</th> <th className="p-4">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-100 text-sm">
-                            <tr>
+                        <tbody className="divide-y divide-slate-100 dark:divide-gray-700 text-sm">
+                            <tr className="hover:bg-slate-50 dark:hover:bg-gray-800/30 transition-colors">
                                 <td className="p-4 flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs font-bold">AD</div>
-                                    <div><div className="font-bold text-slate-900">Admin User</div><div className="text-xs text-slate-500">System Admin</div></div>
+                                    <div className="w-8 h-8 rounded-full bg-slate-200 dark:bg-gray-700 text-slate-600 dark:text-gray-300 flex items-center justify-center text-xs font-bold transition-colors">AD</div>
+                                    <div><div className="font-bold text-slate-900 dark:text-white transition-colors">Admin User</div><div className="text-xs text-slate-500 dark:text-gray-400 transition-colors">System Admin</div></div>
                                 </td>
-                                <td className="p-4"><span className="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs font-bold">Administrator</span></td>
-                                <td className="p-4 text-slate-600">admin@taxque.cloud</td>
-                                <td className="p-4"><span className="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded text-xs font-bold">Active</span></td>
-                                <td className="p-4"><button className="text-slate-400 hover:text-blue-600"><Edit className="w-4 h-4" /></button></td>
+                                <td className="p-4"><span className="bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 px-2 py-0.5 rounded text-xs font-bold transition-colors">Administrator</span></td>
+                                <td className="p-4 text-slate-600 dark:text-gray-400 transition-colors">admin@taxque.cloud</td>
+                                <td className="p-4"><span className="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded text-xs font-bold transition-colors">Active</span></td>
+                                <td className="p-4"><button className="text-slate-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"><Edit className="w-4 h-4" /></button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -693,24 +693,24 @@ export default function DocumentsPage() {
     const allCompletedDocs = clients.reduce((sum, c) => sum + c.documents.filter(d => d.status === 'Completed').length, 0);
 
     return (
-        <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
+        <div className="min-h-screen bg-slate-50 dark:bg-gray-900 font-sans text-slate-800 dark:text-gray-200 transition-colors duration-300">
             <div id="section-dashboard" className="p-6 animate-fade-in">
                 {/* Header Actions */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-2">
-                            <LayoutGrid className="w-7 h-7 text-blue-600" /> Admin Dashboard
+                        <h1 className="text-3xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <LayoutGrid className="w-7 h-7 text-blue-600 dark:text-blue-400" /> Admin Dashboard
                         </h1>
-                        <p className="text-slate-500 mt-1">Overview of all clients and their document status.</p>
+                        <p className="text-slate-500 dark:text-gray-400 mt-1">Overview of all clients and their document status.</p>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                        <button onClick={() => setView('analytics')} className="bg-white border border-slate-200 text-slate-700 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 flex items-center gap-2">
+                        <button onClick={() => setView('analytics')} className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 text-slate-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-gray-700 flex items-center gap-2 transition-colors">
                             <BarChart className="w-4 h-4" /> Analytics
                         </button>
-                        <button onClick={() => setView('users')} className="bg-white border border-slate-200 text-slate-700 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 flex items-center gap-2">
+                        <button onClick={() => setView('users')} className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 text-slate-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-gray-700 flex items-center gap-2 transition-colors">
                             <Users className="w-4 h-4" /> Users
                         </button>
-                        <button onClick={seedSampleData} className="bg-white border border-slate-200 text-slate-700 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 flex items-center gap-2">
+                        <button onClick={seedSampleData} className="bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 text-slate-700 dark:text-gray-300 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-gray-700 flex items-center gap-2 transition-colors">
                             <RotateCw className="w-4 h-4" /> Reset Data
                         </button>
                         <button onClick={() => setIsAddClientModalOpen(true)} className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 shadow-sm flex items-center gap-2 transition-colors">
@@ -721,52 +721,52 @@ export default function DocumentsPage() {
 
                 {/* Main Stats Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:-translate-y-1 hover:shadow-md transition-all">
+                    <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-gray-700 hover:-translate-y-1 hover:shadow-md transition-all">
                         <div className="flex justify-between items-start mb-2">
-                            <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600"><Users className="w-6 h-6" /></div>
-                            <span className="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs font-bold">Active</span>
+                            <div className="w-12 h-12 rounded-lg bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 transition-colors"><Users className="w-6 h-6" /></div>
+                            <span className="bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-2 py-1 rounded text-xs font-bold transition-colors">Active</span>
                         </div>
-                        <div className="text-3xl font-bold text-slate-900 mb-1">{clients.length}</div>
-                        <div className="text-sm font-medium text-slate-500">Total Clients</div>
-                        <div className="text-xs text-emerald-600 font-bold mt-2 flex items-center gap-1"><ArrowUp className="w-3 h-3" /> 3 new this month</div>
+                        <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1 transition-colors">{clients.length}</div>
+                        <div className="text-sm font-medium text-slate-500 dark:text-gray-400">Total Clients</div>
+                        <div className="text-xs text-emerald-600 dark:text-emerald-400 font-bold mt-2 flex items-center gap-1"><ArrowUp className="w-3 h-3" /> 3 new this month</div>
                     </div>
 
-                    <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:-translate-y-1 hover:shadow-md transition-all">
+                    <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-gray-700 hover:-translate-y-1 hover:shadow-md transition-all">
                         <div className="flex justify-between items-start mb-2">
-                            <div className="w-12 h-12 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600"><Clock className="w-6 h-6" /></div>
-                            <span className="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs font-bold">Action Needed</span>
+                            <div className="w-12 h-12 rounded-lg bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400 transition-colors"><Clock className="w-6 h-6" /></div>
+                            <span className="bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 px-2 py-1 rounded text-xs font-bold transition-colors">Action Needed</span>
                         </div>
-                        <div className="text-3xl font-bold text-slate-900 mb-1">{clientsWithPending}</div>
-                        <div className="text-sm font-medium text-slate-500">Clients with Pending Docs</div>
-                        <div className="text-xs text-amber-600 font-bold mt-2 flex items-center gap-1"><AlertCircle className="w-3 h-3" /> Require attention</div>
+                        <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1 transition-colors">{clientsWithPending}</div>
+                        <div className="text-sm font-medium text-slate-500 dark:text-gray-400">Clients with Pending Docs</div>
+                        <div className="text-xs text-amber-600 dark:text-amber-400 font-bold mt-2 flex items-center gap-1"><AlertCircle className="w-3 h-3" /> Require attention</div>
                     </div>
 
-                    <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:-translate-y-1 hover:shadow-md transition-all">
+                    <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-gray-700 hover:-translate-y-1 hover:shadow-md transition-all">
                         <div className="flex justify-between items-start mb-2">
-                            <div className="w-12 h-12 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600"><CheckCircle className="w-6 h-6" /></div>
-                            <span className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded text-xs font-bold">Completed</span>
+                            <div className="w-12 h-12 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 transition-colors"><CheckCircle className="w-6 h-6" /></div>
+                            <span className="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 px-2 py-1 rounded text-xs font-bold transition-colors">Completed</span>
                         </div>
-                        <div className="text-3xl font-bold text-slate-900 mb-1">{allCompletedDocs}</div>
-                        <div className="text-sm font-medium text-slate-500">Total Completed Documents</div>
-                        <div className="text-xs text-emerald-600 font-bold mt-2 flex items-center gap-1"><ArrowUp className="w-3 h-3" /> 12% increase</div>
+                        <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1 transition-colors">{allCompletedDocs}</div>
+                        <div className="text-sm font-medium text-slate-500 dark:text-gray-400">Total Completed Documents</div>
+                        <div className="text-xs text-emerald-600 dark:text-emerald-400 font-bold mt-2 flex items-center gap-1"><ArrowUp className="w-3 h-3" /> 12% increase</div>
                     </div>
                 </div>
 
                 {/* Client Directory Card */}
-                <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-                    <div className="p-5 border-b border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-gray-700 overflow-hidden transition-colors">
+                    <div className="p-5 border-b border-slate-100 dark:border-gray-700 flex flex-col md:flex-row justify-between items-center gap-4">
                         <div>
-                            <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-                                <List className="w-5 h-5 text-slate-500" /> Client Directory
+                            <h3 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                <List className="w-5 h-5 text-slate-500 dark:text-gray-400" /> Client Directory
                             </h3>
-                            <p className="text-xs text-slate-500 mt-1">Click a client to manage interactions</p>
+                            <p className="text-xs text-slate-500 dark:text-gray-400 mt-1">Click a client to manage interactions</p>
                         </div>
                         <div className="relative">
-                            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                            <Search className="w-4 h-4 text-slate-400 dark:text-gray-500 absolute left-3 top-2.5" />
                             <input
                                 type="text"
                                 placeholder="Search clients..."
-                                className="pl-9 pr-8 py-2 border border-slate-200 rounded-full text-sm w-64 focus:border-blue-500 outline-none transition-all"
+                                className="pl-9 pr-8 py-2 border border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-full text-sm w-64 focus:border-blue-500 outline-none transition-all"
                                 value={searchQuery}
                                 onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
                             />
@@ -781,7 +781,7 @@ export default function DocumentsPage() {
                     <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
-                                <tr className="bg-slate-50 border-b border-slate-100 text-xs uppercase text-slate-500 font-semibold tracking-wider">
+                                <tr className="bg-slate-50 dark:bg-gray-800/50 border-b border-slate-100 dark:border-gray-700 text-xs uppercase text-slate-500 dark:text-gray-400 font-semibold tracking-wider transition-colors">
                                     <th className="p-4">Client</th>
                                     <th className="p-4">Client Code</th>
                                     <th className="p-4">Pending Docs</th>
@@ -805,35 +805,35 @@ export default function DocumentsPage() {
                                         const lastActivity = client.documents.length > 0 ? client.documents[client.documents.length - 1].lastDateLabel : 'No activity';
 
                                         return (
-                                            <tr key={client.id} className="hover:bg-slate-50 transition-colors cursor-pointer" onClick={() => { setSelectedClientId(client.id); setView('client'); }}>
+                                            <tr key={client.id} className="hover:bg-slate-50 dark:hover:bg-gray-800/30 border-b border-slate-50 dark:border-gray-700 transition-colors cursor-pointer" onClick={() => { setSelectedClientId(client.id); setView('client'); }}>
                                                 <td className="p-4">
                                                     <div className="flex items-center gap-3">
-                                                        <div className="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-sm font-bold text-slate-600">
+                                                        <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-gray-700 border border-slate-200 dark:border-gray-600 flex items-center justify-center text-sm font-bold text-slate-600 dark:text-gray-300 transition-colors">
                                                             {client.name.substring(0, 2).toUpperCase()}
                                                         </div>
                                                         <div>
-                                                            <div className="font-semibold text-blue-600 hover:underline">{client.name}</div>
-                                                            <div className="text-xs text-slate-500">{client.email}</div>
+                                                            <div className="font-semibold text-blue-600 dark:text-blue-400 hover:underline transition-colors">{client.name}</div>
+                                                            <div className="text-xs text-slate-500 dark:text-gray-400 transition-colors">{client.email}</div>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td className="p-4">
-                                                    <div className="font-mono font-bold text-slate-700 text-xs">{client.code}</div>
-                                                    <div className="text-xs text-slate-500">{client.segment}</div>
+                                                    <div className="font-mono font-bold text-slate-700 dark:text-gray-300 text-xs transition-colors">{client.code}</div>
+                                                    <div className="text-xs text-slate-500 dark:text-gray-400 transition-colors">{client.segment}</div>
                                                 </td>
                                                 <td className="p-4">
                                                     {pending > 0 ? (
-                                                        <div className="font-bold text-amber-600">{pending} <span className="text-xs font-normal text-slate-400">pending</span></div>
+                                                        <div className="font-bold text-amber-600 dark:text-amber-400 transition-colors">{pending} <span className="text-xs font-normal text-slate-400 dark:text-gray-500 transition-colors">pending</span></div>
                                                     ) : (
-                                                        <div className="font-bold text-emerald-600">0 <span className="text-xs font-normal text-slate-400">All clear</span></div>
+                                                        <div className="font-bold text-emerald-600 dark:text-emerald-400 transition-colors">0 <span className="text-xs font-normal text-slate-400 dark:text-gray-500 transition-colors">All clear</span></div>
                                                     )}
                                                 </td>
                                                 <td className="p-4">
                                                     <div className="font-bold text-slate-800">{completed} <span className="text-xs font-normal text-slate-400">of {client.documents.length}</span></div>
                                                 </td>
                                                 <td className="p-4">
-                                                    <div className="text-slate-700">{lastActivity}</div>
-                                                    <div className="text-xs text-slate-500">RM: {client.rm}</div>
+                                                    <div className="text-slate-700 dark:text-gray-300 transition-colors">{lastActivity}</div>
+                                                    <div className="text-xs text-slate-500 dark:text-gray-400 transition-colors">RM: {client.rm}</div>
                                                 </td>
                                                 <td className="p-4">
                                                     <button onClick={(e) => { e.stopPropagation(); setSelectedClientId(client.id); setView('client'); }} className="bg-blue-600 text-white p-1.5 rounded-md hover:bg-blue-700 shadow-sm" title="Open Client">
@@ -848,13 +848,13 @@ export default function DocumentsPage() {
                         </table>
                     </div>
 
-                    <div className="p-4 border-t border-slate-100 flex justify-between items-center text-sm text-slate-500">
-                        <div>Showing <span className="font-bold text-slate-800">{getPaginatedClients().length}</span> of <span className="font-bold">{clients.length}</span> clients</div>
+                    <div className="p-4 border-t border-slate-100 dark:border-gray-700 flex justify-between items-center text-sm text-slate-500 dark:text-gray-400 transition-colors">
+                        <div>Showing <span className="font-bold text-slate-800 dark:text-white transition-colors">{getPaginatedClients().length}</span> of <span className="font-bold dark:text-white transition-colors">{clients.length}</span> clients</div>
                         <div className="flex gap-2">
-                            <button onClick={() => setCurrentPage(Math.max(1, currentPage - 1))} disabled={currentPage === 1} className="p-1.5 border border-slate-200 rounded hover:bg-slate-50 disabled:opacity-50">
+                            <button onClick={() => setCurrentPage(Math.max(1, currentPage - 1))} disabled={currentPage === 1} className="p-1.5 border border-slate-200 dark:border-gray-700 rounded hover:bg-slate-50 dark:hover:bg-gray-700 disabled:opacity-50 transition-colors">
                                 <ChevronLeft className="w-4 h-4" />
                             </button>
-                            <button onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))} disabled={currentPage === totalPages} className="p-1.5 border border-slate-200 rounded hover:bg-slate-50 disabled:opacity-50">
+                            <button onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))} disabled={currentPage === totalPages} className="p-1.5 border border-slate-200 dark:border-gray-700 rounded hover:bg-slate-50 dark:hover:bg-gray-700 disabled:opacity-50 transition-colors">
                                 <ChevronRight className="w-4 h-4" />
                             </button>
                         </div>
@@ -863,37 +863,37 @@ export default function DocumentsPage() {
 
                 {/* Add Client Modal */}
                 {isAddClientModalOpen && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in">
-                        <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg overflow-hidden animate-scale-in transform transition-all">
-                            <div className="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
-                                <h3 className="font-bold text-lg text-slate-800 flex items-center gap-2">
-                                    <UserPlus className="w-5 h-5 text-blue-600" /> Add New Client
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 dark:bg-black/70 backdrop-blur-sm animate-fade-in">
+                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-lg overflow-hidden animate-scale-in transform transition-all border border-slate-200 dark:border-gray-700">
+                            <div className="px-6 py-4 border-b border-slate-100 dark:border-gray-700 flex justify-between items-center bg-slate-50 dark:bg-gray-800/50 transition-colors">
+                                <h3 className="font-bold text-lg text-slate-800 dark:text-white flex items-center gap-2">
+                                    <UserPlus className="w-5 h-5 text-blue-600 dark:text-blue-400" /> Add New Client
                                 </h3>
-                                <button onClick={() => setIsAddClientModalOpen(false)} className="text-slate-400 hover:text-red-500 transition-colors">
+                                <button onClick={() => setIsAddClientModalOpen(false)} className="text-slate-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition-colors">
                                     <X className="w-5 h-5" />
                                 </button>
                             </div>
                             <form onSubmit={handleAddClient} className="p-6">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="col-span-2">
-                                        <label className="block text-sm font-bold text-slate-700 mb-1">Full Name</label>
-                                        <input value={newClientForm.name} onChange={e => setNewClientForm({ ...newClientForm, name: e.target.value })} className="w-full border border-slate-300 rounded-lg p-2.5 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" required placeholder="Enter client name" />
+                                        <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-1">Full Name</label>
+                                        <input value={newClientForm.name} onChange={e => setNewClientForm({ ...newClientForm, name: e.target.value })} className="w-full border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-lg p-2.5 transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none" required placeholder="Enter client name" />
                                     </div>
                                     <div className="col-span-1">
-                                        <label className="block text-sm font-bold text-slate-700 mb-1">Email</label>
-                                        <input value={newClientForm.email} onChange={e => setNewClientForm({ ...newClientForm, email: e.target.value })} className="w-full border border-slate-300 rounded-lg p-2.5 focus:border-blue-500 outline-none" required type="email" placeholder="client@example.com" />
+                                        <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-1">Email</label>
+                                        <input value={newClientForm.email} onChange={e => setNewClientForm({ ...newClientForm, email: e.target.value })} className="w-full border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-lg p-2.5 transition-colors focus:border-blue-500 outline-none" required type="email" placeholder="client@example.com" />
                                     </div>
                                     <div className="col-span-1">
-                                        <label className="block text-sm font-bold text-slate-700 mb-1">Phone</label>
-                                        <input value={newClientForm.phone} onChange={e => setNewClientForm({ ...newClientForm, phone: e.target.value })} className="w-full border border-slate-300 rounded-lg p-2.5 focus:border-blue-500 outline-none" placeholder="+91..." />
+                                        <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-1">Phone</label>
+                                        <input value={newClientForm.phone} onChange={e => setNewClientForm({ ...newClientForm, phone: e.target.value })} className="w-full border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-lg p-2.5 transition-colors focus:border-blue-500 outline-none" placeholder="+91..." />
                                     </div>
                                     <div className="col-span-1">
-                                        <label className="block text-sm font-bold text-slate-700 mb-1">Client Code</label>
-                                        <input value={newClientForm.code} onChange={e => setNewClientForm({ ...newClientForm, code: e.target.value })} className="w-full border border-slate-300 rounded-lg p-2.5 focus:border-blue-500 outline-none" required placeholder="TXQ-001" />
+                                        <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-1">Client Code</label>
+                                        <input value={newClientForm.code} onChange={e => setNewClientForm({ ...newClientForm, code: e.target.value })} className="w-full border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-lg p-2.5 transition-colors focus:border-blue-500 outline-none" required placeholder="TXQ-001" />
                                     </div>
                                     <div className="col-span-1">
-                                        <label className="block text-sm font-bold text-slate-700 mb-1">Category</label>
-                                        <select value={newClientForm.segment} onChange={e => setNewClientForm({ ...newClientForm, segment: e.target.value })} className="w-full border border-slate-300 rounded-lg p-2.5 focus:border-blue-500 outline-none">
+                                        <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-1">Category</label>
+                                        <select value={newClientForm.segment} onChange={e => setNewClientForm({ ...newClientForm, segment: e.target.value })} className="w-full border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-lg p-2.5 transition-colors focus:border-blue-500 outline-none">
                                             <option>ITR · Individual</option>
                                             <option>GST · Business</option>
                                             <option>Audit · Corporate</option>
@@ -901,16 +901,16 @@ export default function DocumentsPage() {
                                         </select>
                                     </div>
                                     <div className="col-span-2">
-                                        <label className="block text-sm font-bold text-slate-700 mb-1">Relationship Manager</label>
-                                        <select value={newClientForm.rm} onChange={e => setNewClientForm({ ...newClientForm, rm: e.target.value })} className="w-full border border-slate-300 rounded-lg p-2.5 focus:border-blue-500 outline-none">
+                                        <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-1">Relationship Manager</label>
+                                        <select value={newClientForm.rm} onChange={e => setNewClientForm({ ...newClientForm, rm: e.target.value })} className="w-full border border-slate-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-slate-900 dark:text-white rounded-lg p-2.5 transition-colors focus:border-blue-500 outline-none">
                                             <option>Anita Sharma</option>
                                             <option>Rohan Verma</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div className="flex justify-end gap-3 mt-8">
-                                    <button type="button" onClick={() => setIsAddClientModalOpen(false)} className="px-5 py-2.5 border border-slate-300 rounded-lg font-bold text-slate-600 hover:bg-slate-50 transition-colors">Cancel</button>
-                                    <button type="submit" className="px-5 py-2.5 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 shadow-lg shadow-blue-200 transition-colors">Add Client</button>
+                                    <button type="button" onClick={() => setIsAddClientModalOpen(false)} className="px-5 py-2.5 border border-slate-300 dark:border-gray-700 rounded-lg font-bold text-slate-600 dark:text-gray-400 hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors">Cancel</button>
+                                    <button type="submit" className="px-5 py-2.5 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-bold hover:bg-blue-700 dark:hover:bg-blue-600 shadow-lg shadow-blue-200 dark:shadow-none transition-colors">Add Client</button>
                                 </div>
                             </form>
                         </div>

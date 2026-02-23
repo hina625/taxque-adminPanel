@@ -217,16 +217,16 @@ export default function TestimonialsPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#f5f7fa] p-8 font-sans text-slate-800">
+        <div className="min-h-screen bg-[#f5f7fa] dark:bg-gray-950 p-8 font-sans text-slate-800 dark:text-gray-100 transition-colors duration-300">
             <div className="max-w-[1400px] mx-auto">
 
                 {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 bg-white/90 backdrop-blur-xl p-10 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl p-10 rounded-3xl border border-slate-200 dark:border-gray-700 shadow-xl shadow-slate-200/50 dark:shadow-gray-900/50 transition-colors">
                     <div>
                         <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center gap-4 mb-2">
                             Review Automation Dashboard
                         </h1>
-                        <p className="text-slate-500 text-lg font-medium">Centralized management for user reviews with advanced filtering and verification.</p>
+                        <p className="text-slate-500 dark:text-gray-400 text-lg font-medium">Centralized management for user reviews with advanced filtering and verification.</p>
                     </div>
                     <button onClick={() => openReviewModal()} className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl shadow-lg shadow-indigo-200 flex items-center gap-2 font-bold transition-all active:scale-95">
                         <PlusCircle weight="bold" size={20} />
@@ -236,61 +236,61 @@ export default function TestimonialsPage() {
 
                 {/* Stats */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-                    <div onClick={() => setStatusFilter('')} className="bg-white/90 backdrop-blur-xl p-7 rounded-3xl shadow-sm border border-slate-200 cursor-pointer hover:-translate-y-2 hover:shadow-lg transition-all group relative overflow-hidden">
+                    <div onClick={() => setStatusFilter('')} className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl p-7 rounded-3xl shadow-sm border border-slate-200 dark:border-gray-700 cursor-pointer hover:-translate-y-2 hover:shadow-lg transition-all group relative overflow-hidden">
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
                         <div className="flex items-center gap-5">
                             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center text-xl shadow-lg shadow-indigo-200">
                                 <ChatCircle weight="fill" />
                             </div>
                             <div>
-                                <div className="text-4xl font-extrabold text-slate-800">{stats.total}</div>
-                                <div className="text-sm font-bold text-slate-500 uppercase tracking-wide">Total Reviews</div>
+                                <div className="text-4xl font-extrabold text-slate-800 dark:text-white">{stats.total}</div>
+                                <div className="text-sm font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wide">Total Reviews</div>
                             </div>
                         </div>
                     </div>
 
-                    <div onClick={() => setStatusFilter('published')} className="bg-white/90 backdrop-blur-xl p-7 rounded-3xl shadow-sm border border-slate-200 cursor-pointer hover:-translate-y-2 hover:shadow-lg transition-all group relative overflow-hidden">
+                    <div onClick={() => setStatusFilter('published')} className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl p-7 rounded-3xl shadow-sm border border-slate-200 dark:border-gray-700 cursor-pointer hover:-translate-y-2 hover:shadow-lg transition-all group relative overflow-hidden">
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
                         <div className="flex items-center gap-5">
                             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white flex items-center justify-center text-xl shadow-lg shadow-emerald-200">
                                 <CheckCircle weight="fill" />
                             </div>
                             <div>
-                                <div className="text-4xl font-extrabold text-slate-800">{stats.published}</div>
-                                <div className="text-sm font-bold text-slate-500 uppercase tracking-wide">Published</div>
+                                <div className="text-4xl font-extrabold text-slate-800 dark:text-white">{stats.published}</div>
+                                <div className="text-sm font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wide">Published</div>
                             </div>
                         </div>
                     </div>
 
-                    <div onClick={() => setStatusFilter('draft')} className="bg-white/90 backdrop-blur-xl p-7 rounded-3xl shadow-sm border border-slate-200 cursor-pointer hover:-translate-y-2 hover:shadow-lg transition-all group relative overflow-hidden">
+                    <div onClick={() => setStatusFilter('draft')} className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl p-7 rounded-3xl shadow-sm border border-slate-200 dark:border-gray-700 cursor-pointer hover:-translate-y-2 hover:shadow-lg transition-all group relative overflow-hidden">
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-fuchsia-400 to-pink-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
                         <div className="flex items-center gap-5">
                             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-fuchsia-400 to-pink-500 text-white flex items-center justify-center text-xl shadow-lg shadow-pink-200">
                                 <Tray weight="fill" />
                             </div>
                             <div>
-                                <div className="text-4xl font-extrabold text-slate-800">{stats.draft}</div>
-                                <div className="text-sm font-bold text-slate-500 uppercase tracking-wide">Drafts Pending</div>
+                                <div className="text-4xl font-extrabold text-slate-800 dark:text-white">{stats.draft}</div>
+                                <div className="text-sm font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wide">Drafts Pending</div>
                             </div>
                         </div>
                     </div>
 
-                    <div onClick={() => setStatusFilter('featured')} className="bg-white/90 backdrop-blur-xl p-7 rounded-3xl shadow-sm border border-slate-200 cursor-pointer hover:-translate-y-2 hover:shadow-lg transition-all group relative overflow-hidden">
+                    <div onClick={() => setStatusFilter('featured')} className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl p-7 rounded-3xl shadow-sm border border-slate-200 dark:border-gray-700 cursor-pointer hover:-translate-y-2 hover:shadow-lg transition-all group relative overflow-hidden">
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-500 to-orange-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
                         <div className="flex items-center gap-5">
                             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-orange-400 text-white flex items-center justify-center text-xl shadow-lg shadow-orange-200">
                                 <Star weight="fill" />
                             </div>
                             <div>
-                                <div className="text-4xl font-extrabold text-slate-800">{stats.featured}</div>
-                                <div className="text-sm font-bold text-slate-500 uppercase tracking-wide">Featured</div>
+                                <div className="text-4xl font-extrabold text-slate-800 dark:text-white">{stats.featured}</div>
+                                <div className="text-sm font-bold text-slate-500 dark:text-gray-400 uppercase tracking-wide">Featured</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {/* Utility Bar */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8 bg-white/90 backdrop-blur-xl p-6 rounded-3xl border border-slate-200">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl p-6 rounded-3xl border border-slate-200 dark:border-gray-700 transition-colors">
                     <button onClick={() => setStatusFilter('draft')} className="bg-gradient-to-r from-amber-400 to-rose-500 text-white px-5 py-3 rounded-xl font-bold hover:-translate-y-1 hover:shadow-lg transition-all flex items-center justify-center gap-2">
                         <Tray weight="bold" /> Go to Drafts ({stats.draft})
                     </button>
@@ -303,13 +303,24 @@ export default function TestimonialsPage() {
                 </div>
 
                 {/* Filtering Panel */}
-                <div className="bg-white/90 backdrop-blur-xl p-6 rounded-3xl shadow-sm border border-slate-200 mb-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-gray-700 mb-8 transition-colors">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                        {/* Search */}
+                        <div className="relative">
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                placeholder="Search reviews..."
+                                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-sm font-semibold focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 text-slate-700 dark:text-white transition-colors placeholder:font-normal"
+                            />
+                            <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" weight="bold" />
+                        </div>
                         <div className="relative">
                             <select
                                 value={statusFilter}
                                 onChange={(e) => setStatusFilter(e.target.value)}
-                                className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-semibold focus:outline-none focus:border-indigo-500 appearance-none"
+                                className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-sm font-semibold focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 appearance-none text-slate-700 dark:text-white transition-colors"
                             >
                                 <option value="">All Status</option>
                                 <option value="published">Published</option>
@@ -323,7 +334,7 @@ export default function TestimonialsPage() {
                             <select
                                 value={ratingFilter}
                                 onChange={(e) => setRatingFilter(e.target.value)}
-                                className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-semibold focus:outline-none focus:border-indigo-500 appearance-none"
+                                className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-sm font-semibold focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 appearance-none text-slate-700 dark:text-white transition-colors"
                             >
                                 <option value="">All Ratings</option>
                                 <option value="5">5 Stars</option>
@@ -338,7 +349,7 @@ export default function TestimonialsPage() {
                             <select
                                 value={sortFilter}
                                 onChange={(e) => setSortFilter(e.target.value)}
-                                className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-semibold focus:outline-none focus:border-indigo-500 appearance-none"
+                                className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-sm font-semibold focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 appearance-none text-slate-700 dark:text-white transition-colors"
                             >
                                 <option value="newest">Newest First</option>
                                 <option value="oldest">Oldest First</option>
@@ -348,32 +359,22 @@ export default function TestimonialsPage() {
                             {sortFilter === 'newest' ? <SortDescending className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" weight="bold" /> : <SortAscending className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" weight="bold" />}
                         </div>
                     </div>
-                    <div className="relative">
-                        <MagnifyingGlass className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" weight="bold" size={18} />
-                        <input
-                            type="text"
-                            className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-semibold focus:outline-none focus:border-indigo-500 transition-colors"
-                            placeholder="Search customer, text, or ID..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                    </div>
                 </div>
 
                 {/* Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredTestimonials.map(testimonial => (
-                        <div key={testimonial.id} className="bg-white/90 backdrop-blur-2xl rounded-3xl shadow-sm border border-slate-200 hover:-translate-y-1 hover:shadow-xl hover:border-indigo-200 transition-all duration-300 relative overflow-hidden group">
+                        <div key={testimonial.id} className="bg-white dark:bg-gray-900 rounded-3xl shadow-sm border border-slate-200 dark:border-gray-800 hover:-translate-y-1 hover:shadow-xl hover:border-indigo-200 dark:hover:border-indigo-600 transition-all duration-300 relative overflow-hidden group">
                             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
-                            <div className="p-7 bg-white/60">
+                            <div className="p-7 bg-white/60 dark:bg-gray-800/60 transition-colors">
                                 <div className="flex items-center gap-4">
                                     <div className={`w-12 h-12 rounded-xl ${getAvatarColor(testimonial.name)} text-white flex items-center justify-center font-bold text-lg shadow-md`}>
                                         {testimonial.avatar}
                                     </div>
                                     <div>
-                                        <h4 className="text-lg font-bold text-slate-900 leading-tight">{testimonial.name}</h4>
-                                        <p className="text-sm font-medium text-slate-500">{testimonial.title}</p>
+                                        <h4 className="text-lg font-bold text-slate-900 dark:text-white leading-tight transition-colors">{testimonial.name}</h4>
+                                        <p className="text-sm font-medium text-slate-500 dark:text-gray-400 transition-colors">{testimonial.title}</p>
                                     </div>
                                 </div>
                             </div>
@@ -391,27 +392,27 @@ export default function TestimonialsPage() {
                                     ))}
                                 </div>
 
-                                <p className="text-slate-700 italic text-base leading-relaxed mb-6 pl-4 border-l-4 border-indigo-100 relative">
-                                    <span className="absolute -top-3 left-1 text-4xl text-indigo-100 font-serif leading-none">“</span>
+                                <p className="text-slate-700 dark:text-gray-300 italic text-base leading-relaxed mb-6 pl-4 border-l-4 border-indigo-100 dark:border-indigo-900 relative transition-colors">
+                                    <span className="absolute -top-3 left-1 text-4xl text-indigo-100 dark:text-indigo-900 font-serif leading-none transition-colors">“</span>
                                     {testimonial.text}
                                 </p>
 
-                                <div className="flex justify-between items-center pt-5 border-t border-slate-100">
+                                <div className="flex justify-between items-center pt-5 border-t border-slate-100 dark:border-gray-800 transition-colors">
                                     <div className="flex items-center gap-2">
-                                        <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${testimonial.status === 'published' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>
+                                        <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide transition-colors ${testimonial.status === 'published' ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400' : 'bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400'}`}>
                                             {testimonial.status}
                                         </span>
-                                        {testimonial.featured && <span className="bg-rose-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1"><Star weight="fill" /> Featured</span>}
+                                        {testimonial.featured && (
+                                            <span className="px-3 py-1 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1 transition-colors">
+                                                <Star weight="fill" size={12} /> Featured
+                                            </span>
+                                        )}
                                     </div>
-
-                                    <div className="flex gap-2">
-                                        <button onClick={() => openReviewModal(testimonial)} className="w-9 h-9 flex items-center justify-center rounded-full bg-blue-50 text-blue-500 hover:bg-blue-500 hover:text-white transition-all transform hover:scale-110">
+                                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button onClick={() => openReviewModal(testimonial)} className="p-2 bg-white dark:bg-gray-800 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg border border-slate-200 dark:border-gray-700 hover:border-indigo-200 dark:hover:border-indigo-800 shadow-sm transition-all">
                                             <PencilSimple weight="bold" />
                                         </button>
-                                        <button onClick={() => toggleFeatured(testimonial.id)} className={`w-9 h-9 flex items-center justify-center rounded-full transition-all transform hover:scale-110 ${testimonial.featured ? 'bg-amber-100 text-amber-500 hover:bg-amber-500 hover:text-white' : 'bg-slate-100 text-slate-400 hover:bg-amber-500 hover:text-white'}`}>
-                                            <Star weight={testimonial.featured ? "fill" : "bold"} />
-                                        </button>
-                                        <button onClick={() => openDeleteModal(testimonial.id)} className="w-9 h-9 flex items-center justify-center rounded-full bg-rose-50 text-rose-500 hover:bg-rose-500 hover:text-white transition-all transform hover:scale-110">
+                                        <button onClick={() => openDeleteModal(testimonial.id)} className="p-2 bg-white dark:bg-gray-800 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 rounded-lg border border-slate-200 dark:border-gray-700 hover:border-rose-200 dark:hover:border-rose-800 shadow-sm transition-all">
                                             <Trash weight="bold" />
                                         </button>
                                     </div>
@@ -422,12 +423,12 @@ export default function TestimonialsPage() {
                 </div>
 
                 {filteredTestimonials.length === 0 && (
-                    <div className="text-center py-20 bg-white/50 backdrop-blur-sm rounded-3xl border border-dashed border-slate-300">
-                        <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-300">
+                    <div className="text-center py-20 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-3xl border border-dashed border-slate-300 dark:border-gray-700 transition-colors">
+                        <div className="w-20 h-20 bg-slate-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-300 dark:text-gray-600 transition-colors">
                             <ChatCircle size={40} weight="duotone" />
                         </div>
-                        <h3 className="text-xl font-bold text-slate-800 mb-2">No Reviews Found</h3>
-                        <p className="text-slate-500 max-w-sm mx-auto mb-6">Try adjusting your filters or search criteria. You can also add a new review manually.</p>
+                        <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 transition-colors">No Reviews Found</h3>
+                        <p className="text-slate-500 dark:text-gray-400 max-w-sm mx-auto mb-6 transition-colors">Try adjusting your filters or search criteria. You can also add a new review manually.</p>
                         <button onClick={() => { setStatusFilter(''); setRatingFilter(''); setSortFilter('newest'); setSearchQuery(''); }} className="bg-indigo-600 text-white px-6 py-2 rounded-xl font-bold hover:bg-indigo-700 transition-colors">
                             Clear Filters
                         </button>
@@ -438,51 +439,51 @@ export default function TestimonialsPage() {
             {/* Review Modal */}
             {isReviewModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in text-left">
-                    <div className="bg-white rounded-3xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl">
-                        <div className="p-6 border-b border-slate-100 flex justify-between items-center">
-                            <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <div className="bg-white dark:bg-gray-900 rounded-3xl w-full max-w-xl max-h-[90vh] overflow-y-auto scrollbar-hide shadow-2xl transition-colors">
+                        <div className="p-6 border-b border-slate-100 dark:border-gray-800 flex justify-between items-center transition-colors">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 transition-colors">
                                 {isEditing ? <PencilSimple className="text-indigo-600" weight="bold" /> : <PlusCircle className="text-indigo-600" weight="bold" />}
                                 {isEditing ? 'Edit Review' : 'Add New Review'}
                             </h3>
-                            <button onClick={() => setIsReviewModalOpen(false)} className="text-slate-400 hover:text-slate-600 transition-colors">
+                            <button onClick={() => setIsReviewModalOpen(false)} className="text-slate-400 hover:text-slate-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors">
                                 <X weight="bold" size={24} />
                             </button>
                         </div>
                         <form onSubmit={handleSaveReview} className="p-8 space-y-6">
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">Customer Name <span className="text-rose-500">*</span></label>
+                                <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">Customer Name <span className="text-rose-500">*</span></label>
                                 <input
                                     type="text"
                                     required
-                                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-indigo-500 transition-colors"
+                                    className="w-full px-4 py-3 bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-sm font-medium focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 transition-colors text-slate-900 dark:text-white"
                                     placeholder="Enter customer name"
                                     value={currentTestimonial.name}
                                     onChange={(e) => setCurrentTestimonial({ ...currentTestimonial, name: e.target.value })}
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">Title/Company</label>
+                                <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">Title/Company</label>
                                 <input
                                     type="text"
-                                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-indigo-500 transition-colors"
+                                    className="w-full px-4 py-3 bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-sm font-medium focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 transition-colors text-slate-900 dark:text-white"
                                     placeholder="CEO, Company Name"
                                     value={currentTestimonial.title}
                                     onChange={(e) => setCurrentTestimonial({ ...currentTestimonial, title: e.target.value })}
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">Review Text <span className="text-rose-500">*</span></label>
+                                <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">Review Text <span className="text-rose-500">*</span></label>
                                 <textarea
                                     required
                                     rows={4}
-                                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-indigo-500 transition-colors resize-none"
+                                    className="w-full px-4 py-3 bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-sm font-medium focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 transition-colors resize-none text-slate-900 dark:text-white"
                                     placeholder="Enter testimonial..."
                                     value={currentTestimonial.text}
                                     onChange={(e) => setCurrentTestimonial({ ...currentTestimonial, text: e.target.value })}
                                 ></textarea>
                             </div>
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">Rating</label>
+                                <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">Rating</label>
                                 <div className="flex items-center gap-2">
                                     {[1, 2, 3, 4, 5].map((star) => (
                                         <button
@@ -498,63 +499,63 @@ export default function TestimonialsPage() {
                                             />
                                         </button>
                                     ))}
-                                    <span className="ml-2 text-sm font-bold text-slate-500">{(currentTestimonial.rating || 0)} Stars</span>
+                                    <span className="ml-2 text-sm font-bold text-slate-500 dark:text-gray-400 transition-colors">{(currentTestimonial.rating || 0)} Stars</span>
                                 </div>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">Source Link</label>
+                                    <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">Source Link</label>
                                     <input
                                         type="url"
-                                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-indigo-500 transition-colors"
+                                        className="w-full px-4 py-3 bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-sm font-medium focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 transition-colors text-slate-900 dark:text-white"
                                         placeholder="Google Review URL"
                                         value={currentTestimonial.source}
                                         onChange={(e) => setCurrentTestimonial({ ...currentTestimonial, source: e.target.value })}
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-bold text-slate-700 mb-2">External ID</label>
+                                    <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">External ID</label>
                                     <input
                                         type="text"
-                                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-indigo-500 transition-colors"
+                                        className="w-full px-4 py-3 bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-sm font-medium focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-400 transition-colors text-slate-900 dark:text-white"
                                         placeholder="GNEW1"
                                         value={currentTestimonial.externalId}
                                         onChange={(e) => setCurrentTestimonial({ ...currentTestimonial, externalId: e.target.value })}
                                     />
                                 </div>
                             </div>
-                            <div className="bg-slate-50 p-4 rounded-xl space-y-3">
+                            <div className="bg-slate-50 dark:bg-gray-800 p-4 rounded-xl space-y-3 transition-colors">
                                 <label className="flex items-center gap-3 cursor-pointer">
                                     <input
                                         type="checkbox"
-                                        className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500 border-gray-300"
+                                        className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500 border-gray-300 dark:bg-gray-700 dark:border-gray-600"
                                         checked={currentTestimonial.status === 'published'}
                                         onChange={(e) => setCurrentTestimonial({ ...currentTestimonial, status: e.target.checked ? 'published' : 'draft' })}
                                     />
-                                    <span className="text-sm font-bold text-slate-700">Publish on website</span>
+                                    <span className="text-sm font-bold text-slate-700 dark:text-gray-300 transition-colors">Publish on website</span>
                                 </label>
                                 <label className="flex items-center gap-3 cursor-pointer">
                                     <input
                                         type="checkbox"
-                                        className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500 border-gray-300"
+                                        className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500 border-gray-300 dark:bg-gray-700 dark:border-gray-600"
                                         checked={currentTestimonial.featured}
                                         onChange={(e) => setCurrentTestimonial({ ...currentTestimonial, featured: e.target.checked })}
                                     />
-                                    <span className="text-sm font-bold text-slate-700">Featured Review</span>
+                                    <span className="text-sm font-bold text-slate-700 dark:text-gray-300 transition-colors">Featured Review</span>
                                 </label>
                                 <label className="flex items-center gap-3 cursor-pointer">
                                     <input
                                         type="checkbox"
-                                        className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500 border-gray-300"
+                                        className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500 border-gray-300 dark:bg-gray-700 dark:border-gray-600"
                                         checked={currentTestimonial.isVerified}
                                         onChange={(e) => setCurrentTestimonial({ ...currentTestimonial, isVerified: e.target.checked })}
                                     />
-                                    <span className="text-sm font-bold text-slate-700">Verified Source</span>
+                                    <span className="text-sm font-bold text-slate-700 dark:text-gray-300 transition-colors">Verified Source</span>
                                 </label>
                             </div>
 
                             <div className="flex justify-end gap-3 pt-4">
-                                <button type="button" onClick={() => setIsReviewModalOpen(false)} className="px-6 py-3 rounded-xl font-bold text-slate-600 hover:bg-slate-100 transition-colors">Cancel</button>
+                                <button type="button" onClick={() => setIsReviewModalOpen(false)} className="px-6 py-3 rounded-xl font-bold text-slate-600 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-800 transition-colors">Cancel</button>
                                 <button type="submit" className="px-6 py-3 rounded-xl font-bold bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-colors">
                                     {isEditing ? 'Save Changes' : 'Create Review'}
                                 </button>
@@ -567,24 +568,24 @@ export default function TestimonialsPage() {
             {/* Fetch Modal */}
             {isFetchModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in text-center">
-                    <div className="bg-white rounded-3xl w-full max-w-md p-8 shadow-2xl relative">
-                        <button onClick={() => setIsFetchModalOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                    <div className="bg-white dark:bg-gray-900 rounded-3xl w-full max-w-md p-8 shadow-2xl relative transition-colors">
+                        <button onClick={() => setIsFetchModalOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors">
                             <X weight="bold" size={24} />
                         </button>
                         <div className="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
                             <GoogleLogo weight="bold" />
                         </div>
-                        <h3 className="text-2xl font-bold text-slate-900 mb-2">Fetch External Reviews</h3>
-                        <p className="text-slate-500 mb-8">Simulate API integration to pull new reviews directly from Google Business Profile.</p>
+                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 transition-colors">Fetch External Reviews</h3>
+                        <p className="text-slate-500 dark:text-gray-400 mb-8 transition-colors">Simulate API integration to pull new reviews directly from Google Business Profile.</p>
 
-                        <div className="bg-slate-50 p-6 rounded-2xl mb-8">
-                            <h4 className="font-bold text-slate-700 mb-4">Google Business Profile</h4>
-                            <button onClick={handleFetchReviews} className="w-full bg-white border border-slate-200 text-slate-700 hover:border-indigo-300 hover:text-indigo-600 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-sm">
+                        <div className="bg-slate-50 dark:bg-gray-800 p-6 rounded-2xl mb-8 transition-colors">
+                            <h4 className="font-bold text-slate-700 dark:text-gray-300 mb-4 transition-colors">Google Business Profile</h4>
+                            <button onClick={handleFetchReviews} className="w-full bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 text-slate-700 dark:text-white hover:border-indigo-300 hover:text-indigo-600 dark:hover:border-indigo-400 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-sm">
                                 <GoogleLogo weight="bold" className="text-rose-500" /> Fetch Google Reviews
                             </button>
                         </div>
 
-                        <button onClick={() => setIsFetchModalOpen(false)} className="text-slate-500 font-bold hover:text-slate-700">Close</button>
+                        <button onClick={() => setIsFetchModalOpen(false)} className="text-slate-500 dark:text-gray-400 font-bold hover:text-slate-700 dark:hover:text-gray-200 transition-colors">Close</button>
                     </div>
                 </div>
             )}
@@ -592,8 +593,8 @@ export default function TestimonialsPage() {
             {/* Send Request Modal */}
             {isRequestModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in text-left">
-                    <div className="bg-white rounded-3xl w-full max-w-md p-8 shadow-2xl relative">
-                        <button onClick={() => setIsRequestModalOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                    <div className="bg-white dark:bg-gray-900 rounded-3xl w-full max-w-md p-8 shadow-2xl relative transition-colors">
+                        <button onClick={() => setIsRequestModalOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors">
                             <X weight="bold" size={24} />
                         </button>
                         <div className="flex items-center gap-3 mb-6">
@@ -601,25 +602,29 @@ export default function TestimonialsPage() {
                                 <PaperPlaneRight weight="fill" />
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold text-slate-900">Send Review Request</h3>
-                                <p className="text-xs text-slate-500">Send a personalized email request.</p>
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white transition-colors">Send Review Request</h3>
+                                <p className="text-xs text-slate-500 dark:text-gray-400 transition-colors">Send a personalized email request.</p>
                             </div>
                         </div>
 
                         <form onSubmit={handleSendRequest} className="space-y-5">
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">Recipient Email</label>
-                                <input type="email" required className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-emerald-500 transition-colors" placeholder="customer@example.com" />
+                                <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">Recipient Email</label>
+                                <input type="email" required className="w-full px-4 py-3 bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-sm font-medium focus:outline-none focus:border-emerald-500 transition-colors text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-500" placeholder="customer@example.com" />
                             </div>
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">Name (Optional)</label>
-                                <input type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-emerald-500 transition-colors" placeholder="John Doe" />
+                                <label className="block text-sm font-bold text-slate-700 dark:text-gray-300 mb-2 transition-colors">Name (Optional)</label>
+                                <input type="text" className="w-full px-4 py-3 bg-slate-50 dark:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-sm font-medium focus:outline-none focus:border-emerald-500 transition-colors text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-500" placeholder="e.g. John Doe" />
                             </div>
-
-                            <div className="pt-2 flex gap-3">
-                                <button type="button" onClick={() => setIsRequestModalOpen(false)} className="flex-1 py-3 rounded-xl font-bold text-slate-600 hover:bg-slate-100 transition-colors">Cancel</button>
-                                <button type="submit" className="flex-1 py-3 rounded-xl font-bold bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-200 transition-colors">Send Request</button>
+                            <div className="bg-emerald-50 dark:bg-emerald-950/30 p-4 rounded-2xl flex items-start gap-3 transition-colors">
+                                <Warning className="text-emerald-600 dark:text-emerald-400 mt-1" weight="bold" size={18} />
+                                <p className="text-xs text-emerald-700 dark:text-emerald-400 leading-relaxed font-medium transition-colors">
+                                    We'll send a polite request with a direct link to your review page. You can customize the template in Settings.
+                                </p>
                             </div>
+                            <button type="submit" className="w-full py-4 bg-emerald-600 text-white rounded-2xl font-bold hover:bg-emerald-700 shadow-lg shadow-emerald-200 dark:shadow-emerald-900/20 transition-all flex items-center justify-center gap-2">
+                                <PaperPlaneRight weight="bold" /> Send Request
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -627,24 +632,16 @@ export default function TestimonialsPage() {
 
             {/* Delete Confirmation Modal */}
             {isDeleteModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in text-center">
-                    <div className="bg-white rounded-3xl w-full max-w-sm p-8 shadow-2xl">
-                        <div className="w-16 h-16 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
-                            <Trash weight="fill" />
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in text-center">
+                    <div className="bg-white dark:bg-gray-900 rounded-3xl w-full max-w-sm p-8 shadow-2xl animate-scale-in transition-colors">
+                        <div className="w-16 h-16 bg-rose-50 dark:bg-rose-950/50 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl transition-colors">
+                            <Trash weight="bold" />
                         </div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-2">Delete Review?</h3>
-                        <p className="text-slate-500 mb-6">Are you sure you want to permanently delete this review? This action cannot be undone.</p>
-
-                        <div className="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-xl text-left mb-8">
-                            <div className="flex items-start gap-3">
-                                <Warning className="text-rose-600 mt-0.5" weight="bold" size={20} />
-                                <p className="text-sm text-rose-800 font-medium">This will permanently remove the review from your database.</p>
-                            </div>
-                        </div>
-
+                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 transition-colors">Delete Review?</h3>
+                        <p className="text-slate-500 dark:text-gray-400 mb-8 transition-colors">This action cannot be undone. The review will be permanently removed from your site.</p>
                         <div className="flex gap-3">
-                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 py-3 rounded-xl font-bold text-slate-600 hover:bg-slate-100 transition-colors">Cancel</button>
-                            <button onClick={confirmDelete} className="flex-1 py-3 rounded-xl font-bold bg-rose-500 text-white hover:bg-rose-600 shadow-lg shadow-rose-200 transition-colors">Delete</button>
+                            <button onClick={() => setIsDeleteModalOpen(false)} className="flex-1 py-3 rounded-xl font-bold text-slate-600 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-800 transition-colors">Cancel</button>
+                            <button onClick={confirmDelete} className="flex-1 py-3 rounded-xl font-bold bg-rose-500 text-white hover:bg-rose-600 shadow-lg shadow-rose-200 dark:shadow-rose-900/20 transition-colors">Delete Now</button>
                         </div>
                     </div>
                 </div>
